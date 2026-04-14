@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo \"DIR=$PWD\")",
+      "Bash(npx create-next-app@14 . --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --no-git)",
+      "Bash(export PATH=\"/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:$PATH\")",
+      "Read(//Users/mariamina/.nvm/versions/**)",
+      "Read(//Users/mariamina/.volta/**)",
+      "Read(//opt/**)",
+      "Bash(/opt/pmk/env/global/bin/node --version)",
+      "Bash(/opt/pmk/env/global/bin/npm --version)",
+      "Read(//opt/pmk/env/global/**)",
+      "Bash(mdfind -name node)",
+      "Bash(grep -E \"bin/node$\")",
+      "Bash(npm --version)",
+      "Bash(brew --version)",
+      "Bash(curl -fsSL https://fnm.vercel.app/install)",
+      "Bash(bash)",
+      "Bash(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh)"
+    ]
+  }
+}

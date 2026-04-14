@@ -1,0 +1,380 @@
+// @ts-nocheck
+import { Drug } from "@/types/seed";
+
+export const womensHealthPharmacology: Drug[] = [
+  {
+    id: "wh-drug-oxytocin",
+    rotation: "womens-health",
+    name: "Oxytocin (Pitocin)",
+    class: "Oxytocic / Uterotonic (Posterior Pituitary Hormone)",
+    mechanismOfAction:
+      "Oxytocin is a synthetic nonapeptide identical to the endogenous posterior pituitary hormone. It binds G-protein-coupled oxytocin receptors (OTRs) on uterine myometrial cells, activating phospholipase C → increased intracellular IP₃ → calcium release from sarcoplasmic reticulum → myosin light-chain kinase activation → uterine smooth muscle contraction. OTR expression increases markedly in late pregnancy and is upregulated during labor, explaining the increasing uterotonic effect at term. Oxytocin also acts on mammary gland myoepithelial cells to cause milk ejection and on the neurohypophysis to exhibit antidiuretic hormone (ADH)-like properties at high doses.",
+    indications: [
+      "Labor induction (cervical ripening complete, favorable Bishop score) — elective or medically indicated (post-dates, IUGR, GDM, preeclampsia)",
+      "Labor augmentation (arrest of dilation or descent in active labor)",
+      "Prevention of postpartum hemorrhage (PPH) — given immediately after delivery of placenta (active management of third stage, AMTSL)",
+      "Treatment of uterine atony in PPH — first-line uterotonic",
+      "Induction for missed abortion or intrauterine fetal demise (IUFD)",
+    ],
+    contraindications: [
+      "ABSOLUTE: Non-reassuring fetal status (non-reassuring fetal heart rate pattern, category III FHR tracing); placenta previa or vasa previa; umbilical cord prolapse; active genital herpes (vaginal delivery); prior classical (vertical) uterine incision (risk of uterine rupture with contractions); transverse or other non-vertex presentation",
+      "RELATIVE: Prior low-transverse cesarean section (VBAC — oxytocin can be used but requires continuous FHR monitoring); grand multiparity (≥ 5 deliveries — increased uterine rupture risk with hyperstimulation); overdistended uterus (multiple gestation, polyhydramnios — higher rupture risk)",
+    ],
+    sideEffects: {
+      common: [
+        "Uterine tachysystole (> 5 contractions in 10 minutes) — with or without FHR changes; requires dose reduction or discontinuation",
+        "Nausea and vomiting",
+        "Maternal hypotension (rapid IV bolus — avoid; use dilute infusion or IM for PPH)",
+        "Water intoxication/hyponatremia (ADH-like effect at prolonged high doses — dilutional hyponatremia; symptoms: headache, confusion, seizures)",
+      ],
+      serious: [
+        "Uterine hyperstimulation → category II or III fetal heart rate pattern → fetal acidemia, asphyxia",
+        "Uterine rupture (rare at standard doses in unscarred uterus; higher risk in prior uterine scar + tachysystole)",
+        "Severe maternal hypotension (with undiluted rapid IV administration — use only diluted infusion IV)",
+        "Severe hyponatremia (with excessive IV fluid use + high-dose prolonged infusion — confusion, seizures, coma)",
+      ],
+      blackBox: [],
+    },
+    interactions: [
+      "Prostaglandins (misoprostol, dinoprostone): additive uterotonic effect → do NOT use simultaneously (risk of uterine hyperstimulation/rupture). Minimum 6-hour interval between last misoprostol dose and starting oxytocin.",
+      "Cyclopropane anesthesia (historical): enhanced hypotensive effect",
+      "Sympathomimetics: may counteract oxytocin-mediated blood pressure reduction",
+    ],
+    monitoring: [
+      "Continuous electronic fetal heart rate (EFM) monitoring during labor induction/augmentation — mandatory",
+      "Uterine contraction frequency and duration (tocometry — uterine activity monitor)",
+      "Maternal vital signs (BP, HR) q15–30 minutes",
+      "Fluid intake/output if prolonged high-dose infusion (water intoxication risk)",
+      "Cervical dilation progress (Bishop score, vaginal exam q2–4h)",
+    ],
+    dosing: {
+      adult: "Labor induction/augmentation: Start 0.5–2 mU/min IV infusion (diluted: 10–40 units in 1L NS = 10–40 mU/mL). Increase by 1–2 mU/min q15–60 min as needed. Maximum: 20–40 mU/min (institution-dependent). PPH prevention: 10 units IM immediately after delivery of anterior shoulder (preferred for AMTSL) OR 20–40 units in 1L NS at 125–200 mL/hr IV. PPH treatment: increase infusion rate; do NOT give undiluted IV push (profound hypotension).",
+      pediatric: "Not applicable",
+      renal: "No dose adjustment required",
+      hepatic: "No dose adjustment required",
+    },
+    clinicalPearls: [
+      "The most common error in oxytocin use is titrating too aggressively without adequate time to assess the fetal response. Oxytocin has a 3–5 minute half-life and reaches steady state in 40–60 minutes. Each dose increase should be evaluated for fetal well-being before further titration. If tachysystole develops: reduce or stop infusion, lateral maternal positioning, IV fluid bolus, supplemental O₂, terbutaline 0.25 mg SQ or IV for acute tocolysis.",
+      "Oxytocin should NEVER be given as an undiluted IV bolus (10-unit bolus = profound vasodilation and hypotension). In the setting of PPH, even the IM route (10 units) is safer than an undiluted IV push. For cesarean delivery, oxytocin is given as a slow IV infusion or diluted slow IV push (3 units over 15 seconds is acceptable per some protocols) rather than a rapid bolus.",
+    ],
+    boardRecallTip: "Oxytocin: labor induction + PPH prevention (AMTSL). Give after delivery of anterior shoulder. Never undiluted IV push (hypotension). Tachysystole (> 5 contractions/10 min) → reduce dose + terbutaline SQ for acute tocolysis. Water intoxication risk with prolonged high-dose infusion. Misoprostol: 6-hour washout before starting oxytocin.",
+  },
+  {
+    id: "wh-drug-magnesium-sulfate",
+    rotation: "womens-health",
+    name: "Magnesium Sulfate (MgSO₄)",
+    class: "Electrolyte / Anticonvulsant / Tocolytic",
+    mechanismOfAction:
+      "Magnesium is a divalent cation that competes with calcium at voltage-gated calcium channels and NMDA (N-methyl-D-aspartate) glutamate receptors, reducing neuronal excitability and preventing seizure propagation. In obstetrics, the primary mechanism of seizure prophylaxis in preeclampsia/eclampsia is unclear but likely involves: cerebral vasodilation (reducing vasospasm), reduction of glutamate excitotoxicity via NMDA antagonism, and stabilization of the blood-brain barrier. As a tocolytic, magnesium relaxes uterine smooth muscle by competing with calcium at myosin light-chain kinase. For fetal neuroprotection, magnesium crosses the placenta and may protect the preterm fetal brain from hypoxic-ischemic injury by reducing excitotoxicity and free radical formation.",
+    indications: [
+      "Seizure prophylaxis in preeclampsia with severe features (drug of choice — superior to diazepam and phenytoin per Magpie Trial)",
+      "Treatment of eclampsia (acute seizure — IV bolus + maintenance)",
+      "Fetal neuroprotection in preterm birth < 32 weeks (reduces risk of cerebral palsy by 30–50% — BEAM trial, Doyle meta-analysis)",
+      "Acute tocolysis (second-line — delays preterm delivery 48 hours to allow steroid administration; not superior to first-line agents such as nifedipine, indomethacin)",
+    ],
+    contraindications: [
+      "ABSOLUTE: Myasthenia gravis (magnesium blocks neuromuscular junction → respiratory arrest); severe renal failure (CrCl < 20 mL/min — significant accumulation risk); hypermagnesemia; concurrent calcium channel blocker infusion (excessive cardiovascular depression)",
+      "RELATIVE: Respiratory compromise (monitor respiratory rate closely); cardiac conduction defects (magnesium slows AV node conduction)",
+    ],
+    sideEffects: {
+      common: [
+        "Flushing, warmth, diaphoresis (vasodilation)",
+        "Nausea, vomiting",
+        "Headache",
+        "Blurred vision or diplopia (mild neuromuscular effects)",
+        "Generalized weakness, lethargy",
+        "Injection site pain (IM administration — painful; IV preferred)",
+      ],
+      serious: [
+        "Loss of deep tendon reflexes (DTRs) — first sign of toxicity (occurs at 7–10 mEq/L): STOP infusion if DTRs absent",
+        "Respiratory depression and apnea (at 10–13 mEq/L) — have calcium gluconate and airway equipment at bedside",
+        "Cardiac arrest (> 15 mEq/L) — extreme overdose",
+        "Neonatal effects: hypermagnesemia in neonate (hypotonia, respiratory depression) if given close to delivery; monitor neonatal DTRs and respiratory effort",
+        "Pulmonary edema (exacerbated by volume overload — magnesium impairs myocardial contractility at toxic levels)",
+      ],
+      blackBox: [],
+    },
+    interactions: [
+      "Calcium channel blockers (nifedipine, nicardipine): synergistic cardiovascular depression — profound hypotension and neuromuscular blockade reported with concurrent use; use with caution",
+      "Neuromuscular blocking agents (vecuronium, rocuronium): magnesium potentiates neuromuscular blockade — reduce NMBA doses by 50% and use TOF monitoring",
+      "Aminoglycosides: additive neuromuscular blockade",
+      "Digoxin: magnesium can precipitate heart block in digitalized patients",
+    ],
+    monitoring: [
+      "Deep tendon reflexes (DTRs) — check patellar reflex every 1–2 hours. STOP infusion if absent (> 7 mEq/L level correlates with loss of DTR).",
+      "Respiratory rate — maintain ≥ 12 breaths/minute. STOP if < 12.",
+      "Urine output — maintain ≥ 25–30 mL/hr (magnesium excreted renally — oliguria → accumulation).",
+      "Serum magnesium levels (goal 4–7 mEq/L for seizure prophylaxis; check q4–6h or with signs of toxicity).",
+      "Pulse oximetry and continuous respiratory monitoring in high-risk patients (morbid obesity, COPD).",
+    ],
+    dosing: {
+      adult: "Seizure prophylaxis/eclampsia: Loading dose 4–6 g IV over 15–20 min (in 100 mL NS or D5W). Maintenance 1–2 g/hr IV continuous infusion. Continue 12–24 hours postpartum. Eclampsia acute seizure: 4–6 g IV bolus → increase maintenance to 2–4 g/hr. Fetal neuroprotection (< 32 weeks): 4–6 g loading dose → 1–2 g/hr maintenance (institution-specific protocol). Tocolysis: 4–6 g load → 1–4 g/hr (less commonly used).",
+      pediatric: "Not used for obstetric indications in pediatrics. Pediatric hypomagnesemia: 25–50 mg/kg IV (max 2 g) over 10–20 min.",
+      renal: "Reduce maintenance infusion for CrCl 10–30 mL/min (0.5 g/hr). AVOID for CrCl < 10 — use extreme caution with close monitoring or avoid. Magnesium is entirely renally cleared.",
+      hepatic: "No dose adjustment required",
+    },
+    clinicalPearls: [
+      "The antidote for magnesium toxicity is CALCIUM GLUCONATE 1 g (10 mL of 10% solution) IV push over 3 minutes — directly antagonizes magnesium's effects. Every labor and delivery unit must have calcium gluconate at the bedside for every patient on magnesium infusion. If respiratory depression occurs: STOP magnesium + give calcium gluconate immediately + call for respiratory support (bag-mask ventilation if needed).",
+      "Magnesium is superior to diazepam and phenytoin for both prevention and treatment of eclamptic seizures (Magpie Trial — 9,000+ women: 58% reduction in eclampsia with magnesium vs placebo; Collaborative Eclampsia Trial: magnesium reduces recurrent eclamptic seizures by 52% vs diazepam and 67% vs phenytoin). Magnesium should be continued for 24 hours after delivery in preeclampsia with severe features, OR 24 hours after the last eclamptic seizure.",
+    ],
+    boardRecallTip: "Magnesium: seizure prophylaxis (preeclampsia with severe features) + eclampsia treatment + fetal neuroprotection < 32 weeks. Therapeutic range: 4–7 mEq/L. Toxicity: DTRs lost (7–10) → respiratory depression (10–13) → cardiac arrest (> 15). Antidote: calcium gluconate 1 g IV. Monitor: DTRs, respirations, urine output. Stop if DTRs absent or RR < 12.",
+  },
+  {
+    id: "wh-drug-cocp",
+    rotation: "womens-health",
+    name: "Combined Oral Contraceptive Pills (COCPs)",
+    class: "Hormonal Contraceptive (Estrogen + Progestin Combination)",
+    mechanismOfAction:
+      "COCPs contain synthetic estrogen (ethinyl estradiol, 10–50 mcg) and a progestin component (multiple generations available). The primary mechanism of contraception is ovulation suppression: estrogen suppresses FSH release from the pituitary → prevents follicular development and the LH surge → no ovulation. Progestin suppresses the LH surge directly and thickens cervical mucus (impairing sperm penetration) and thins the endometrial lining (reducing receptivity for implantation). Together these mechanisms achieve > 99% efficacy with perfect use (91% with typical use). Each progestin generation differs in androgenic, antiandrogenic, and mineralocorticoid activity, explaining differences in side effect profiles.",
+    indications: [
+      "Contraception (primary indication)",
+      "Dysmenorrhea (primary and secondary — reduces prostaglandin-driven uterine contractions)",
+      "Endometriosis (suppresses endometrial growth; reduces pain and lesion progression)",
+      "PCOS (suppresses LH → reduces ovarian androgen production; increases SHBG → lowers free testosterone; regulates cycles; treats hirsutism and acne)",
+      "Premenstrual dysphoric disorder (PMDD) — Yaz (drospirenone 3 mg/EE 20 mcg) FDA-approved for PMDD",
+      "Menorrhagia (heavy menstrual bleeding) — reduces endometrial proliferation",
+      "Acne (anti-androgenic progestins: drospirenone, norgestimate, desogestrel)",
+      "Anemia prevention (from menorrhagia or dysmenorrhea)",
+      "Non-contraceptive benefits: reduces risk of ovarian cancer (40–50% with 5+ years of use), endometrial cancer (50%), colorectal cancer, PID, functional ovarian cysts",
+    ],
+    contraindications: [
+      "USMEC CATEGORY 4 (unacceptable health risk — do NOT use): Pregnancy; breastfeeding < 6 weeks postpartum; tobacco smoking ≥ 15 cigarettes/day AND age ≥ 35; hypertension (BP ≥ 160/100 or with vascular disease); DVT or PE (current or history); known thrombophilia (factor V Leiden, antiphospholipid syndrome); migraine with aura at any age; ischemic heart disease (history of MI, angina); history of stroke; complicated valvular heart disease (pulmonary HTN, atrial fibrillation, subacute bacterial endocarditis history); active viral hepatitis, severe liver cirrhosis, hepatocellular carcinoma; SLE with positive antiphospholipid antibodies; major surgery with prolonged immobilization (Category 3/4)",
+      "USMEC CATEGORY 3 (risks usually outweigh advantages): Breastfeeding 6 weeks to 6 months; mild hypertension (140–159/90–99); migraine without aura (age ≥ 35); multiple cardiovascular risk factors",
+    ],
+    sideEffects: {
+      common: [
+        "Nausea (take with food; use lowest EE dose formulation)",
+        "Breakthrough bleeding (especially in first 3 months; more with lower EE doses)",
+        "Breast tenderness",
+        "Headache (menstrual migraine may worsen — AVOID if migraine with aura)",
+        "Decreased libido, vaginal dryness",
+        "Mood changes (depression reported; controversial — some studies show no association, others show modest increase)",
+        "Weight gain (minimal with modern low-dose formulations — not clinically significant in most users)",
+      ],
+      serious: [
+        "Venous thromboembolism (DVT/PE): relative risk 3–4× above background (background risk non-pregnant non-user: 1–5/10,000 women/year; COCP: 3–9/10,000; pregnancy: 5–20/10,000). Risk highest with higher-generation progestins (desogestrel, gestodene) vs levonorgestrel.",
+        "Hypertension (small but statistically significant increase in systolic and diastolic BP — monitor BP after starting and at each visit)",
+        "Arterial thrombosis (MI, stroke) — primarily in women with smoking + age ≥ 35 or migraine with aura",
+        "Liver adenoma (rare — estrogen-related; risk increases with duration of use)",
+        "Cervical cancer (possible small increased risk — confounded by HPV exposure and decreased condom use)",
+      ],
+      blackBox: [
+        "Cigarette smoking increases the risk of serious cardiovascular side effects from COCPs. This risk increases with age and with heavy smoking and is quite marked in women over 35. Women who use COCPs should not smoke.",
+      ],
+    },
+    interactions: [
+      "Rifampin: potent CYP3A4 inducer → dramatically reduces EE levels (60–70%) → contraceptive failure. Use condoms + additional backup contraception during rifampin therapy and for 28 days after.",
+      "Anticonvulsants (phenytoin, carbamazepine, oxcarbazepine, topiramate at high doses, phenobarbital): CYP3A4 induction → reduced hormone levels → contraceptive failure. Use IUD, implant, or DMPA instead.",
+      "HIV antiretrovirals (efavirenz, ritonavir-boosted regimens): variable interactions; use additional contraception. Some regimens are safe (rilpivirine, dolutegravir).",
+      "Lamotrigine: COCPs REDUCE lamotrigine levels by ~50% (induction of glucuronidation) → seizure risk. Neurologist should adjust lamotrigine dose or recommend alternative contraception.",
+      "Antibiotics (non-rifampin): no clinically significant reduction in contraceptive efficacy (contrary to historical belief) — no additional precautions needed for standard antibiotics.",
+    ],
+    monitoring: [
+      "Blood pressure at initiation and at 3-month follow-up, then annually",
+      "Reassess contraindications annually (new risk factors, smoking status, migraine evolution)",
+      "Screen for depression at follow-up (especially if history of depression)",
+      "No routine laboratory monitoring needed for healthy users",
+      "Remind about backup contraception if taking enzyme-inducing medications",
+    ],
+    dosing: {
+      adult: "One pill orally at the same time daily (monophasic, biphasic, or triphasic formulations). 21-day active pills + 7-day placebo (28-day cycle) or 24-day active + 4-day placebo (Yaz formulation). Extended-cycle: 84 active + 7 placebo pills (Seasonale — 4 periods/year). Continuous dosing available (Amethyst — no placebo week; engineered amenorrhea).",
+      pediatric: "May be used in adolescents after menarche for contraception or management of dysmenorrhea, endometriosis, or PCOS; no minimum age restriction; appropriate counseling required.",
+      renal: "No dose adjustment needed. Avoid drospirenone-containing pills in severe renal impairment or adrenal insufficiency (drospirenone has antimineralocorticoid activity → hyperkalemia).",
+      hepatic: "CONTRAINDICATED in active liver disease, cirrhosis, hepatocellular adenoma, or hepatic carcinoma. Estrogen is hepatically metabolized.",
+    },
+    clinicalPearls: [
+      "The WHO Medical Eligibility Criteria (USMEC in the US) is the evidence-based guide for determining who can safely use COCPs. Migraine WITH aura is a category 4 contraindication regardless of patient age because aura represents focal neurological ischemia — adding estrogen-induced hypercoagulability significantly increases stroke risk. Migraine WITHOUT aura in women < 35 is category 2 (advantages outweigh risks) — this is a nuanced distinction that matters clinically.",
+      "COCPs do NOT cause infertility — fertility returns rapidly after discontinuation (usually within 1–3 months). Women who want to conceive can stop the pill at any time. There is no evidence that fertility is reduced by COCPs regardless of duration of use. Counseling point: if a woman becomes pregnant while on COCPs (typical use failure), the pill exposure does NOT increase the risk of birth defects.",
+    ],
+    boardRecallTip: "COCPs: ovulation suppression (estrogen suppresses FSH + progestin suppresses LH). Category 4 contraindications: migraine WITH aura (any age), smoking ≥ 35 years, DVT/PE history, BP ≥ 160/100. VTE risk: 3–4× background but < pregnancy risk. Rifampin: CYP3A4 inducer → contraceptive failure → use backup. Lamotrigine: COCPs reduce levels 50% → seizure risk.",
+  },
+  {
+    id: "wh-drug-mtx",
+    rotation: "womens-health",
+    name: "Methotrexate (for Ectopic Pregnancy)",
+    class: "Antimetabolite / Folate Antagonist",
+    mechanismOfAction:
+      "Methotrexate (MTX) is a folic acid analog that competitively inhibits dihydrofolate reductase (DHFR), the enzyme that converts dihydrofolate (DHF) to tetrahydrofolate (THF). THF is the cofactor required for de novo synthesis of purines and thymidylate — essential building blocks for DNA synthesis. Without adequate THF, rapidly dividing cells (trophoblastic cells, bone marrow cells, GI epithelium) cannot replicate. In ectopic pregnancy, MTX arrests trophoblastic proliferation and induces cell death, causing the ectopic pregnancy to resorb rather than progress to rupture. The effect is targeted at proliferating trophoblastic tissue, which expresses high levels of folate receptors.",
+    indications: [
+      "Medical management of unruptured ectopic pregnancy (meets specific eligibility criteria)",
+      "Gestational trophoblastic disease (molar pregnancy, persistent GTD, gestational choriocarcinoma)",
+      "Medical abortion (in combination with mifepristone) — not the primary indication for this formulation",
+      "Off-label: cervical ectopic pregnancy, interstitial ectopic, cesarean scar ectopic (with careful monitoring)",
+    ],
+    contraindications: [
+      "ABSOLUTE: Hemodynamic instability (ruptured ectopic — requires immediate surgery); evidence of rupture; intrauterine pregnancy (MTX is teratogenic); breastfeeding (MTX secreted in breast milk — antifolate effect on infant); immunodeficiency; thrombocytopenia or blood dyscrasias; active pulmonary disease (MTX pneumonitis); significant renal impairment (CrCl < 60 mL/min — MTX renally cleared; toxicity risk); significant hepatic disease (active hepatitis, cirrhosis — hepatotoxicity risk); active peptic ulcer disease; inability to comply with follow-up protocol",
+      "RELATIVE: β-hCG > 5,000 mIU/mL (higher failure rate); fetal cardiac activity present (MTX not effective, surgery preferred); large hematoma on TVUS (ruptured or near-ruptured); embryonic mass > 3.5 cm",
+    ],
+    sideEffects: {
+      common: [
+        "Nausea, vomiting, stomatitis (mouth sores) — days 2–7 post-injection",
+        "Abdominal pain/cramping: 'separation pain' — occurs days 3–7 as the ectopic separates; a NORMAL side effect that does NOT indicate treatment failure or rupture. Distinguish from rupture pain (sudden severe, hemodynamic instability).",
+        "Fatigue, malaise",
+        "Photosensitivity — avoid sun exposure 1 week post-injection",
+        "Elevated liver enzymes (transient — avoid hepatotoxins: alcohol, NSAIDs)",
+        "Mild bone marrow suppression (usually subclinical at single-dose regimen)",
+      ],
+      serious: [
+        "Treatment failure (15–20% of single-dose regimen) — β-hCG fails to decline ≥ 15% between days 4 and 7 → requires second dose or surgical management",
+        "Tubal rupture (5–10% even during apparently successful medical management — instruct patient to return immediately for sudden severe pain, shoulder pain, or fainting)",
+        "Myelosuppression with multi-dose regimen (fever, infection, bleeding risk — CBC monitoring required)",
+        "Hepatotoxicity (elevated LFTs — avoid alcohol, hepatotoxic drugs; repeat LFTs if symptomatic)",
+        "Pulmonary toxicity (interstitial pneumonitis — dyspnea, cough, fever; rare at low doses used for ectopic)",
+      ],
+      blackBox: [
+        "Methotrexate can cause fetal death or teratogenic effects. Patients must not be pregnant.",
+        "Severe, potentially fatal myelosuppression, aplastic anemia, and GI toxicity have occurred. Use the minimum effective dose.",
+        "Hepatotoxicity: fibrosis and cirrhosis with chronic use (not relevant at single-dose ectopic protocol).",
+        "Pulmonary toxicity: potentially fatal. Unexplained pulmonary symptoms should prompt drug discontinuation and evaluation.",
+      ],
+    },
+    interactions: [
+      "NSAIDs (ibuprofen, naproxen, aspirin): AVOID for 2–3 days before and after MTX — reduce renal clearance of MTX → increased serum levels → enhanced toxicity. Use acetaminophen for pain management instead.",
+      "Folic acid supplements: compete with MTX and may reduce efficacy — discontinue all folic acid-containing supplements and prenatal vitamins before and during MTX therapy.",
+      "Alcohol: avoid during and for 72 hours after MTX — additive hepatotoxicity.",
+      "Proton pump inhibitors: may increase MTX levels (inhibit tubular secretion) — avoid high-dose PPIs during MTX therapy.",
+      "Trimethoprim (antibiotic): additive antifolate effect — avoid concurrent use.",
+    ],
+    monitoring: [
+      "β-hCG on day of MTX injection (baseline), day 4, and day 7: must decline ≥ 15% between days 4 and 7 for treatment success. Continue weekly monitoring until undetectable (can take 4–8 weeks).",
+      "CBC at baseline (must be adequate: WBC > 3,000, PLT > 100,000, hemoglobin > 8 g/dL for most protocols)",
+      "LFTs and renal function (Cr, BUN) at baseline",
+      "Serial TVUS not routinely required unless pain increases or hemodynamic changes",
+      "Vital signs with each clinic visit — hemodynamic stability assessment",
+      "Patient education: return to ED immediately for sudden severe abdominal pain, shoulder pain (Kehr's sign), syncope, or vaginal bleeding heavier than normal menstrual period",
+    ],
+    dosing: {
+      adult: "SINGLE-DOSE PROTOCOL (most common): MTX 50 mg/m² IM × 1 injection (calculate BSA from height and weight — online calculators available). Day 4: β-hCG. Day 7: β-hCG. If decline ≥ 15%: success, continue weekly β-hCG. If decline < 15%: second MTX dose 50 mg/m² IM on day 7, repeat monitoring on days 11 and 14. If still failing: surgical management. TWO-DOSE PROTOCOL (higher success rate than single): MTX 50 mg/m² IM on days 0 and 4; β-hCG on days 4 and 7 (≥ 15% decline required between days 4 and 7). MULTI-DOSE PROTOCOL (highest success rate but most toxicity): MTX 1 mg/kg IM on days 1, 3, 5, 7 alternating with leucovorin (folinic acid) 0.1 mg/kg IM on days 2, 4, 6, 8 (rescue). Used for higher β-hCG or persistent GTD.",
+      pediatric: "Not indicated",
+      renal: "Reduce or avoid if CrCl < 60 mL/min — MTX is renally excreted; accumulation causes severe toxicity. Consider surgical management instead.",
+      hepatic: "AVOID in active hepatic disease — MTX is hepatotoxic and heavily metabolized. Consider surgery.",
+    },
+    clinicalPearls: [
+      "The 'separation pain' — a period of increased abdominal cramping occurring on days 3–7 after MTX injection — is a NORMAL finding that does NOT indicate treatment failure or tubal rupture. It is caused by the ectopic pregnancy separating from the tubal wall as the trophoblastic tissue begins to necrose. The critical distinction: separation pain is gradual, self-limited (hours), and manageable with acetaminophen. Tubal rupture pain is sudden, severe, accompanied by hemodynamic instability (tachycardia, hypotension, diaphoresis) and requires emergent surgery.",
+      "Patients should avoid folic acid supplements and foods very high in folate during MTX therapy — MTX works by antagonizing folate, and supplementation can reduce efficacy. Prenatal vitamins (which contain 800–1,000 mcg folic acid) should be discontinued. After completing treatment (β-hCG undetectable), women should wait at least 3 months before attempting pregnancy AND restart folic acid supplementation at least 1 month before the next conception attempt.",
+    ],
+    boardRecallTip: "MTX 50 mg/m² IM for ectopic: stable + unruptured + β-hCG < 5,000 + no fetal heartbeat. Check β-hCG days 4 and 7 → ≥ 15% decline = success. 'Separation pain' days 3–7 = NORMAL (not rupture). Avoid: NSAIDs (↑ MTX toxicity), folic acid, alcohol. Wait 3 months post-treatment before conceiving. Antidote for toxicity: leucovorin (folinic acid).",
+  },
+  {
+    id: "wh-drug-misoprostol",
+    rotation: "womens-health",
+    name: "Misoprostol (Cytotec)",
+    class: "Prostaglandin E₁ Analogue (Synthetic PGE₁)",
+    mechanismOfAction:
+      "Misoprostol is a synthetic methyl ester analogue of prostaglandin E₁ (PGE₁) that acts on EP receptor subtypes (EP2 and EP3) expressed on uterine myometrial smooth muscle cells and cervical stroma. Activation of EP2/EP3 receptors stimulates uterine contractions through calcium-mediated myosin phosphorylation and simultaneously softens the cervix by stimulating collagenase activity and altering proteoglycan composition of the cervical extracellular matrix — a process called cervical ripening. Unlike endogenous prostaglandins, misoprostol is orally bioavailable, thermostable (no refrigeration required), inexpensive, and can be administered by multiple routes (oral, sublingual, buccal, vaginal, rectal). Onset varies by route: sublingual/buccal (fastest — 11 min to peak); vaginal (60 min to peak — sustained); oral (30 min).",
+    indications: [
+      "Cervical ripening before induction of labor (off-label but widely used — 25 mcg intravaginally q3–6h or 25 mcg orally q2h; NOT approved by FDA for labor induction)",
+      "Labor induction (at term, after cervical ripening)",
+      "Postpartum hemorrhage treatment — 600–1,000 mcg rectally/sublingually/buccally (when oxytocin is unavailable or insufficient)",
+      "Medical abortion with mifepristone (FDA-approved combination regimen for pregnancy ≤ 70 days: mifepristone 200 mg PO + misoprostol 800 mcg buccal 24–48 hours later; efficacy > 95%)",
+      "Management of missed or incomplete abortion (800 mcg vaginally — facilitates expulsion of products of conception)",
+      "Prevention of NSAID-induced gastric ulcers (original FDA indication at 200 mcg QID — Cytotec package insert)",
+      "Cervical preparation before gynecologic procedures (IUD insertion, hysteroscopy, endometrial biopsy — especially in nulliparous women or those with cervical stenosis)",
+    ],
+    contraindications: [
+      "ABSOLUTE: Prior classical (vertical) uterine incision; more than one prior low-transverse cesarean section (for labor induction — risk of uterine rupture significantly increased with prostaglandins in multi-scarred uterus); allergy to prostaglandins",
+      "RELATIVE: Prior low-transverse cesarean section (ACOG: misoprostol may be used but with caution; some experts avoid misoprostol for VBAC due to higher uterine rupture risk vs oxytocin alone); non-reassuring fetal status; active herpes outbreak (vaginal delivery precaution); asthma (PGE₁ is generally bronchodilatory — less concern than PGF2α/carboprost which causes bronchospasm)",
+    ],
+    sideEffects: {
+      common: [
+        "Uterine hyperstimulation (tachysystole — > 5 contractions/10 min) → fetal distress. Higher risk with vaginal vs oral route; higher risk if cervix already favorable (Bishop ≥ 6) → do NOT use misoprostol on favorable cervix",
+        "Shivering and fever (especially with rectal administration) — prostaglandin-mediated thermoregulatory effect. Common, self-limiting. Does NOT indicate infection; treat with blankets + acetaminophen.",
+        "Nausea, vomiting, diarrhea (GI prostaglandin effects)",
+        "Cramping and pelvic pain (from uterine contractions — expected and dose-related)",
+      ],
+      serious: [
+        "Uterine rupture (rare in unscarred uterus; significant risk in prior uterine scar — avoid in multi-scarred uterus)",
+        "Meconium-stained amniotic fluid (fetal stress response to hyperstimulation)",
+        "Fetal distress/FHR category III tracing (from hyperstimulation) — discontinue if occurs; IV terbutaline 0.25 mg SQ for acute tocolysis",
+      ],
+      blackBox: [
+        "Misoprostol (Cytotec) is not approved for cervical ripening or labor induction. Serious adverse events including uterine hyperstimulation, uterine rupture, amniotic fluid embolism, severe genital bleeding, retained placenta, shock, fetal bradycardia, and fetal and maternal death have been reported.",
+      ],
+    },
+    interactions: [
+      "Oxytocin: additive uterotonic effect — do NOT use simultaneously. Minimum 6 hours between last vaginal misoprostol dose and initiation of oxytocin (4 hours for oral misoprostol per some protocols).",
+      "Antacids (magnesium-containing): can increase misoprostol bioavailability by altering GI absorption",
+      "Mifepristone (RU-486): the synergistic combination (mifepristone followed 24–48h later by misoprostol) is highly effective for medical abortion — mifepristone sensitizes the uterus to prostaglandins by blocking progesterone receptors.",
+    ],
+    monitoring: [
+      "Continuous electronic fetal monitoring (EFM) during labor induction (mandatory)",
+      "Uterine contraction frequency (tocometry) — watch for tachysystole (> 5 contractions/10 min) or hyperstimulation",
+      "Maternal temperature — fever with rectal route is expected (prostaglandin effect), not infection",
+      "For medical abortion: confirm complete abortion with TVUS at 1–2 weeks post-treatment (gestational sac absent, endometrium thin) or β-hCG decline",
+    ],
+    dosing: {
+      adult: "Cervical ripening/labor induction: 25 mcg intravaginally q3–6h (maximum 50 mcg per dose in some protocols) — NOT on scarred uterus. Medical abortion (with mifepristone): mifepristone 200 mg PO day 1 + misoprostol 800 mcg buccal 24–48h later. PPH treatment: 600–1,000 mcg rectally, sublingually, or buccally (600 mcg SL = standard in low-resource settings per WHO). PPH prevention: 600 mcg SL immediately after delivery if oxytocin unavailable.",
+      pediatric: "Not indicated for obstetric use in pediatric patients.",
+      renal: "No dose adjustment required",
+      hepatic: "No dose adjustment required. Misoprostol is extensively metabolized in tissues (esterases) before hepatic processing; hepatic impairment has minimal effect.",
+    },
+    clinicalPearls: [
+      "For medical abortion with mifepristone + misoprostol: counsel the patient that vaginal bleeding and cramping will begin 1–4 hours after misoprostol administration and may be heavy (like a heavy period with passage of clots and tissue). Fever and chills after misoprostol are expected (prostaglandin-mediated) and do NOT indicate infection — treat with ibuprofen + blankets. However, fever persisting > 24 hours after misoprostol OR fever > 101°F at 24 hours + malodorous discharge → evaluate for infection (endometritis — rare but serious; caused by Clostridium sordellii — give antibiotics promptly).",
+      "The buccal route for misoprostol administration (for medical abortion) involves placing tablets in the cheek pouch and allowing them to dissolve for 30 minutes before swallowing any remaining fragments. Sublingual placement is faster-absorbing and higher peak levels but causes more nausea/chills. Vaginal placement has the most sustained levels and least systemic side effects but requires self-insertion or clinic placement — important consideration in telemedicine-based medication abortion care.",
+    ],
+    boardRecallTip: "Misoprostol: PGE₁ analogue. Cervical ripening (25 mcg vaginal q3–6h — NOT on scarred uterus), medical abortion (800 mcg buccal with mifepristone), PPH (600–1,000 mcg rectal). Fever/shivering after rectal route = normal (prostaglandin effect). Hyperstimulation → IV terbutaline. 6-hour washout before oxytocin. Uterine rupture risk in scarred uterus.",
+  },
+  {
+    id: "wh-drug-progesterone",
+    rotation: "womens-health",
+    name: "Progesterone / Progestins (Obstetric and Gynecologic Uses)",
+    class: "Progestogen (Natural and Synthetic Progesterone Analogues)",
+    mechanismOfAction:
+      "Progesterone acts through nuclear progesterone receptors (PR-A and PR-B) to regulate gene transcription in target tissues. Key mechanisms relevant to obstetrics and gynecology: (1) Uterine quiescence: progesterone suppresses uterine contractility by reducing gap junction formation between myometrial cells, suppressing prostaglandin synthesis, and counteracting oxytocin receptor upregulation. 'Progesterone block' maintains uterine relaxation during pregnancy — functional progesterone withdrawal (or receptor changes) triggers labor onset. (2) Cervical competence: progesterone maintains cervical integrity and prevents premature cervical ripening. (3) Endometrial transformation: converts proliferative to secretory endometrium (stabilizes endometrium, reducing irregular bleeding) and opposes estrogen-driven endometrial proliferation (reducing endometrial cancer risk in anovulatory women). (4) Contraception (progestin-only): thickens cervical mucus (preventing sperm penetration), suppresses the LH surge (preventing ovulation), and thins the endometrium.",
+    indications: [
+      "17-hydroxyprogesterone caproate (17-OHPC / Makena): reduce risk of recurrent preterm birth in singleton pregnancy with prior spontaneous preterm birth (weekly IM injections, 16–36 weeks) — NOTE: FDA withdrew approval in 2023 after PROLONG trial failed to confirm efficacy; use currently debated",
+      "Vaginal progesterone gel (Crinone, Prochieve) or suppositories: short cervical length on ultrasound (< 25 mm at 16–24 weeks) in singleton pregnancy → reduces preterm birth risk (PREGNANT, FIGO trials)",
+      "Luteal phase support in IVF/ART cycles (vaginal progesterone or IM progesterone in oil — maintains endometrial receptivity)",
+      "Medroxyprogesterone acetate (Depo-Provera): 150 mg IM q12 weeks — contraception; also used for endometriosis pain management",
+      "Levonorgestrel IUD (Mirena 52 mg, Kyleena 19.5 mg): long-acting reversible contraception; management of menorrhagia, endometriosis, adenomyosis; endometrial protection with systemic estrogen (HRT)",
+      "Micronized progesterone (Prometrium): HRT (postmenopausal — endometrial protection when on estrogen); PMDD; sleep improvement (sedative effect at 200–300 mg); luteal phase defect",
+      "Progestin-only pill (mini-pill — norethindrone 0.35 mg): contraception in women who cannot use estrogen (breastfeeding, cardiovascular contraindications to estrogen)",
+      "Endometrial hyperplasia without atypia: progestins (medroxyprogesterone acetate 10–20 mg/day × 3 months, or LNG-IUD) achieve regression in 80–90% of cases",
+    ],
+    contraindications: [
+      "ABSOLUTE: Undiagnosed vaginal bleeding; active DVT/PE or history with progestins implicated (some progestins have prothrombotic potential); active liver disease; known or suspected pregnancy (for systemic progestins not intended for pregnancy support); breast cancer (hormone receptor-positive breast cancer — progestins are contraindicated)",
+      "RELATIVE: Depression (progestins — especially Depo-Provera — may worsen depression; screen and monitor). Depo-Provera: bone density loss with prolonged use (WHO cautions use > 2 years in adolescents without clear benefits outweighing risks — not absolute contraindication).",
+    ],
+    sideEffects: {
+      common: [
+        "Irregular bleeding (breakthrough bleeding or spotting — most common with progestin-only methods)",
+        "Amenorrhea (with Depo-Provera — 50% at 1 year; LNG-IUD — 20% at 1 year; desired in some women)",
+        "Mood changes, depression (especially Depo-Provera and higher-dose progestins)",
+        "Weight gain (Depo-Provera — 3–5 lbs/year in some users; modest with other progestins)",
+        "Decreased libido, vaginal dryness",
+        "Breast tenderness",
+        "Acne (androgenic progestins: levonorgestrel, norgestrel) — choose antiandrogenic progestins (drospirenone, desogestrel) for acne-prone patients",
+      ],
+      serious: [
+        "Bone density loss with Depo-Provera (reversible after discontinuation; counsel on calcium/vitamin D supplementation; avoid prolonged use in adolescents and women at high fracture risk)",
+        "Delayed return to fertility with Depo-Provera (average 10 months after last injection)",
+        "VTE risk (some synthetic progestins — especially medroxyprogesterone and high-dose norethindrone — may have modest VTE risk; micronized progesterone has lowest thrombotic risk)",
+        "IUD complications: uterine perforation (0.1%), expulsion (5%), infection within 20 days of insertion, PID if sexually transmitted infection at time of insertion",
+      ],
+      blackBox: [
+        "17-OHPC (Makena): FDA completed a regulatory withdrawal of approval in 2023 based on failure of the PROLONG trial to demonstrate efficacy in preventing recurrent preterm birth. However, the drug remains available as a compounded product and its use continues to be debated by professional societies.",
+      ],
+    },
+    interactions: [
+      "CYP3A4 inducers (rifampin, anticonvulsants): reduce progestin levels — reduce contraceptive efficacy of progestin-only pills and implants. Use IUD or DMPA (less affected) with enzyme-inducing medications.",
+      "Anticoagulants: progestins may reduce anticoagulant efficacy (controversial — monitor INR with warfarin).",
+    ],
+    monitoring: [
+      "Depo-Provera: bone density monitoring if used > 2 years in adolescents or in women with risk factors for osteoporosis",
+      "LNG-IUD: verify placement at 4–6 weeks post-insertion; educate on string self-check monthly",
+      "17-OHPC: weekly injection compliance; monitor for injection site reactions",
+      "Screen for depression in all patients on Depo-Provera at initiation and follow-up",
+    ],
+    dosing: {
+      adult: "17-OHPC (Makena/compounded): 250 mg IM weekly starting at 16–24 weeks until 37 weeks. Vaginal progesterone gel: 90 mg vaginally daily (short cervix — initiated at 16–24 weeks). Depo-Provera: 150 mg IM (gluteal or deltoid) q12 weeks. Prometrium (micronized progesterone): 200 mg orally at bedtime for 12 days/cycle (HRT) or 100 mg daily (continuous). Mini-pill: 0.35 mg norethindrone orally daily (same time daily — narrow 3-hour window). LNG-IUD: inserted in office; lasts 3–8 years depending on formulation.",
+      pediatric: "Depo-Provera: used for contraception in adolescents with same dose and route. LNG-IUD: LARC methods are first-line in adolescents per ACOG.",
+      renal: "No specific adjustment; progestins are hepatically metabolized",
+      hepatic: "Use with caution in severe hepatic disease; most progestins are hepatically metabolized and may accumulate",
+    },
+    clinicalPearls: [
+      "Vaginal progesterone for women with short cervical length (< 25 mm at 16–24 weeks) in singleton gestations is the most evidence-supported preterm birth prevention strategy available. The PREGNANT trial and subsequent meta-analyses demonstrate a 45% reduction in preterm birth < 33 weeks with vaginal progesterone 200–400 mg daily. This intervention is different from 17-OHPC (weekly injections), which is indicated specifically for women with a prior spontaneous preterm birth — not for women with short cervix without prior PTB.",
+      "The LNG-IUD (Mirena) is highly effective for managing heavy menstrual bleeding (menorrhagia) — it reduces menstrual blood loss by 70–95% and is equivalent to endometrial ablation for symptom control, with the advantage of preserving fertility. The LNG-IUD is also the preferred method of endometrial protection during postmenopausal estrogen therapy because it delivers progestin locally (minimal systemic absorption), avoiding systemic progestin side effects (mood changes, breast tenderness).",
+    ],
+    boardRecallTip: "Progesterone uses: 17-OHPC (prior sPTB prevention — weekly IM), vaginal progesterone gel (short cervix < 25 mm), Depo-Provera (contraception — 150 mg q12 weeks; causes bone density loss), LNG-IUD (contraception + menorrhagia + HRT endometrial protection), mini-pill (breastfeeding-safe contraception). Depo: delayed fertility return (avg 10 months). Vaginal progesterone: short cervix in singleton pregnancy.",
+  },
+];
