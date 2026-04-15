@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Loader2 } from "lucide-react";
 import type { RotationSlug } from "@/types";
@@ -10,6 +9,7 @@ interface PurchaseButtonProps {
   rotationSlugs: RotationSlug[];
   hasPaperTools: boolean;
   label: string;
+  priceInCents: number;
   variant?: "default" | "outline";
 }
 
@@ -17,9 +17,9 @@ export function PurchaseButton({
   rotationSlugs,
   hasPaperTools,
   label,
+  priceInCents,
   variant = "default",
 }: PurchaseButtonProps) {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,21 +28,21 @@ export function PurchaseButton({
     setError(null);
 
     try {
-      const res = await fetch("/api/purchase", {
+      const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ rotationSlugs, hasPaperTools }),
+        body: JSON.stringify({ rotationSlugs, hasPaperTools, priceInCents, label }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error ?? "Purchase failed");
+        setError(data.error ?? "Checkout failed");
         return;
       }
 
-      // Refresh the page to reflect the new purchase state
-      router.refresh();
+      // Redirect to Stripe-hosted checkout page
+      window.location.href = data.url;
     } catch {
       setError("Network error — please try again");
     } finally {

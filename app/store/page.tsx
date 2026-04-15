@@ -95,7 +95,12 @@ function savings(original: number, sale: number) {
 
 /* ── page ───────────────────────────────────────────────────────────────────── */
 
-export default async function StorePage() {
+export default async function StorePage({
+  searchParams,
+}: {
+  searchParams: { success?: string };
+}) {
+  const purchaseSuccess = searchParams.success === "1";
   const devMode = !isSupabaseConfigured;
 
   let ownedSlugs = new Set<RotationSlug>();
@@ -131,6 +136,15 @@ export default async function StorePage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      {/* ── Purchase success banner ───────────────────────────────────────────── */}
+      {purchaseSuccess && (
+        <div className="bg-teal-600 text-white text-center py-3 px-6 text-sm font-medium">
+          <CheckCircle2 className="inline-block h-4 w-4 mr-2 -mt-0.5" />
+          Payment successful! Your rotation modules have been unlocked. Refresh
+          the page if they don&apos;t appear immediately.
+        </div>
+      )}
+
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-teal-600 to-teal-700 text-white">
         <div className="absolute inset-0 opacity-10">
@@ -230,6 +244,7 @@ export default async function StorePage() {
                       rotationSlugs={bundle.rotations}
                       hasPaperTools={bundle.hasPaperTools}
                       label={`Buy Bundle — $${bundle.price}`}
+                      priceInCents={Math.round(bundle.price * 100)}
                       variant="default"
                     />
                   )}
@@ -301,7 +316,8 @@ export default async function StorePage() {
                     <PurchaseButton
                       rotationSlugs={[rotation.slug]}
                       hasPaperTools={false}
-                      label={`$${rotation.price}`}
+                      label={`$${rotation.price} — ${rotation.name}`}
+                      priceInCents={Math.round(rotation.price * 100)}
                       variant="outline"
                     />
                   )}
