@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
       hasPaperTools: hasPaperTools ? "true" : "false",
     },
     customer_email: user.email,
-    success_url: `${origin}/store?success=1`,
+    success_url: `${origin}/purchase-success`,
     cancel_url: `${origin}/store`,
   });
 
