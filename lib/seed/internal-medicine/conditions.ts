@@ -1155,4 +1155,672 @@ export const internalMedicineConditions: Condition[] = [
       "What is the risk of correcting hyponatremia too rapidly, and how is it managed if overcorrection occurs?",
     ],
   },
+
+  // ─── CARDIOLOGY (PAEA IM Blueprint) ─────────────────────────────────────────
+
+  {
+    id: "im-hypertension",
+    name: "Essential Hypertension",
+    icdCode: "I10",
+    rotation: "internal-medicine",
+    category: "Cardiology",
+    definition:
+      "Sustained elevation of arterial BP. Confirmed with ≥2 readings on ≥2 separate occasions, or ambulatory/home BP monitoring.",
+    diagnosticCriteria:
+      "ACC/AHA 2017 BP Categories:\n• Normal:        <120 / <80\n• Elevated:      120–129 / <80\n• Stage 1 HTN:   130–139 / 80–89\n• Stage 2 HTN:   ≥140 / ≥90\n• Hypertensive crisis: >180 / >120\n\nWorkup (initial): CMP, lipids, HbA1c, TSH, UA, EKG. Screen for secondary causes if young (<30), resistant (≥3 drugs), or abrupt onset.",
+    presentation: {
+      chiefComplaint: [
+        "Found to have high blood pressure on routine visit",
+        "Headache (occipital, morning)",
+        "Most patients are asymptomatic",
+      ],
+      associatedSymptoms: [
+        "Asymptomatic in most patients (the 'silent killer')",
+        "Headache, dizziness (uncommon, usually severe HTN)",
+        "Vision changes, nosebleeds (severe)",
+        "Signs of end-organ damage on exam",
+      ],
+      demographics:
+        "~47% of US adults; rises with age, obesity, Black race, family history, high sodium intake, alcohol use, sedentary lifestyle.",
+    },
+    distinguishingFeatures:
+      "Secondary HTN clues (consider workup if present):\n• Young onset (<30) or sudden severe onset\n• Resistant to ≥3 drugs (incl. diuretic)\n• Hypokalemia → primary aldosteronism\n• Episodic spells/sweating → pheochromocytoma\n• Abdominal bruit → renovascular (renal artery stenosis)\n• Truncal obesity, striae → Cushing's\n• Snoring/daytime fatigue → OSA",
+    redFlags: [
+      "BP >180/120 with end-organ damage = hypertensive emergency (separate condition)",
+      "Suspected secondary cause in young patient",
+      "Severe HTN with chest/back pain → r/o aortic dissection",
+      "Headache + papilledema → check for hypertensive encephalopathy/PRES",
+    ],
+    mnemonics: [
+      {
+        name: "First-Line Tx (ACC/AHA)",
+        content:
+          "ACE-I / ARB, Thiazide (chlorthalidone preferred), CCB (amlodipine). In Black non-CKD patients: thiazide or CCB first. CKD or DM with proteinuria: ACE-I/ARB first.",
+      },
+      {
+        name: "End-Organ Damage Screen",
+        content:
+          "Brain (stroke, TIA), Eyes (retinopathy), Heart (LVH, CAD, HF), Kidneys (CKD, proteinuria), Vasculature (PAD, AAA)",
+      },
+    ],
+    pimpingQuestions: [
+      "What BP threshold defines stage 1 vs stage 2 hypertension per ACC/AHA?",
+      "When should secondary HTN workup be pursued and what tests for which cause?",
+      "What is the BP target in patients ≥65 vs those with diabetes or CKD?",
+      "Which antihypertensive class is preferred in CKD with proteinuria, and why?",
+    ],
+  },
+
+  {
+    id: "im-hyperlipidemia",
+    name: "Hyperlipidemia / Dyslipidemia",
+    icdCode: "E78.5",
+    rotation: "internal-medicine",
+    category: "Cardiology / Preventive",
+    definition:
+      "Abnormal lipid panel — typically elevated LDL-C, total cholesterol, or triglycerides — that increases ASCVD risk.",
+    diagnosticCriteria:
+      "Fasting Lipid Panel Targets (ACC/AHA 2018):\n• LDL-C:  <100 mg/dL ideal; <70 if ASCVD or DM + risk factors\n• HDL-C:  ≥40 (M), ≥50 (F)\n• Trig:   <150 mg/dL\n• TC:     <200 mg/dL\n\nStatin-Benefit Groups (4 groups):\n1. Clinical ASCVD (post-MI, stroke, PAD)\n2. LDL ≥190 mg/dL\n3. DM age 40–75 + LDL 70–189\n4. Age 40–75 + LDL 70–189 + 10-yr ASCVD risk ≥7.5%",
+    presentation: {
+      chiefComplaint: [
+        "Asymptomatic, found on routine screening",
+        "Family history of early CAD",
+        "Xanthomas or xanthelasma noted",
+      ],
+      associatedSymptoms: [
+        "Asymptomatic in most",
+        "Xanthelasma (eyelid plaques)",
+        "Tendinous xanthomas (Achilles, knuckles) — familial",
+        "Corneal arcus (premature in <45 yo)",
+        "Eruptive xanthomas (severe HTG, TG >1000)",
+      ],
+      demographics:
+        "Universal screening age 40–75; earlier if family history of premature CAD (<55 M, <65 F) or familial hyperlipidemia.",
+    },
+    distinguishingFeatures:
+      "Statin Intensity:\n• High-intensity (↓LDL ≥50%):  atorvastatin 40–80, rosuvastatin 20–40\n• Moderate (↓LDL 30–49%):     atorva 10–20, rosuva 5–10, simvastatin 20–40\n• Low (<30%):                  pravastatin, fluvastatin\n\nSecondary causes: hypothyroidism, nephrotic syndrome, cholestasis, DM, alcohol, obesity, certain meds (thiazides, beta-blockers, steroids).",
+    redFlags: [
+      "Triglycerides >500 mg/dL → risk of acute pancreatitis (treat with fibrate or omega-3)",
+      "LDL ≥190 → suspect familial hypercholesterolemia, screen first-degree relatives",
+      "New muscle pain on statin + dark urine → rhabdomyolysis (stop statin, check CK)",
+      "Unexplained transaminitis on statin (>3× ULN)",
+    ],
+    mnemonics: [
+      {
+        name: "Statin SE (M.E.M.S.)",
+        content:
+          "Myalgia/Myopathy, Elevated LFTs, Memory complaints (rare), Sugar (DM risk slightly increased)",
+      },
+      {
+        name: "Add-On Agents",
+        content:
+          "Ezetimibe (block intestinal absorption, +20% LDL drop), PCSK9 inhibitors (alirocumab, evolocumab — for FH or refractory), Bempedoic acid, Fibrates (TG-lowering), Niacin (rarely used)",
+      },
+    ],
+    pimpingQuestions: [
+      "Which patients qualify as 'statin benefit groups' per ACC/AHA?",
+      "What is the difference between high- and moderate-intensity statins?",
+      "What is the threshold TG level requiring fibrate therapy to prevent pancreatitis?",
+      "When are PCSK9 inhibitors indicated as add-on therapy?",
+    ],
+  },
+
+  {
+    id: "im-stable-angina",
+    name: "Stable Angina / Chronic Coronary Disease",
+    icdCode: "I25.10",
+    rotation: "internal-medicine",
+    category: "Cardiology",
+    definition:
+      "Predictable, exertional chest discomfort due to fixed coronary stenosis causing demand-supply mismatch. Relieved with rest or nitroglycerin.",
+    diagnosticCriteria:
+      "Classic Angina (3 features):\n1. Substernal chest discomfort with characteristic quality/duration\n2. Provoked by exertion or emotional stress\n3. Relieved by rest or NTG within 5 min\n\n• Typical: all 3 features\n• Atypical: 2 of 3\n• Non-cardiac: ≤1\n\nWorkup: EKG (often normal at rest), stress test (exercise EKG, stress echo, nuclear), CT coronary angio (anatomic), invasive cath (gold standard).",
+    presentation: {
+      chiefComplaint: [
+        "Chest pressure/tightness with exertion",
+        "Discomfort radiating to arm or jaw with activity",
+        "Shortness of breath with exertion",
+      ],
+      associatedSymptoms: [
+        "Pressure/squeezing/heaviness (NOT sharp/stabbing)",
+        "Substernal, may radiate to L arm, jaw, back",
+        "Lasts 2–10 minutes; relieved by rest/NTG",
+        "Reproducible threshold of activity",
+        "Anginal equivalents in elderly/diabetic/female: dyspnea, fatigue, nausea",
+      ],
+      demographics:
+        "Risk factors: age, male sex, smoking, DM, HTN, hyperlipidemia, family history of premature CAD, obesity, sedentary lifestyle.",
+    },
+    distinguishingFeatures:
+      "Stable vs Unstable Angina:\n• Stable:    predictable, exertional, relieved by rest/NTG, no troponin rise\n• Unstable:  new-onset, at rest, or worsening pattern → ACS workup\n\nFirst-line meds (anti-anginal):\n1. Beta-blocker (metoprolol, bisoprolol) — first-line\n2. CCB (amlodipine, diltiazem) — alternative or add-on\n3. Long-acting nitrate (ISMN) — symptom control\n4. Ranolazine — refractory\n\nSecondary prevention (everyone): aspirin + statin + ACE-I/ARB if indicated.",
+    redFlags: [
+      "New rest pain or pain at lower threshold → unstable angina, ACS workup",
+      "Pain >20 minutes not relieved by NTG → r/o MI",
+      "Hemodynamic compromise during pain",
+      "New diaphoresis, nausea, syncope with chest pain",
+    ],
+    mnemonics: [
+      {
+        name: "ABCDE Secondary Prevention",
+        content:
+          "Aspirin/Antianginal, Beta-blocker/BP control, Cholesterol (statin)/Cigarette cessation, Diet/Diabetes control, Exercise/Education",
+      },
+      {
+        name: "Levine Sign",
+        content: "Patient clenches fist over chest describing angina — classic finding",
+      },
+    ],
+    pimpingQuestions: [
+      "When is stress testing preferred over coronary CT angiography?",
+      "What are the first-line anti-anginal medications and why beta-blockers?",
+      "When is revascularization (PCI vs CABG) indicated in stable CAD?",
+      "What is the difference between Prinzmetal (variant) angina and stable angina?",
+    ],
+  },
+
+  {
+    id: "im-aortic-dissection",
+    name: "Aortic Dissection",
+    icdCode: "I71.00",
+    rotation: "internal-medicine",
+    category: "Cardiology / Vascular",
+    definition:
+      "Tear in aortic intima allowing blood to enter the medial layer, creating a false lumen. Life-threatening emergency.",
+    diagnosticCriteria:
+      "Stanford Classification:\n• Type A:  involves ASCENDING aorta → SURGICAL emergency\n• Type B:  descending only (distal to L subclavian) → medical management first\n\nDeBakey:\n• I: ascending + descending\n• II: ascending only\n• III: descending only\n\nDiagnosis: CT angiography (gold standard, fast). TEE if unstable or contrast contraindicated. CXR may show widened mediastinum.",
+    presentation: {
+      chiefComplaint: [
+        "Sudden tearing/ripping chest or back pain",
+        "Worst pain of life",
+        "Pain that migrates",
+      ],
+      associatedSymptoms: [
+        "Sharp, tearing, ripping pain — maximal at onset",
+        "Migration of pain (anterior → back as it propagates)",
+        "Pulse deficit between arms (>20 mmHg SBP difference)",
+        "New aortic regurgitation murmur (Type A)",
+        "Neuro deficits (carotid involvement, spinal cord ischemia)",
+        "Syncope, hypotension, cardiac tamponade (Type A)",
+      ],
+      demographics:
+        "Risk: HTN (most common), connective tissue disease (Marfan, Ehlers-Danlos, Loeys-Dietz), bicuspid aortic valve, cocaine use, pregnancy (3rd trimester), trauma, prior aortic surgery.",
+    },
+    distinguishingFeatures:
+      "MI vs Dissection:\n• MI:        crushing, gradual buildup, ST changes\n• Dissection: tearing, max at onset, normal EKG (usually), pulse/BP differential\n\nKey trap: never give thrombolytics for chest pain until dissection is ruled out!",
+    redFlags: [
+      "Type A dissection — call CT surgery STAT (mortality 1–2% per hour untreated)",
+      "Hypotension or tamponade physiology (cardiac tamponade from rupture into pericardium)",
+      "New aortic regurgitation murmur",
+      "Pulse or BP differential between extremities",
+      "Neurologic deficit (CVA, paraplegia)",
+    ],
+    mnemonics: [
+      {
+        name: "BP Goal",
+        content:
+          "SBP <120, HR <60. Use IV beta-blocker FIRST (esmolol, labetalol) THEN nitroprusside. Beta-blocker before vasodilator to avoid reflex tachycardia → worsening shear stress.",
+      },
+      {
+        name: "Pain Description",
+        content: "Tearing > Ripping > Sharp > Stabbing — and migrates as it dissects",
+      },
+    ],
+    pimpingQuestions: [
+      "Why must you give beta-blockers before vasodilators in aortic dissection?",
+      "What is the Stanford classification and how does it guide management?",
+      "What is the BP and HR target in acute dissection management?",
+      "Which connective tissue diseases predispose to dissection?",
+    ],
+  },
+
+  {
+    id: "im-aaa",
+    name: "Abdominal Aortic Aneurysm (AAA)",
+    icdCode: "I71.4",
+    rotation: "internal-medicine",
+    category: "Cardiology / Vascular",
+    definition:
+      "Focal aortic dilation ≥3.0 cm. Risk of rupture rises sharply with size — classic 'silent killer' until it ruptures.",
+    diagnosticCriteria:
+      "Size & Management:\n• <3.0 cm:    normal\n• 3.0–3.9:    surveillance every 2–3 yrs\n• 4.0–4.9:    surveillance every 6–12 mo\n• 5.0–5.4:    surveillance every 6 mo\n• ≥5.5 cm:    elective REPAIR (open or EVAR)\n• Growth >0.5 cm/6 mo:  repair regardless of size\n• Symptomatic / ruptured:  emergent repair\n\nUSPSTF screening: one-time abdominal US in men 65–75 with smoking history.",
+    presentation: {
+      chiefComplaint: [
+        "Asymptomatic, found incidentally on imaging",
+        "Pulsatile abdominal mass on exam",
+        "Sudden severe abdominal/back/flank pain (rupture)",
+      ],
+      associatedSymptoms: [
+        "Most are ASYMPTOMATIC until rupture",
+        "Pulsatile periumbilical mass",
+        "Abdominal bruit",
+        "Triad of rupture: abdominal pain + hypotension + pulsatile mass",
+        "Flank or back pain mimicking renal colic",
+        "Syncope (from hemorrhage)",
+      ],
+      demographics:
+        "Risk: male (5×), age >65, smoking (strongest modifiable), HTN, family history, atherosclerosis, COPD. Less common in women, Black, Hispanic, and diabetic patients.",
+    },
+    distinguishingFeatures:
+      "Suspect rupture in any older male smoker with:\n• New severe abdominal/flank/back pain\n• Hypotension\n• Pulsatile mass\n→ STAT bedside US, do NOT wait for CT if unstable\n\nMisdiagnosis trap: rupture often mistaken for renal colic in elderly men.",
+    redFlags: [
+      "Abdominal/back pain + hypotension + pulsatile mass = rupture, OR until proven otherwise",
+      "Rapid expansion (>0.5 cm in 6 months)",
+      "New tenderness over known AAA (impending rupture)",
+      "AAA ≥5.5 cm in low-risk surgical candidate (delaying repair = unacceptable risk)",
+    ],
+    mnemonics: [
+      {
+        name: "AAA Risk Factors (SMOKER)",
+        content: "Smoking, Male, Older age, Kin (family hx), Elevated BP, Race (white)",
+      },
+      {
+        name: "Repair Threshold",
+        content: "≥5.5 cm OR symptomatic OR growth >0.5 cm/6 mo OR >1 cm/yr",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the USPSTF screening recommendation for AAA?",
+      "At what size is elective repair indicated, and why this threshold?",
+      "How does rupture present clinically, and what is the diagnostic test of choice if unstable?",
+      "What is the difference between EVAR and open repair, and when is each preferred?",
+    ],
+  },
+
+  {
+    id: "im-pericarditis",
+    name: "Acute Pericarditis",
+    icdCode: "I30.9",
+    rotation: "internal-medicine",
+    category: "Cardiology",
+    definition:
+      "Inflammation of the pericardium. Most common cause: viral or idiopathic. Diagnosis requires ≥2 of 4 features.",
+    diagnosticCriteria:
+      "Diagnosis (need ≥2 of 4):\n1. Pleuritic chest pain — sharp, worse supine, better leaning forward\n2. Pericardial friction rub (best at LLSB, leaning forward)\n3. EKG changes: diffuse ST elevation + PR depression\n4. New or worsening pericardial effusion on echo\n\nSupportive: elevated CRP, mild troponin (myopericarditis if elevated).",
+    presentation: {
+      chiefComplaint: [
+        "Sharp chest pain, worse with deep breath",
+        "Pain better leaning forward",
+        "Recent viral illness preceded onset",
+      ],
+      associatedSymptoms: [
+        "Pleuritic, sharp chest pain (substernal or precordial)",
+        "Worse: lying flat, deep inspiration, swallowing",
+        "Better: sitting up, leaning forward",
+        "Pericardial friction rub (3-component scratchy sound)",
+        "Low-grade fever, malaise",
+        "Recent URI in 1–2 weeks before onset",
+      ],
+      demographics:
+        "Most common in young/middle-aged adults. Causes: idiopathic/viral (most common), post-MI (Dressler 2–10 wks post-MI), uremia, autoimmune (SLE, RA), TB, malignancy, post-cardiac surgery.",
+    },
+    distinguishingFeatures:
+      "EKG: Pericarditis vs STEMI:\n• Pericarditis: diffuse ST↑ (concave up), PR depression, NO reciprocal changes\n• STEMI:        regional ST↑, reciprocal ST depression, Q-waves develop\n\n4 EKG Stages:\n1. Diffuse ST↑, PR depression\n2. Normalization\n3. T-wave inversion\n4. Return to baseline",
+    redFlags: [
+      "Hypotension + JVD + muffled heart sounds = Beck's triad → cardiac tamponade",
+      "Pulsus paradoxus >10 mmHg → tamponade physiology",
+      "Troponin elevation → myopericarditis (admit, restrict exercise)",
+      "Fever >38°C, large effusion, immunocompromised, oral anticoagulation → poor prognostic markers, admit",
+      "Failure to respond after 1 week of NSAIDs",
+    ],
+    mnemonics: [
+      {
+        name: "Treatment (1st-line)",
+        content:
+          "NSAIDs (high-dose ibuprofen 600–800 mg TID or aspirin 750–1000 mg TID × 1–2 wks) + COLCHICINE 0.5 mg BID × 3 months (reduces recurrence ~50%, COPE/CORP trials). Avoid steroids unless refractory or specific etiology.",
+      },
+      {
+        name: "Beck's Triad (Tamponade)",
+        content: "Hypotension + Distended neck veins (↑JVP) + Muffled heart sounds",
+      },
+    ],
+    pimpingQuestions: [
+      "What 4 features make up the diagnostic criteria for acute pericarditis?",
+      "How do you differentiate the EKG of pericarditis from STEMI?",
+      "Why is colchicine added to NSAIDs as first-line, and what trial supports this?",
+      "What are signs of tamponade, and what is the immediate intervention?",
+    ],
+  },
+
+  {
+    id: "im-tamponade",
+    name: "Cardiac Tamponade",
+    icdCode: "I31.4",
+    rotation: "internal-medicine",
+    category: "Cardiology / Critical Care",
+    definition:
+      "Pericardial fluid accumulation that exceeds the pericardium's compliance, compressing cardiac chambers and impairing filling. Obstructive shock.",
+    diagnosticCriteria:
+      "Clinical: Beck's Triad (only ~30%):\n1. Hypotension\n2. Elevated JVP (with prominent x-descent)\n3. Muffled heart sounds\n\nSupportive:\n• Pulsus paradoxus >10 mmHg\n• EKG: low voltage, electrical alternans\n• Echo (gold standard): effusion + RV/RA collapse during diastole, IVC plethora, septal bounce",
+    presentation: {
+      chiefComplaint: [
+        "Sudden shortness of breath",
+        "Lightheadedness, near-syncope",
+        "Chest fullness or pressure",
+      ],
+      associatedSymptoms: [
+        "Dyspnea (most sensitive symptom)",
+        "Tachycardia, hypotension",
+        "Elevated JVP with prominent x-descent, blunted/absent y-descent",
+        "Pulsus paradoxus (SBP drops >10 mmHg with inspiration)",
+        "Muffled heart sounds",
+        "Cool extremities, oliguria (shock)",
+      ],
+      demographics:
+        "Causes: malignancy (most common in chronic), uremia, infection (viral, TB, bacterial), post-cardiac surgery/procedure, trauma, aortic dissection (Type A), post-MI free wall rupture, anticoagulation.",
+    },
+    distinguishingFeatures:
+      "Acute vs Chronic Tamponade:\n• Acute (trauma, dissection): small volume (~150 mL) can tamponade — rapid decompensation\n• Chronic (malignancy, uremia): liters can accumulate before tamponade — slow stretching\n\nKey distinction from constrictive pericarditis:\n• Tamponade: pulsus paradoxus prominent, no Kussmaul's sign\n• Constriction: Kussmaul's sign +, pericardial knock, pulsus paradoxus rare",
+    redFlags: [
+      "Hemodynamic instability — emergent pericardiocentesis",
+      "Pulsus paradoxus >10 mmHg → tamponade physiology",
+      "Echo showing RV diastolic collapse → preload-dependent — give IVF, AVOID diuretics",
+      "PEA arrest with known effusion → emergent decompression",
+    ],
+    mnemonics: [
+      {
+        name: "Tamponade Management",
+        content:
+          "STABILIZE: IVF bolus (preload-dependent — do NOT diurese!), avoid hypotension, no PPV if possible. DEFINITIVE: pericardiocentesis (echo-guided) or surgical pericardial window.",
+      },
+      {
+        name: "Pulsus Paradoxus",
+        content:
+          "Inspiration → ↑venous return to RV → septum pushes into LV → ↓LV filling → ↓CO → SBP drops >10 mmHg. Also seen in severe asthma/COPD, massive PE.",
+      },
+    ],
+    pimpingQuestions: [
+      "Why is IV fluid bolus indicated in tamponade despite elevated JVP?",
+      "What echocardiographic findings are diagnostic of tamponade?",
+      "How is pulsus paradoxus measured, and what does it indicate?",
+      "How does tamponade differ from constrictive pericarditis on exam and hemodynamics?",
+    ],
+  },
+
+  {
+    id: "im-endocarditis",
+    name: "Infective Endocarditis",
+    icdCode: "I33.0",
+    rotation: "internal-medicine",
+    category: "Cardiology / Infectious Disease",
+    definition:
+      "Infection of the endocardium, typically affecting valves. Diagnosed using Modified Duke Criteria.",
+    diagnosticCriteria:
+      "Modified Duke Criteria — Definite IE if:\n• 2 major OR\n• 1 major + 3 minor OR\n• 5 minor\n\nMAJOR:\n1. Blood culture +: typical organism × 2, or persistent bacteremia\n2. Endocardial involvement: vegetation/abscess on echo, or new regurgitation murmur\n\nMINOR (FROM JANE):\n• Fever >38°C\n• Roth spots (retinal hemorrhages with pale center)\n• Osler nodes (painful fingertip nodules)\n• Murmur (new regurgitation)\n• Janeway lesions (painless palmar/plantar macules)\n• Anemia / Atypical organism\n• Nailbed splinter hemorrhages\n• Emboli (septic, mycotic aneurysm)\n• Predisposing condition (IVDU, prosthetic valve, prior IE)",
+    presentation: {
+      chiefComplaint: [
+        "Fever and chills lasting weeks",
+        "Fatigue and weight loss",
+        "New murmur",
+        "Embolic event (stroke, splenic infarct)",
+      ],
+      associatedSymptoms: [
+        "Fever (most common — 90%)",
+        "New or worsening regurgitation murmur",
+        "Constitutional: fatigue, weight loss, night sweats, anorexia",
+        "Embolic phenomena: stroke, splenic/renal infarcts, septic pulmonary emboli",
+        "Peripheral stigmata: Janeway lesions, Osler nodes, Roth spots, splinters",
+        "Splenomegaly, glomerulonephritis (hematuria)",
+      ],
+      demographics:
+        "Predisposing: IVDU (right-sided, S. aureus), prosthetic valves, rheumatic heart disease (developing countries), congenital heart disease, prior IE, structural heart disease (MVP w/ regurg, bicuspid AV), poor dentition, immunosuppression.",
+    },
+    distinguishingFeatures:
+      "Organisms by Setting:\n• Native valve, community:    S. viridans (subacute), S. aureus (acute)\n• IVDU (right-sided/tricuspid): S. aureus (most common), Pseudomonas\n• Prosthetic <2 mo:           S. epidermidis, S. aureus\n• Prosthetic >2 mo:           S. viridans, S. aureus, S. epi\n• Colon cancer association:   S. bovis (S. gallolyticus) → colonoscopy!\n• Culture-negative:           HACEK, Coxiella, Bartonella, fungi\n\nEcho: TTE first (sensitivity ~70%), TEE if negative TTE with high suspicion or prosthetic (sensitivity >95%).",
+    redFlags: [
+      "S. aureus bacteremia — assume endocarditis until proven otherwise (TEE indicated)",
+      "S. bovis bacteremia → colonoscopy for occult colon malignancy",
+      "Heart failure from acute regurgitation → urgent valve surgery",
+      "Large vegetation >10 mm + embolic event → consider surgery",
+      "Perivalvular abscess on TEE → surgical indication",
+      "Persistent bacteremia >5–7 days despite appropriate antibiotics",
+    ],
+    mnemonics: [
+      {
+        name: "FROM JANE (Minor Criteria)",
+        content:
+          "Fever, Roth spots, Osler nodes, Murmur, Janeway lesions, Anemia/Atypical, Nailbed splinters, Embolic phenomena (+ Predisposing condition)",
+      },
+      {
+        name: "Empiric Antibiotics",
+        content:
+          "Native valve: Vancomycin + ceftriaxone (or gentamicin). Prosthetic: Vancomycin + gentamicin + rifampin. Adjust based on cultures and organism.",
+      },
+      {
+        name: "Painful Painless",
+        content:
+          "Osler nodes = Ouchy (painful, fingertips). Janeway = Just a stain (painless, palms/soles).",
+      },
+    ],
+    pimpingQuestions: [
+      "What are the Modified Duke Criteria for definite IE?",
+      "What is the most common organism in IVDU endocarditis, and which valve is affected?",
+      "Why does S. bovis bacteremia warrant colonoscopy?",
+      "What are surgical indications in IE?",
+      "How long is antibiotic therapy for native vs prosthetic valve IE?",
+    ],
+  },
+
+  {
+    id: "im-aortic-stenosis",
+    name: "Aortic Stenosis",
+    icdCode: "I35.0",
+    rotation: "internal-medicine",
+    category: "Cardiology / Valvular",
+    definition:
+      "Narrowing of the aortic valve obstructing LV outflow. Most common valvular disease in adults — typically calcific (degenerative) in elderly.",
+    diagnosticCriteria:
+      "Severity (Echo) — Severe AS:\n• Mean gradient ≥40 mmHg\n• Peak velocity ≥4.0 m/s\n• Aortic valve area ≤1.0 cm²\n\nLow-flow / low-gradient AS: severe AVA but reduced LVEF — needs dobutamine stress echo to confirm.",
+    presentation: {
+      chiefComplaint: [
+        "Chest pain with exertion",
+        "Syncope or near-syncope with exertion",
+        "Shortness of breath with activity (heart failure)",
+      ],
+      associatedSymptoms: [
+        "Classic triad (SAD): Syncope, Angina, Dyspnea — once symptoms appear, prognosis is poor without surgery",
+        "Crescendo-decrescendo systolic ejection murmur, RUSB, radiates to carotids",
+        "Diminished/delayed carotid pulse (pulsus parvus et tardus)",
+        "S4 gallop (LV hypertrophy)",
+        "Soft/absent A2 in severe AS",
+        "Sustained PMI",
+      ],
+      demographics:
+        "Calcific (most common, age >65), bicuspid aortic valve (presents 40–60s), rheumatic heart disease (developing countries — usually with mitral involvement).",
+    },
+    distinguishingFeatures:
+      "Murmur Comparison:\n• AS:        crescendo-decrescendo, RUSB → carotids, radiates UP\n• MR:        holosystolic, apex → axilla\n• HOCM:      systolic, increases with Valsalva (decreased preload)\n• AS vs HOCM: handgrip ↓ AS murmur (↑afterload), ↑ MR murmur\n\nSurvival once symptoms appear:\n• Angina: 5 yrs\n• Syncope: 3 yrs\n• HF: 2 yrs",
+    redFlags: [
+      "Symptomatic severe AS — refer for AVR (TAVR or SAVR)",
+      "Asymptomatic severe AS with LVEF <50% — AVR indicated",
+      "Syncope with exertion in elderly — get echo, r/o severe AS",
+      "Sudden cardiac death risk increases dramatically once symptoms appear",
+    ],
+    mnemonics: [
+      {
+        name: "Symptoms (SAD)",
+        content: "Syncope (exertional), Angina, Dyspnea (HF) — symptoms = surgical indication",
+      },
+      {
+        name: "Murmur",
+        content:
+          "Systolic crescendo-decrescendo at RUSB, radiates to carotids, soft S2 in severe disease, paradoxically split S2",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the classic triad of symptoms in severe AS, and what is the survival once each appears?",
+      "What echocardiographic criteria define severe AS?",
+      "When is TAVR preferred over SAVR?",
+      "Why do bicuspid aortic valves cause AS earlier than tricuspid?",
+    ],
+  },
+
+  {
+    id: "im-mitral-regurg",
+    name: "Mitral Regurgitation",
+    icdCode: "I34.0",
+    rotation: "internal-medicine",
+    category: "Cardiology / Valvular",
+    definition:
+      "Backflow of blood from LV to LA during systole due to mitral valve incompetence.",
+    diagnosticCriteria:
+      "Echo features — severe MR:\n• Vena contracta ≥0.7 cm\n• Regurgitant volume ≥60 mL\n• Regurgitant fraction ≥50%\n• EROA ≥0.40 cm²\n• Pulmonary vein flow reversal\n\nClassification:\n• Primary (degenerative): MVP, flail leaflet, rheumatic, IE\n• Secondary (functional): from LV dilation/dysfunction (ischemic CM, dilated CM)",
+    presentation: {
+      chiefComplaint: [
+        "Shortness of breath with exertion",
+        "Palpitations",
+        "Heart failure symptoms (orthopnea, edema)",
+      ],
+      associatedSymptoms: [
+        "Holosystolic (pansystolic) murmur at apex, radiates to L axilla",
+        "Increases with handgrip (↑afterload)",
+        "S3 gallop (volume overload)",
+        "Laterally displaced PMI",
+        "Acute MR (papillary rupture post-MI): flash pulmonary edema, cardiogenic shock",
+        "Atrial fibrillation (LA dilation)",
+      ],
+      demographics:
+        "MVP most common cause in young (women > men), ischemic MR after inferior MI, rheumatic in developing countries, IE-related, functional in HFrEF.",
+    },
+    distinguishingFeatures:
+      "Acute vs Chronic MR:\n• Acute (papillary muscle rupture, IE, chordal rupture):\n  - Severe pulmonary edema, cardiogenic shock\n  - Soft murmur (small LA, rapid pressure equalization)\n  - Surgical emergency\n• Chronic (MVP, rheumatic):\n  - Compensated for years; LA dilates\n  - A-fib, then HF symptoms\n\nManeuvers:\n• Handgrip (↑afterload): ↑ MR murmur, ↓ AS, ↓ HOCM",
+    redFlags: [
+      "Acute severe MR (post-MI papillary rupture) — emergent surgery",
+      "Symptomatic severe MR — surgical referral",
+      "Asymptomatic severe MR with LVEF 30–60% or LVESD ≥40 mm — surgery indicated",
+      "New MR murmur post-MI = papillary muscle dysfunction or rupture",
+    ],
+    mnemonics: [
+      {
+        name: "Murmur",
+        content:
+          "Holosystolic, blowing, apex → left axilla. Increased with handgrip. Best in left lateral decubitus.",
+      },
+      {
+        name: "MVP",
+        content:
+          "Mid-systolic click + late systolic murmur. Click moves earlier with ↓preload (Valsalva, standing), later with ↑preload (squat).",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the difference between primary and secondary (functional) MR?",
+      "How does acute MR present differently from chronic MR?",
+      "Why does the MR murmur increase with handgrip?",
+      "When is mitral valve repair preferred over replacement?",
+    ],
+  },
+
+  {
+    id: "im-pad",
+    name: "Peripheral Arterial Disease (PAD)",
+    icdCode: "I73.9",
+    rotation: "internal-medicine",
+    category: "Cardiology / Vascular",
+    definition:
+      "Atherosclerotic narrowing of arteries supplying limbs, most commonly lower extremities. Marker of systemic atherosclerosis (high MI/stroke risk).",
+    diagnosticCriteria:
+      "Ankle-Brachial Index (ABI):\n• Normal:           1.00–1.40\n• Borderline:       0.91–0.99\n• Mild PAD:         0.71–0.90\n• Moderate PAD:     0.41–0.70\n• Severe PAD:       ≤0.40 (critical limb ischemia)\n• >1.40:            non-compressible (calcified — DM, CKD) → use TBI\n\nFontaine / Rutherford stages classify severity from claudication → rest pain → ulceration → gangrene.",
+    presentation: {
+      chiefComplaint: [
+        "Calf pain with walking, relieved by rest",
+        "Cold feet, hair loss on legs",
+        "Non-healing foot ulcer",
+        "Foot pain at rest, especially at night",
+      ],
+      associatedSymptoms: [
+        "Intermittent claudication (calf, thigh, or buttock — depends on level)",
+        "Diminished/absent peripheral pulses",
+        "Cool, hairless, shiny skin distal to lesion",
+        "Nail thickening, slow capillary refill",
+        "Dependent rubor, elevation pallor",
+        "Rest pain in critical limb ischemia (worst at night, relieved by dangling)",
+        "Non-healing ulcers (lateral malleolus or toes — arterial)",
+      ],
+      demographics:
+        "Strongest risk factor: smoking. Others: DM (most rapidly progressive), HTN, hyperlipidemia, CKD, age >65. Coexists with CAD/CVD ≥50% of the time.",
+    },
+    distinguishingFeatures:
+      "Arterial vs Venous Ulcers:\n• Arterial: lateral malleolus or toes, punched-out, painful, dry, ↓pulses\n• Venous:   medial malleolus, irregular, less painful, weeping, hemosiderin staining, varicosities\n\nPAD vs Spinal stenosis (pseudoclaudication):\n• PAD: relieved by REST (in any position)\n• Spinal: relieved by FLEXION/sitting; walking downhill worse",
+    redFlags: [
+      "Rest pain → critical limb ischemia, urgent revascularization",
+      "Non-healing ulcer or gangrene → urgent vascular surgery referral",
+      "Acute limb ischemia (6 P's): Pain, Pallor, Pulselessness, Paresthesia, Paralysis, Poikilothermia → emergent (golden 6 hours)",
+      "Sudden onset = embolic; gradual = thrombotic",
+    ],
+    mnemonics: [
+      {
+        name: "6 P's of Acute Limb Ischemia",
+        content: "Pain, Pallor, Pulselessness, Paresthesia, Paralysis, Poikilothermia (cold)",
+      },
+      {
+        name: "Treatment",
+        content:
+          "Risk reduction (cornerstone): SMOKING CESSATION (most important), statin, ACE-I/ARB, antiplatelet (aspirin or clopidogrel), supervised exercise. Symptomatic: cilostazol (PDE3 inhibitor — contraindicated in HF). Revascularization (endo or bypass) for critical limb ischemia or refractory.",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the ABI and how is it interpreted?",
+      "What is the most important modifiable risk factor in PAD?",
+      "How do arterial and venous ulcers differ on exam?",
+      "What are the 6 P's of acute limb ischemia, and what is the treatment window?",
+      "Why is cilostazol contraindicated in heart failure?",
+    ],
+  },
+
+  {
+    id: "im-syncope",
+    name: "Syncope",
+    icdCode: "R55",
+    rotation: "internal-medicine",
+    category: "Cardiology / Neurology",
+    definition:
+      "Transient loss of consciousness due to global cerebral hypoperfusion, with rapid onset, short duration, and spontaneous complete recovery.",
+    diagnosticCriteria:
+      "Initial Workup (everyone):\n• History + physical (most important)\n• 12-lead EKG\n• Orthostatic vital signs\n• Glucose\n\nFurther evaluation by suspected etiology:\n• Cardiac suspected: echo, telemetry, stress test, +/- EP study\n• Neurogenic: tilt-table test\n• Unclear with red flags: hospital admission for monitoring\n\nSan Francisco Syncope Rule (CHESS): predicts 7-day serious outcome — CHF, Hct <30, EKG abnormal, SOB, SBP <90.",
+    presentation: {
+      chiefComplaint: [
+        "Passed out and woke up",
+        "Lightheadedness then loss of consciousness",
+        "Brief unresponsive episode",
+      ],
+      associatedSymptoms: [
+        "Brief LOC with spontaneous recovery (<1–2 min)",
+        "Premonitory: lightheadedness, nausea, diaphoresis (vasovagal)",
+        "Sudden, no warning, with exertion — concerning for cardiac",
+        "Palpitations preceding LOC — arrhythmia",
+        "Convulsive movements possible (myoclonic jerks — not seizure)",
+        "Tongue bite (lateral) suggests seizure not syncope",
+      ],
+      demographics:
+        "Most common: vasovagal/neurocardiogenic (young, situational). Cardiac syncope (older, structural HD, exertional) carries highest mortality. Orthostatic in elderly, dehydrated, or polypharmacy.",
+    },
+    distinguishingFeatures:
+      "Etiology Categories:\n┌──────────────┬────────────────────────────────────────────────┐\n│ Reflex (50%) │ Vasovagal, situational, carotid sinus           │\n│ Orthostatic  │ Volume depletion, autonomic failure, meds       │\n│ Cardiac (10%)│ Arrhythmia, structural (AS, HOCM), PE, MI       │\n│ Neurologic   │ Rare — usually seizure or vertebrobasilar       │\n└──────────────┴────────────────────────────────────────────────┘\n\nSyncope vs Seizure:\n• Syncope: brief, no postictal state, pale, may have brief myoclonus\n• Seizure: longer, postictal confusion, tongue bite (lateral), incontinence, aura",
+    redFlags: [
+      "Exertional syncope — concerning for AS, HOCM, anomalous coronaries → echo urgently",
+      "Syncope with chest pain, dyspnea — r/o ACS, PE, dissection",
+      "Family history of sudden cardiac death — get EKG (long QT, Brugada, HOCM)",
+      "Abnormal EKG: long QT, Brugada pattern, WPW, complete heart block, paced/AICD",
+      "Structural heart disease known — admit, telemetry",
+      "Recurrent unexplained syncope",
+    ],
+    mnemonics: [
+      {
+        name: "High-Risk EKG (admission)",
+        content:
+          "Long QT, Brugada (V1–V3 ST↑), Mobitz II / 3rd degree block, sustained VT, sinus pause >3 sec, WPW, paced rhythm with symptoms",
+      },
+      {
+        name: "Cardiac Syncope Clues",
+        content:
+          "Exertional, no prodrome, supine, palpitations preceding, FHx sudden death, abnormal EKG, structural heart disease",
+      },
+    ],
+    pimpingQuestions: [
+      "How do you differentiate syncope from seizure on history?",
+      "Which features make cardiac syncope more likely than vasovagal?",
+      "What workup is recommended for first episode of syncope?",
+      "When is admission warranted for syncope?",
+      "What is the San Francisco Syncope Rule and when is it used?",
+    ],
+  },
 ];
