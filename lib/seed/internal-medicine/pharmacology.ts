@@ -71,7 +71,9 @@ export const internalMedicinePharmacology: Drug[] = [
       "HIT diagnosis: Use 4T score (Thrombocytopenia, Timing, Thrombosis, oTher causes). Score ≥4 = intermediate/high probability → STOP all heparin immediately, start non-heparin anticoagulant (argatroban or bivalirudin), check PF4 antibody and serotonin release assay (SRA).",
       "Reversal: Protamine sulfate 1 mg per 100 units of heparin given in last 2 hours (max 50 mg IV over 10 minutes); administer slowly — protamine itself can cause anaphylaxis (higher risk in fish allergy, previous protamine exposure, vasectomy)."
     ],
-    boardRecallTip: "HIT: thrombocytopenia + THROMBOSIS (not just bleeding). Stop heparin → start argatroban (DTI). DO NOT give platelets (worsens thrombosis). Anti-PF4 ELISA is sensitive; SRA is gold standard confirmatory test."
+    boardRecallTip: "HIT: thrombocytopenia + THROMBOSIS (not just bleeding). Stop heparin → start argatroban (DTI). DO NOT give platelets (worsens thrombosis). Anti-PF4 ELISA is sensitive; SRA is gold standard confirmatory test.",
+    clinicalRole: "Rapid-onset, titratable IV anticoagulation for ACS, acute VTE, and bridging — when you need to start and stop fast.",
+    whyUseThisVsOthers: "First-line in renal failure (not renally cleared, unlike LMWH/DOACs), pregnancy (does not cross placenta), and any setting requiring rapid reversibility (CABG, procedures). Choose UFH over enoxaparin when CrCl <30, hemodynamic instability is possible, or short half-life is needed. Enoxaparin is preferred for stable inpatients (no aPTT monitoring, predictable dosing). Bivalirudin/argatroban replace UFH when HIT is suspected."
   },
   {
     id: "im-drug-warfarin",
@@ -143,7 +145,9 @@ export const internalMedicinePharmacology: Drug[] = [
       "Supratherapeutic INR management: INR 4–10 without bleeding → hold warfarin ± oral vitamin K 1–2 mg; INR >10 without bleeding → hold + oral vitamin K 2.5–5 mg; Any INR with major bleeding → hold warfarin + 4-factor PCC (preferred) or FFP + IV vitamin K 10 mg.",
       "Bridging therapy: historically required for high-risk patients perioperatively, but BRIDGE trial showed no benefit in A-fib patients — bridging increases bleeding without reducing thromboembolism. Still needed for mechanical valves."
     ],
-    boardRecallTip: "Warfarin reversal: Vitamin K (slow, 12–24h), FFP (fast but volume load), 4-factor PCC (fast, preferred). Factor VII falls first → early INR rise ≠ full anticoagulation. Protein C drops first on initiation → skin necrosis risk."
+    boardRecallTip: "Warfarin reversal: Vitamin K (slow, 12–24h), FFP (fast but volume load), 4-factor PCC (fast, preferred). Factor VII falls first → early INR rise ≠ full anticoagulation. Protein C drops first on initiation → skin necrosis risk.",
+    clinicalRole: "Long-term oral anticoagulation — the only option for mechanical heart valves and severe rheumatic mitral stenosis with A-fib.",
+    whyUseThisVsOthers: "GOLD STANDARD for mechanical valves (DOACs failed in RE-ALIGN trial). First-line for antiphospholipid syndrome (especially triple-positive) and severe rheumatic mitral stenosis. Otherwise, DOACs (apixaban/rivaroxaban) are now PREFERRED over warfarin for non-valvular A-fib and VTE due to no INR monitoring, fewer drug/food interactions, and lower intracranial bleed rates. Choose warfarin when DOACs contraindicated (mechanical valve, severe CKD/dialysis, cost issues, antiphospholipid syndrome)."
   },
   {
     id: "im-drug-furosemide",
@@ -215,7 +219,9 @@ export const internalMedicinePharmacology: Drug[] = [
       "Diuretic resistance: occurs when patients fail to respond adequately. Strategies: IV over oral, continuous infusion over bolus, add thiazide (metolazone 2.5–5 mg oral 30 min before furosemide creates sequential nephron blockade — very potent, monitor electrolytes closely), restrict dietary sodium.",
       "In HF, oral bioavailability of furosemide varies 10–100% due to gut wall edema — IV dosing is 2× more bioavailable. Torsemide has better oral bioavailability (~80%) and longer duration — preferred in HF for this reason."
     ],
-    boardRecallTip: "Loop diuretics: Furosemide, bumetanide, torsemide, ethacrynic acid. Ototoxicity risk: ethacrynic acid > furosemide. Only loop diuretic safe in sulfa allergy: ethacrynic acid. Loops cause: hypoKalemia, hypoMagnesia, hypoCalcemia, metabolic ALKalosis — 'COME' = Calcium Out, Magnesium Excreted."
+    boardRecallTip: "Loop diuretics: Furosemide, bumetanide, torsemide, ethacrynic acid. Ototoxicity risk: ethacrynic acid > furosemide. Only loop diuretic safe in sulfa allergy: ethacrynic acid. Loops cause: hypoKalemia, hypoMagnesia, hypoCalcemia, metabolic ALKalosis — 'COME' = Calcium Out, Magnesium Excreted.",
+    clinicalRole: "Workhorse loop diuretic for acute decompensated HF, pulmonary edema, and any volume overload state.",
+    whyUseThisVsOthers: "FIRST-LINE for acute pulmonary edema and volume overload — most widely available, cheapest, and best studied. However, oral bioavailability is erratic (10–100%) due to gut wall edema in HF. TORSEMIDE is preferred for chronic HF (TRANSFORM-HF trial: more reliable ~80% bioavailability, longer duration, possible mortality benefit). BUMETANIDE is more potent (1 mg = 40 mg furosemide) — useful when high doses of furosemide aren't working. ETHACRYNIC ACID is the only loop safe in true sulfa allergy. Add METOLAZONE 30 min before furosemide for diuretic resistance (sequential nephron blockade)."
   },
   {
     id: "im-drug-digoxin",
@@ -283,7 +289,9 @@ export const internalMedicinePharmacology: Drug[] = [
       "Digoxin toxicity treatment: Digoxin-specific antibody fragments (Digibind/DigiFab) — each vial neutralizes ~0.5 mg digoxin. Calculate dose: (serum level [ng/mL] × weight [kg]) ÷ 100 = number of vials. Do NOT give calcium in digoxin toxicity ('stone heart') — worsens intracellular Ca overload.",
       "Digoxin is useful for rate control in A-fib at rest but loses efficacy with exercise (sympathetic override dominates vagal effects). Beta-blockers or CCBs are preferred for active patients."
     ],
-    boardRecallTip: "PAT with block = digoxin toxicity until proven otherwise. Toxicity risk: HypoKalemia > HypoMag > Renal failure > Hypothyroidism. Antidote: Digibind. Never give calcium in toxicity. WPW + A-fib: avoid digoxin, verapamil, diltiazem — all can accelerate accessory pathway → VFib."
+    boardRecallTip: "PAT with block = digoxin toxicity until proven otherwise. Toxicity risk: HypoKalemia > HypoMag > Renal failure > Hypothyroidism. Antidote: Digibind. Never give calcium in toxicity. WPW + A-fib: avoid digoxin, verapamil, diltiazem — all can accelerate accessory pathway → VFib.",
+    clinicalRole: "Adjunct rate control in A-fib + concurrent HFrEF — symptom relief, no mortality benefit.",
+    whyUseThisVsOthers: "NOT first-line for anything anymore. Used as ADD-ON for A-fib rate control when beta-blocker or diltiazem alone is insufficient (especially in HFrEF where beta-blocker dose is limited). Beta-blockers (metoprolol, carvedilol) are FIRST-LINE for rate control in A-fib + HFrEF and have proven mortality benefit. Diltiazem/verapamil are first-line for A-fib rate control with PRESERVED EF (avoid in HFrEF — negative inotropy). Digoxin's only niche: sedentary patient with A-fib + HFrEF where beta-blocker is at max dose or not tolerated. Loses efficacy with exercise (sympathetic override)."
   },
   {
     id: "im-drug-prednisone-im",
@@ -361,7 +369,9 @@ export const internalMedicinePharmacology: Drug[] = [
       "Taper rule: If >3 weeks of prednisone, taper to prevent adrenal crisis. Rate of taper depends on duration: short courses (<2 weeks) can stop abruptly. Long courses: decrease by 10 mg every 1–2 weeks until 20 mg, then by 2.5–5 mg every 1–2 weeks. Stress dosing during illness: double or triple daily dose during minor illness; 100 mg hydrocortisone IV q8h for surgical stress.",
       "PCP prophylaxis: Trimethoprim-sulfamethoxazole (Bactrim DS) 1 tab three times weekly if prednisone ≥20 mg/day for >4 weeks. Also check for latent TB with IGRA before starting long-term steroids."
     ],
-    boardRecallTip: "Steroid side effects by system: Metabolic (hyperglycemia, hyperlipidemia, weight gain), Musculoskeletal (osteoporosis, avascular necrosis, proximal myopathy), Eye (cataracts, glaucoma), GI (ulcers — add PPI), Infectious (opportunistic infections), Adrenal (suppression — taper if >3 weeks)."
+    boardRecallTip: "Steroid side effects by system: Metabolic (hyperglycemia, hyperlipidemia, weight gain), Musculoskeletal (osteoporosis, avascular necrosis, proximal myopathy), Eye (cataracts, glaucoma), GI (ulcers — add PPI), Infectious (opportunistic infections), Adrenal (suppression — taper if >3 weeks).",
+    clinicalRole: "Broad-spectrum anti-inflammatory/immunosuppressant — used in COPD/asthma exacerbations, autoimmune flares, and adrenal crisis.",
+    whyUseThisVsOthers: "PREDNISONE is first-line oral glucocorticoid for outpatient flares (COPD, asthma, gout, IBD, PMR). METHYLPREDNISOLONE (Solu-Medrol) is first-line IV form for inpatients (COPD/asthma exacerbation NPO, severe IBD flare, vasculitis pulse therapy). DEXAMETHASONE is preferred when minimal mineralocorticoid effect needed (cerebral edema, spinal cord compression, croup, antiemetic) and has the longest duration. HYDROCORTISONE is preferred for adrenal insufficiency / adrenal crisis (50:50 gluco/mineralocorticoid activity matches physiologic cortisol). Equivalencies: hydrocortisone 20 mg = prednisone 5 mg = methylprednisolone 4 mg = dexamethasone 0.75 mg."
   },
   {
     id: "im-drug-vancomycin",
@@ -419,7 +429,9 @@ export const internalMedicinePharmacology: Drug[] = [
       "Red Man Syndrome vs. true allergy: Red Man Syndrome occurs during infusion, causes diffuse flushing/erythema (not urticaria/angioedema/anaphylaxis) — stop infusion, give diphenhydramine, then restart at slower rate. True IgE-mediated anaphylaxis is rare; requires alternative agents (daptomycin for non-pulmonary MRSA, linezolid for MRSA pneumonia/SSTI).",
       "Daptomycin cannot be used for MRSA pneumonia — it is inactivated by surfactant. Vancomycin or linezolid are preferred for MRSA pneumonia."
     ],
-    boardRecallTip: "MRSA treatment: Vancomycin (preferred for bacteremia, endocarditis), Daptomycin (bacteremia — NOT pneumonia), Linezolid (pneumonia, SSTI), TMP-SMX (uncomplicated SSTI). Vancomycin AUC/MIC target 400–600. Red Man Syndrome: slow the infusion, not an allergy."
+    boardRecallTip: "MRSA treatment: Vancomycin (preferred for bacteremia, endocarditis), Daptomycin (bacteremia — NOT pneumonia), Linezolid (pneumonia, SSTI), TMP-SMX (uncomplicated SSTI). Vancomycin AUC/MIC target 400–600. Red Man Syndrome: slow the infusion, not an allergy.",
+    clinicalRole: "First-line empiric MRSA coverage and severe gram-positive infections (bacteremia, endocarditis, meningitis).",
+    whyUseThisVsOthers: "GOLD STANDARD for invasive MRSA — bacteremia, endocarditis, osteomyelitis. Choose vancomycin first when MRSA is on the differential and patient is sick enough to need parenteral therapy. DAPTOMYCIN is the alternative for MRSA bacteremia/endocarditis (especially right-sided endocarditis) but CANNOT be used for pneumonia (inactivated by lung surfactant). LINEZOLID is preferred for MRSA pneumonia (better lung penetration) and as oral step-down for SSTI/bone — limited by myelosuppression after >2 weeks. CEFTAROLINE is the only beta-lactam with MRSA activity. ORAL VANCOMYCIN is first-line for severe C. difficile (the only common indication for oral form — IV vanco does not treat C. diff)."
   },
   {
     id: "im-drug-morphine",
@@ -493,7 +505,9 @@ export const internalMedicinePharmacology: Drug[] = [
       "Opioid overdose reversal: Naloxone 0.4–2 mg IV/IM/intranasal — repeat every 2–3 minutes as needed (short half-life: 60–90 min — may need repeated doses or infusion for long-acting opioids). In opioid-dependent patients with acute pain, titrate naloxone carefully (0.04–0.1 mg) to avoid precipitating withdrawal.",
       "Equianalgesic conversions: Morphine 30 mg PO ≈ morphine 10 mg IV ≈ hydromorphone 7.5 mg PO ≈ oxycodone 20 mg PO. Fentanyl patch: morphine 60 mg/day PO ≈ fentanyl 25 mcg/hr patch."
     ],
-    boardRecallTip: "Opioid triad: Miosis (pinpoint pupils), CNS depression, Respiratory depression. Reversal: Naloxone. Avoid morphine in renal failure (M6G). Constipation: tolerance NEVER develops — always prescribe stimulant laxative (senna). Fentanyl: safest in renal failure + liver disease (no active metabolites)."
+    boardRecallTip: "Opioid triad: Miosis (pinpoint pupils), CNS depression, Respiratory depression. Reversal: Naloxone. Avoid morphine in renal failure (M6G). Constipation: tolerance NEVER develops — always prescribe stimulant laxative (senna). Fentanyl: safest in renal failure + liver disease (no active metabolites).",
+    clinicalRole: "Severe acute pain, palliative dyspnea, and acute pulmonary edema (preload reduction).",
+    whyUseThisVsOthers: "First-line opioid for severe acute pain and palliative care WITH NORMAL RENAL FUNCTION — most studied, cheapest, has anxiolytic and venodilatory effects useful in acute pulmonary edema. AVOID MORPHINE in renal failure (M6G accumulation → prolonged sedation, respiratory depression). FENTANYL is first-line in renal/hepatic failure (no active metabolites), procedural sedation, and PCA in ICU — most lipid-soluble, fastest onset. HYDROMORPHONE (Dilaudid) is preferred in renal impairment (less M6G accumulation than morphine) and when morphine intolerance (less histamine release). OXYCODONE is preferred for outpatient oral pain (better bioavailability than morphine, no active renal-cleared metabolites). METHADONE is reserved for chronic cancer pain or opioid use disorder (long, variable half-life — QTc risk)."
   },
   {
     id: "im-drug-alteplase",
@@ -565,7 +579,9 @@ export const internalMedicinePharmacology: Drug[] = [
       "Stroke door-to-needle time target: ≤60 minutes (benchmark) — the faster the better. 'Time is brain' — 1.9 million neurons die per minute of untreated ischemic stroke. NIH Stroke Scale (NIHSS) should be performed before and after tPA.",
       "tPA is absolutely contraindicated if BP >185/110 for stroke — but you CAN lower BP (labetalol 10–20 mg IV or nicardipine 5 mg/hr infusion) to meet the threshold, then give tPA."
     ],
-    boardRecallTip: "Stroke tPA window: 3–4.5 hours from LAST KNOWN WELL (not symptom discovery). Contraindications: prior stroke within 3 months, ICH, bleeding, INR >1.7, BP >185/110, blood glucose <50 or >400. sICH complicates 6% of treated strokes — immediate non-contrast CT if neurologic worsening."
+    boardRecallTip: "Stroke tPA window: 3–4.5 hours from LAST KNOWN WELL (not symptom discovery). Contraindications: prior stroke within 3 months, ICH, bleeding, INR >1.7, BP >185/110, blood glucose <50 or >400. sICH complicates 6% of treated strokes — immediate non-contrast CT if neurologic worsening.",
+    clinicalRole: "Time-critical thrombolysis for acute ischemic stroke, massive PE with shock, and STEMI when PCI unavailable.",
+    whyUseThisVsOthers: "GOLD STANDARD for acute ischemic stroke within 4.5 hours of last-known-well — only FDA-approved IV thrombolytic for stroke. TENECTEPLASE (TNK) is increasingly preferred for stroke at some centers (single bolus dose, possibly equivalent or superior efficacy in large vessel occlusion — EXTEND-IA TNK trial), and is preferred for STEMI when fibrinolysis is needed (single weight-based bolus). For massive PE with hemodynamic instability, alteplase 100 mg over 2 hours is standard. Catheter-directed thrombolysis (lower dose alteplase locally) is preferred over systemic for submassive PE and limb-threatening DVT to reduce bleeding risk. STREPTOKINASE is rarely used in the US (antigenic, more bleeding)."
   },
   {
     id: "im-drug-colchicine",
@@ -629,7 +645,9 @@ export const internalMedicinePharmacology: Drug[] = [
       "Low-dose colchicine regimen (1.8 mg total) is equally effective as high-dose (4.8 mg total) with significantly less GI toxicity — this is now the preferred regimen per ACR guidelines. When GI symptoms occur, they are a dose-limiting signal, not a sign of toxicity per se.",
       "Colchicine should be started concurrently when initiating urate-lowering therapy (allopurinol or febuxostat) to prevent mobilization flares — continue for at least 3–6 months or until uric acid goal is achieved and stable."
     ],
-    boardRecallTip: "Colchicine MOA: inhibits microtubule polymerization → blocks neutrophil chemotaxis + NLRP3 inflammasome (IL-1β). Does NOT lower uric acid. Major drug interaction: clarithromycin + colchicine = potentially fatal toxicity. Low-dose regimen (1.8 mg over 1 hour) preferred for acute gout."
+    boardRecallTip: "Colchicine MOA: inhibits microtubule polymerization → blocks neutrophil chemotaxis + NLRP3 inflammasome (IL-1β). Does NOT lower uric acid. Major drug interaction: clarithromycin + colchicine = potentially fatal toxicity. Low-dose regimen (1.8 mg over 1 hour) preferred for acute gout.",
+    clinicalRole: "Acute gout flare (when NSAIDs contraindicated) and pericarditis adjunct — also flare prophylaxis when starting urate-lowering therapy.",
+    whyUseThisVsOthers: "For ACUTE GOUT, all three options are equally first-line per ACR 2020: NSAIDs (indomethacin/naproxen — preferred in young, healthy with no CKD/PUD/CV disease), CORTICOSTEROIDS (prednisone 30–40 mg × 5 days — preferred when NSAIDs contraindicated, polyarticular, or CKD), and COLCHICINE (preferred when patient already on it for prophylaxis or has many comorbidities limiting NSAIDs and steroids). Choose colchicine when NSAIDs are contraindicated (CKD, PUD, CHF, anticoagulated) AND steroids are problematic (uncontrolled diabetes, infection). It's GOLD STANDARD for ACUTE PERICARDITIS as adjunct to NSAIDs (reduces recurrence by ~50% — COPE/CORP trials) and is the preferred prophylaxis when initiating allopurinol/febuxostat to prevent mobilization flares."
   },
   {
     id: "im-drug-allopurinol",
@@ -691,6 +709,8 @@ export const internalMedicinePharmacology: Drug[] = [
       "Start allopurinol at least 2–4 weeks after acute gout resolves — starting during an acute attack can prolong or worsen inflammation. Always co-prescribe colchicine 0.6 mg daily or BID for prophylaxis during first 3–6 months.",
       "Febuxostat (Uloric) is an alternative xanthine oxidase inhibitor — more potent, no renal dose adjustment needed (eGFR ≥30), but FDA Black Box Warning: increased cardiovascular mortality vs. allopurinol in CARES trial — use only if allopurinol not tolerated."
     ],
-    boardRecallTip: "Allopurinol + azathioprine = potentially fatal myelosuppression (reduce aza dose by 75%). HLA-B*58:01 = SJS/TEN risk in Asians. Start low, go slow. Don't start during acute flare — wait 2–4 weeks. Colchicine prophylaxis required during ULT initiation."
+    boardRecallTip: "Allopurinol + azathioprine = potentially fatal myelosuppression (reduce aza dose by 75%). HLA-B*58:01 = SJS/TEN risk in Asians. Start low, go slow. Don't start during acute flare — wait 2–4 weeks. Colchicine prophylaxis required during ULT initiation.",
+    clinicalRole: "Long-term urate-lowering therapy — first-line prevention for recurrent gout, tophi, urate stones, and tumor lysis prophylaxis.",
+    whyUseThisVsOthers: "FIRST-LINE urate-lowering therapy per ACR 2020 — preferred over febuxostat in nearly all patients (cheaper, longer track record, no CV mortality signal). Start at 100 mg daily (50 mg in CKD), titrate to serum urate <6 mg/dL (<5 if tophi). FEBUXOSTAT (Uloric) is second-line — reserved for patients who can't tolerate allopurinol or have HLA-B*58:01 + Asian ancestry. Black box warning: increased CV mortality vs. allopurinol (CARES trial). PROBENECID (uricosuric) is third-line — only for under-excretors with normal renal function and no urate stone history. PEGLOTICASE (IV recombinant uricase) is reserved for refractory tophaceous gout. ULT must be co-prescribed with colchicine 0.6 mg daily for 3–6 months to prevent mobilization flares — and never started during an acute flare (wait 2–4 weeks)."
   }
 ];
