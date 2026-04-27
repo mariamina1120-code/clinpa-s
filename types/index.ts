@@ -99,6 +99,10 @@ export interface Drug {
   beersCriteria?: boolean;
   beersCriteriaNote?: string;
   weightBasedDosing?: boolean;
+  /** One-liner clinical role / when this drug is used (shown in class view) */
+  clinicalRole?: string;
+  /** Comparative notes — why choose this drug vs others in its class; first-line/gold standard context */
+  whyUseThisVsOthers?: string;
 }
 
 // ─── Physical Exam ────────────────────────────────────────────────────────────
