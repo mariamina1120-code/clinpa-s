@@ -5,6 +5,8 @@ import { ROTATIONS } from "@/lib/utils";
 import { RotationCard } from "@/components/rotation/rotation-card";
 import { RecentActivity } from "@/components/rotation/recent-activity";
 import type { RotationSlug } from "@/types";
+import { BookOpen, FileText, ClipboardList, ScrollText, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export const metadata: Metadata = { title: "Dashboard" };
 
@@ -24,7 +26,6 @@ export default async function DashboardPage() {
   let recentLogs: Record<string, unknown>[] = [];
 
   if (devMode) {
-    // In dev mode, unlock everything
     unlockedSlugs = new Set(ALL_ROTATION_SLUGS);
     hasPaperTools = new Set(ALL_ROTATION_SLUGS);
     firstName = "Dev";
@@ -63,40 +64,115 @@ export default async function DashboardPage() {
     recentLogs = (logs ?? []) as Record<string, unknown>[];
   }
 
+  const progressPct = Math.round((unlockedSlugs.size / 7) * 100);
+
   return (
     <div className="max-w-6xl mx-auto space-y-8">
-      {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold">Welcome back, {firstName}</h1>
-        <p className="text-muted-foreground mt-1">
-          {programName} · {unlockedSlugs.size} of 7 rotations unlocked
-        </p>
+
+      {/* ── Welcome Banner ── */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 p-7 text-white shadow-lg">
+        {/* Decorative circle */}
+        <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full bg-white/5" />
+        <div className="absolute -right-2 top-12 h-24 w-24 rounded-full bg-white/5" />
+
+        <div className="relative flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <p className="text-teal-200 text-sm font-medium mb-1">Welcome back 👋</p>
+            <h1 className="text-3xl font-bold tracking-tight truncate">
+              {firstName}
+            </h1>
+            <p className="text-teal-300 mt-1 text-sm">{programName}</p>
+
+            {/* Progress bar */}
+            <div className="mt-5 max-w-xs">
+              <div className="flex justify-between text-xs text-teal-300 mb-1.5 font-medium">
+                <span>Rotations unlocked</span>
+                <span>{unlockedSlugs.size} / 7</span>
+              </div>
+              <div className="h-2 bg-teal-500/40 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-white/70 rounded-full transition-all duration-500"
+                  style={{ width: `${progressPct}%` }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <span className="text-6xl opacity-20 shrink-0 hidden sm:block">🩺</span>
+        </div>
       </div>
 
-      {/* Quick stats */}
+      {/* ── Quick Stats ── */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Rotations", value: unlockedSlugs.size, total: 7 },
-          { label: "Charts", value: recentCharts?.length ?? 0, total: null },
-          { label: "Case Logs", value: recentLogs?.length ?? 0, total: null },
-          { label: "Paper Tools", value: hasPaperTools.size, total: null },
-        ].map(({ label, value, total }) => (
-          <div key={label} className="rounded-lg border bg-card p-4">
-            <p className="text-2xl font-bold text-teal-600">
-              {value}{total !== null && <span className="text-muted-foreground text-lg">/{total}</span>}
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">{label}</p>
+          {
+            label: "Rotations",
+            value: unlockedSlugs.size,
+            total: 7,
+            icon: BookOpen,
+            iconColor: "text-teal-600 dark:text-teal-400",
+            iconBg: "bg-teal-50 dark:bg-teal-900/30",
+          },
+          {
+            label: "SOAP Charts",
+            value: recentCharts?.length ?? 0,
+            total: null,
+            icon: FileText,
+            iconColor: "text-blue-600 dark:text-blue-400",
+            iconBg: "bg-blue-50 dark:bg-blue-900/30",
+          },
+          {
+            label: "Case Logs",
+            value: recentLogs?.length ?? 0,
+            total: null,
+            icon: ClipboardList,
+            iconColor: "text-violet-600 dark:text-violet-400",
+            iconBg: "bg-violet-50 dark:bg-violet-900/30",
+          },
+          {
+            label: "Paper Tools",
+            value: hasPaperTools.size,
+            total: null,
+            icon: ScrollText,
+            iconColor: "text-amber-600 dark:text-amber-400",
+            iconBg: "bg-amber-50 dark:bg-amber-900/30",
+          },
+        ].map(({ label, value, total, icon: Icon, iconColor, iconBg }) => (
+          <div
+            key={label}
+            className="rounded-xl border bg-card p-5 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div className={`h-10 w-10 rounded-xl flex items-center justify-center shrink-0 ${iconBg}`}>
+              <Icon className={`h-5 w-5 ${iconColor}`} />
+            </div>
+            <div>
+              <p className={`text-2xl font-bold ${iconColor}`}>
+                {value}
+                {total !== null && (
+                  <span className="text-muted-foreground text-base font-normal">/{total}</span>
+                )}
+              </p>
+              <p className="text-xs text-muted-foreground mt-0.5 font-medium">{label}</p>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Rotation cards */}
+      {/* ── Rotation Cards ── */}
       <section>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">Your Rotations</h2>
-          <a href="/store" className="text-sm text-teal-600 hover:underline">
-            Unlock more →
-          </a>
+        <div className="flex items-center justify-between mb-5">
+          <div>
+            <h2 className="text-xl font-bold">Your Rotations</h2>
+            <p className="text-sm text-muted-foreground mt-0.5">
+              Select a rotation to start studying
+            </p>
+          </div>
+          <Link
+            href="/store"
+            className="inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700 transition-colors"
+          >
+            Unlock more <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {ROTATIONS.map((rotation) => (
@@ -110,7 +186,7 @@ export default async function DashboardPage() {
         </div>
       </section>
 
-      {/* Recent activity */}
+      {/* ── Recent Activity ── */}
       <RecentActivity charts={recentCharts as any} logs={recentLogs as any} />
     </div>
   );
