@@ -13,8 +13,8 @@ const PAEA_SYSTEM_ORDER = [
 function getPaeaSystem(category?: string): string {
   if (!category) return "Other";
   const c = category.toLowerCase();
-  if (c.includes("cardio")||c.includes("vascular")||c.includes("valvular")||c.includes("preventive")) return "Cardiovascular";
   if (c.includes("pulmon")||c.includes("respir")) return "Pulmonary";
+  if (c.includes("cardio")||c.includes("vascular")||c.includes("valvular")||c.includes("preventive")) return "Cardiovascular";
   if (c.includes("gastro")||c.includes("hepat")) return "Gastrointestinal / Hepatology";
   if (c.includes("nephro")||c.includes("renal")||c.includes("urolog")) return "Renal / Genitourinary";
   if (c.includes("endocr")) return "Endocrine";
