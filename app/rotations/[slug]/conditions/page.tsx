@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { notFound } from "next/navigation";
 import type { RotationSlug, Condition } from "@/types";
 import { getConditionsByRotation, ROTATION_DISPLAY_NAMES } from "@/lib/seed";
@@ -39,7 +42,6 @@ function groupBySystem(conditions: Condition[]): Record<string, Condition[]> {
 
 // ── Smart parsers ──────────────────────────────────────────────────────────────
 
-/** Detects "Major: ..., ... Minor: ..., ..." pattern and returns two arrays */
 function parseMajorMinor(text: string): { major: string[]; minor: string[]; extra: string } | null {
   const majorM = text.match(/Major:\s*([\s\S]*?)(?=\s*Minor:|$)/i);
   const minorM = text.match(/Minor:\s*([\s\S]*?)(?=\s*(BNP|NT-pro|$))/i);
@@ -50,7 +52,6 @@ function parseMajorMinor(text: string): { major: string[]; minor: string[]; extr
   return { major: splitItems(majorM[1]), minor: splitItems(minorM[1]), extra };
 }
 
-/** Split comma-separated feature string into an array, respecting parentheticals */
 function parseFeatures(text: string): string[] {
   const items: string[] = [];
   let depth = 0;
@@ -82,14 +83,12 @@ function SectionLabel({ children, className = "" }: { children: React.ReactNode;
 
 function DiagnosticCriteriaBlock({ text }: { text: string }) {
   const parsed = parseMajorMinor(text);
-
   if (parsed) {
     return (
       <div className="space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {/* Major criteria */}
-          <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-4">
-            <p className="text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-2.5">Major Criteria</p>
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2.5">Major Criteria</p>
             <ul className="space-y-1.5">
               {parsed.major.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm">
@@ -99,9 +98,8 @@ function DiagnosticCriteriaBlock({ text }: { text: string }) {
               ))}
             </ul>
           </div>
-          {/* Minor criteria */}
-          <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-4">
-            <p className="text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-2.5">Minor Criteria</p>
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2.5">Minor Criteria</p>
             <ul className="space-y-1.5">
               {parsed.minor.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm">
@@ -118,10 +116,8 @@ function DiagnosticCriteriaBlock({ text }: { text: string }) {
       </div>
     );
   }
-
-  // Fallback: readable prose, no monospace
   return (
-    <p className="text-sm leading-relaxed text-foreground/90 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+    <p className="text-sm leading-relaxed text-foreground/90 bg-muted/30 rounded-xl border border-border p-4">
       {text}
     </p>
   );
@@ -129,14 +125,13 @@ function DiagnosticCriteriaBlock({ text }: { text: string }) {
 
 function DistinguishingFeaturesBlock({ text }: { text: string }) {
   const items = parseFeatures(text);
-
   if (items.length > 2) {
     return (
       <div className="flex flex-wrap gap-2">
         {items.map((item, i) => (
           <span
             key={i}
-            className="inline-block text-sm px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 leading-snug"
+            className="inline-block text-sm px-3 py-1.5 rounded-lg border border-border bg-muted/30 leading-snug"
           >
             {item}
           </span>
@@ -144,11 +139,7 @@ function DistinguishingFeaturesBlock({ text }: { text: string }) {
       </div>
     );
   }
-
-  // Too few items — just show as prose
-  return (
-    <p className="text-sm leading-relaxed text-foreground/90">{text}</p>
-  );
+  return <p className="text-sm leading-relaxed text-foreground/90">{text}</p>;
 }
 
 function PresentationBlock({ presentation }: { presentation: NonNullable<Condition["presentation"]> }) {
@@ -158,15 +149,14 @@ function PresentationBlock({ presentation }: { presentation: NonNullable<Conditi
 
   return (
     <div className="space-y-4">
-      {/* Chief Complaint + Symptoms side-by-side */}
       {(hasCC || hasSx) && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {hasCC && (
-            <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-4">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-2.5">Chief Complaint</p>
+            <div className="rounded-xl border border-border bg-muted/30 p-4">
+              <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2.5">Chief Complaint</p>
               <ul className="space-y-1.5">
                 {presentation.chiefComplaint?.map((c, i) => (
-                  <li key={i} className="text-sm italic text-slate-600 dark:text-slate-400 pl-3 border-l-2 border-slate-300 dark:border-slate-600">
+                  <li key={i} className="text-sm italic text-muted-foreground pl-3 border-l-2 border-border">
                     &ldquo;{c}&rdquo;
                   </li>
                 ))}
@@ -174,8 +164,8 @@ function PresentationBlock({ presentation }: { presentation: NonNullable<Conditi
             </div>
           )}
           {hasSx && (
-            <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-4">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-2.5">Associated Symptoms</p>
+            <div className="rounded-xl border border-border bg-muted/30 p-4">
+              <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2.5">Associated Symptoms</p>
               <ul className="space-y-1.5">
                 {presentation.associatedSymptoms?.map((s, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
@@ -195,82 +185,10 @@ function PresentationBlock({ presentation }: { presentation: NonNullable<Conditi
   );
 }
 
-// ── Page ───────────────────────────────────────────────────────────────────────
-
-export default function ConditionsPage({ params }: { params: { slug: string } }) {
-  const slug = params.slug as RotationSlug;
-  const conditions = getConditionsByRotation(slug);
-  const rotationName = ROTATION_DISPLAY_NAMES[slug as keyof typeof ROTATION_DISPLAY_NAMES];
-  if (!rotationName) notFound();
-
-  const grouped = groupBySystem(conditions);
-  const orderedSystems = PAEA_SYSTEM_ORDER.filter((sys) => grouped[sys]?.length > 0);
-
-  return (
-    <div className="max-w-3xl mx-auto space-y-6">
-
-      {/* Page header */}
-      <div className="pb-4 border-b border-border">
-        <h1 className="text-2xl font-bold tracking-tight">Conditions</h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          {rotationName} · {orderedSystems.length} systems · {conditions.length} diagnoses
-        </p>
-      </div>
-
-      {conditions.length === 0 ? (
-        <p className="text-muted-foreground">No conditions loaded for this rotation.</p>
-      ) : (
-        <div className="space-y-4">
-          {orderedSystems.map((system) => {
-            const systemConditions = grouped[system];
-            return (
-              <SystemGroup
-                key={system}
-                system={system}
-                conditions={systemConditions}
-              />
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ── System group (collapsible via details/summary) ─────────────────────────────
-function SystemGroup({ system, conditions }: { system: string; conditions: Condition[] }) {
-  return (
-    <details className="group border-2 border-border rounded-2xl overflow-hidden bg-card" open={false}>
-      <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none select-none hover:bg-muted/30 transition-colors">
-        <div className="flex items-center gap-3">
-          <span className="font-bold text-base">{system}</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-semibold text-muted-foreground px-2.5 py-0.5 rounded-full bg-muted border border-border">
-            {conditions.length} {conditions.length === 1 ? "condition" : "conditions"}
-          </span>
-          <svg
-            className="h-4 w-4 text-muted-foreground transition-transform group-open:rotate-180"
-            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </div>
-      </summary>
-
-      <div className="px-4 pb-4 space-y-2 border-t border-border">
-        {conditions.map((condition) => (
-          <ConditionCard key={condition.id} condition={condition} />
-        ))}
-      </div>
-    </details>
-  );
-}
-
 // ── Individual condition card ──────────────────────────────────────────────────
 function ConditionCard({ condition }: { condition: Condition }) {
   return (
-    <details className="group/cond border border-border rounded-xl overflow-hidden bg-background mt-2" open={false}>
+    <details className="group/cond border border-border rounded-xl overflow-hidden bg-background" open={false}>
       <summary className="flex items-start justify-between gap-3 px-4 py-3.5 cursor-pointer list-none select-none hover:bg-muted/20 transition-colors">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
@@ -294,40 +212,30 @@ function ConditionCard({ condition }: { condition: Condition }) {
       </summary>
 
       <div className="px-4 pb-5 border-t border-border space-y-6 pt-5">
-
-        {/* Definition */}
         {condition.definition && (
           <div>
             <SectionLabel>Definition</SectionLabel>
             <p className="text-[15px] leading-relaxed text-foreground/90">{condition.definition}</p>
           </div>
         )}
-
-        {/* Diagnostic Criteria */}
         {condition.diagnosticCriteria && (
           <div>
             <SectionLabel>Diagnostic Criteria</SectionLabel>
             <DiagnosticCriteriaBlock text={condition.diagnosticCriteria} />
           </div>
         )}
-
-        {/* Presentation — two-column */}
         {condition.presentation && (
           <div>
             <SectionLabel>Presentation</SectionLabel>
             <PresentationBlock presentation={condition.presentation} />
           </div>
         )}
-
-        {/* Distinguishing Features — chip grid */}
         {condition.distinguishingFeatures && (
           <div>
             <SectionLabel>Distinguishing Features</SectionLabel>
             <DistinguishingFeaturesBlock text={condition.distinguishingFeatures} />
           </div>
         )}
-
-        {/* Red Flags */}
         {(condition.redFlags?.length ?? 0) > 0 && (
           <div className="rounded-xl border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30 p-4">
             <p className="text-[11px] font-bold uppercase tracking-widest text-red-600 dark:text-red-400 mb-3">
@@ -343,25 +251,21 @@ function ConditionCard({ condition }: { condition: Condition }) {
             </div>
           </div>
         )}
-
-        {/* Mnemonics */}
         {(condition.mnemonics?.length ?? 0) > 0 && (
           <div className="space-y-2.5">
             <SectionLabel>Mnemonics</SectionLabel>
             {condition.mnemonics?.map((m, i) => (
-              <div key={i} className="rounded-xl border border-teal-200 dark:border-teal-800 bg-teal-50 dark:bg-teal-950/30 p-4">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400 mb-2">
+              <div key={i} className="rounded-xl border border-border bg-muted/30 p-4">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
                   🧠 {m.name}
                 </p>
-                <p className="text-sm leading-relaxed text-teal-900 dark:text-teal-100 whitespace-pre-line font-medium">
+                <p className="text-sm leading-relaxed whitespace-pre-line font-medium">
                   {m.content}
                 </p>
               </div>
             ))}
           </div>
         )}
-
-        {/* Pimping Questions */}
         {(condition.pimpingQuestions?.length ?? 0) > 0 && (
           <div>
             <SectionLabel>Pimping Questions</SectionLabel>
@@ -377,8 +281,78 @@ function ConditionCard({ condition }: { condition: Condition }) {
             </div>
           </div>
         )}
-
       </div>
     </details>
+  );
+}
+
+// ── Page ───────────────────────────────────────────────────────────────────────
+export default function ConditionsPage({ params }: { params: { slug: string } }) {
+  const slug = params.slug as RotationSlug;
+  const conditions = getConditionsByRotation(slug);
+  const rotationName = ROTATION_DISPLAY_NAMES[slug as keyof typeof ROTATION_DISPLAY_NAMES];
+  if (!rotationName) notFound();
+
+  const grouped = groupBySystem(conditions);
+  const orderedSystems = PAEA_SYSTEM_ORDER.filter((sys) => grouped[sys]?.length > 0);
+
+  const [activeSystem, setActiveSystem] = useState<string>(orderedSystems[0] ?? "");
+
+  const activeConditions = grouped[activeSystem] ?? [];
+
+  return (
+    <div className="flex h-[calc(100vh-8rem)] overflow-hidden">
+
+      {/* Sidebar — 1/3 */}
+      <aside className="w-64 shrink-0 border-r border-border overflow-y-auto">
+        <div className="px-4 pt-5 pb-3">
+          <h1 className="text-base font-bold tracking-tight">Conditions</h1>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            {rotationName} · {orderedSystems.length} systems · {conditions.length} diagnoses
+          </p>
+        </div>
+
+        <nav className="pb-4">
+          {orderedSystems.map((system) => {
+            const count = grouped[system]?.length ?? 0;
+            const isActive = system === activeSystem;
+            return (
+              <button
+                key={system}
+                onClick={() => setActiveSystem(system)}
+                className={`w-full text-left px-4 py-2.5 flex items-center justify-between gap-2 text-sm transition-colors border-l-2 ${
+                  isActive
+                    ? "border-foreground bg-muted/50 font-medium text-foreground"
+                    : "border-transparent text-muted-foreground hover:bg-muted/30 hover:text-foreground font-normal"
+                }`}
+              >
+                <span className="leading-snug">{system}</span>
+                <span className="text-xs text-muted-foreground shrink-0">{count}</span>
+              </button>
+            );
+          })}
+        </nav>
+      </aside>
+
+      {/* Main panel — 2/3 */}
+      <main className="flex-1 overflow-y-auto px-6 py-5">
+        <div className="max-w-2xl space-y-2">
+          <div className="pb-3 mb-1 border-b border-border">
+            <h2 className="text-base font-bold">{activeSystem}</h2>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              {activeConditions.length} {activeConditions.length === 1 ? "condition" : "conditions"}
+            </p>
+          </div>
+
+          {activeConditions.length === 0 ? (
+            <p className="text-muted-foreground text-sm">No conditions for this system.</p>
+          ) : (
+            activeConditions.map((condition) => (
+              <ConditionCard key={condition.id} condition={condition} />
+            ))
+          )}
+        </div>
+      </main>
+    </div>
   );
 }
