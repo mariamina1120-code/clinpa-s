@@ -294,6 +294,582 @@ export const internalMedicineConditions: Condition[] = [
     ],
   },
   {
+    id: "im-asthma",
+    name: "Asthma",
+    icdCode: "J45.901",
+    rotation: "internal-medicine",
+    category: "Pulmonology",
+    definition:
+      "Asthma is a chronic inflammatory disease of the airways characterized by variable and recurring symptoms, airflow obstruction, bronchial hyperresponsiveness, and an underlying inflammatory process. Acute exacerbations (asthma attacks) occur when airway inflammation and bronchoconstriction worsen, leading to dyspnea, wheezing, chest tightness, and cough. The disease is driven by mast cell activation, eosinophilic inflammation, and Th2 immune responses.",
+    diagnosticCriteria:
+      "Spirometry showing FEV1/FVC <0.70 that improves ≥12% and ≥200 mL after bronchodilator (reversibility) confirms obstructive physiology. Methacholine challenge (positive at PC20 ≤16 mg/mL) confirms hyperresponsiveness when spirometry is normal. Peak flow variability >20% over 2 weeks supports the diagnosis. Acute severity classified by NAEPP guidelines: mild intermittent, mild persistent, moderate persistent, severe persistent — based on symptom frequency, nighttime awakenings, and FEV1.",
+    presentation: {
+      chiefComplaint: [
+        "Shortness of breath",
+        "Wheezing",
+        "Chest tightness",
+        "Cough (often worse at night or early morning)",
+      ],
+      associatedSymptoms: [
+        "Accessory muscle use (moderate-severe)",
+        "Pulsus paradoxus >10 mmHg (severe)",
+        "Diaphoresis",
+        "Cyanosis (life-threatening)",
+        "Silent chest (no audible wheeze = critical obstruction)",
+        "Triggers: allergens, exercise, cold air, NSAIDs, beta-blockers, URI, stress",
+      ],
+      demographics:
+        "Affects ~10% of US population; often onset in childhood but can occur at any age. Atopic triad: asthma + allergic rhinitis + eczema. Aspirin-exacerbated respiratory disease (AERD) = asthma + nasal polyps + NSAID sensitivity.",
+    },
+    distinguishingFeatures:
+      "Diffuse expiratory wheezing with prolonged expiratory phase; reversible with bronchodilators (distinguishes from COPD). Absent fever (distinguishes from pneumonia). Normal chest X-ray or mild hyperinflation. Peak flow <50% predicted indicates severe exacerbation. Silent chest (no wheeze despite severe distress) is ominous — complete obstruction.",
+    redFlags: [
+      "Silent chest (absent wheeze despite severe distress)",
+      "SpO2 <90% or PaO2 <60 mmHg",
+      "PaCO2 ≥40 in acute attack (impending respiratory failure — normal CO2 is abnormally high)",
+      "Altered mental status or agitation",
+      "Pulsus paradoxus >25 mmHg",
+      "Unable to speak in full sentences",
+      "Peak flow <25% predicted",
+    ],
+    mnemonics: [
+      {
+        name: "ASTHMA Triggers",
+        content:
+          "Allergens, Smoke/irritants, Temperature (cold air), Humidity/weather, Medications (NSAIDs, beta-blockers), Activity (exercise)",
+      },
+      {
+        name: "Stepwise NAEPP Management",
+        content:
+          "Step 1: SABA PRN → Step 2: add low-dose ICS → Step 3: medium ICS or + LABA → Step 4: medium ICS + LABA → Step 5: high ICS + LABA → Step 6: add oral corticosteroid",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the significance of a normal PaCO2 in a patient with an acute asthma exacerbation?",
+      "How does aspirin-exacerbated respiratory disease (AERD/Samter's Triad) present and how is it managed?",
+      "What distinguishes asthma from COPD on spirometry and clinically?",
+      "What are the indications for intubation in status asthmaticus, and what ventilator strategy is used?",
+      "When do you add an inhaled corticosteroid versus a LABA in chronic asthma management?",
+    ],
+  },
+  {
+    id: "im-pneumothorax",
+    name: "Pneumothorax",
+    icdCode: "J93.9",
+    rotation: "internal-medicine",
+    category: "Pulmonology",
+    definition:
+      "Pneumothorax is the accumulation of air in the pleural space, causing partial or complete lung collapse. Primary spontaneous pneumothorax (PSP) occurs in tall, thin young males without underlying lung disease (due to subpleural bleb rupture). Secondary spontaneous pneumothorax (SSP) complicates underlying lung disease (COPD, asthma, cystic fibrosis, Pneumocystis pneumonia). Tension pneumothorax — air enters with each breath but cannot escape — is a life-threatening emergency causing mediastinal shift and hemodynamic compromise.",
+    diagnosticCriteria:
+      "CXR shows visceral pleural line with absent lung markings peripherally. CT chest (more sensitive) confirms size and guides management. Size estimated by interpleural distance at apex: <2 cm = small, ≥2 cm = large (British Thoracic Society) or by Collins formula. Tension pneumothorax is a clinical diagnosis — do NOT wait for imaging if hemodynamically unstable (tracheal deviation away, absent breath sounds, hypotension, distended neck veins).",
+    presentation: {
+      chiefComplaint: [
+        "Sudden onset unilateral pleuritic chest pain",
+        "Shortness of breath",
+      ],
+      associatedSymptoms: [
+        "Decreased breath sounds ipsilaterally",
+        "Hyperresonance to percussion",
+        "Tracheal deviation away (tension)",
+        "Hypotension and tachycardia (tension)",
+        "Distended jugular veins (tension)",
+        "Subcutaneous emphysema (crepitus)",
+      ],
+      demographics:
+        "PSP: tall thin males 20–40 years, Marfan syndrome risk. SSP: any age with underlying lung disease (COPD most common). Iatrogenic: after central line placement (subclavian > internal jugular), thoracentesis, positive pressure ventilation.",
+    },
+    distinguishingFeatures:
+      "PSP: young healthy male, ipsilateral pleuritic chest pain, decreased breath sounds; hemodynamically stable. SSP: older patient with known lung disease, more symptomatic because less pulmonary reserve. Tension: the above PLUS tracheal deviation away, hypotension, distended neck veins — hemodynamically unstable. Distinguish from PE (no chest wall findings) and MI (no breath sound changes).",
+    redFlags: [
+      "Hypotension with absent unilateral breath sounds (tension — needle decompression immediately)",
+      "Tracheal deviation away from affected side",
+      "SpO2 <90%",
+      "Bilateral pneumothorax",
+      "SSP (less reserve — more dangerous)",
+      "Tension pneumothorax (clinical diagnosis — treat before CXR)",
+    ],
+    mnemonics: [
+      {
+        name: "Tension PTX (DOPE mnemonic for causes during intubation)",
+        content:
+          "Displacement of tube, Obstruction, Pneumothorax, Equipment failure",
+      },
+      {
+        name: "Tension Pneumothorax Findings",
+        content:
+          "Trachea Deviates Away, Absent breath sounds, No BP (hypotension), Distended neck veins, Hyperresonance",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the immediate treatment for tension pneumothorax, and where do you place the needle?",
+      "How does primary spontaneous pneumothorax differ from secondary in terms of management?",
+      "What is the recurrence rate of PSP after first episode, and when is pleurodesis indicated?",
+      "How does pneumothorax appear on CXR and how do you estimate size?",
+      "Which underlying conditions predispose to secondary spontaneous pneumothorax?",
+    ],
+  },
+  {
+    id: "im-pleural-effusion",
+    name: "Pleural Effusion",
+    icdCode: "J90",
+    rotation: "internal-medicine",
+    category: "Pulmonology",
+    definition:
+      "A pleural effusion is an abnormal accumulation of fluid in the pleural space. Effusions are classified as transudates (from altered hydrostatic/oncotic pressures) or exudates (from pleural/lung inflammation or malignancy) using Light's criteria. The most common causes are congestive heart failure (transudate), malignancy (exudate), and parapneumonic effusion (exudate). Massive effusions cause compressive atelectasis and respiratory compromise.",
+    diagnosticCriteria:
+      "CXR: blunting of costophrenic angle (>200 mL needed), meniscus sign, opacification; lateral decubitus view shows layering (differentiates free from loculated). Ultrasound: most sensitive for detecting and guiding thoracentesis. Thoracentesis fluid analysis: Light's criteria for exudate — pleural/serum protein ratio >0.5 OR pleural/serum LDH ratio >0.6 OR pleural LDH >2/3 upper limit of normal serum LDH. Additional tests: pH, glucose, cell count, cytology, culture, amylase.",
+    presentation: {
+      chiefComplaint: [
+        "Shortness of breath (especially positional)",
+        "Pleuritic chest pain (if exudate/parapneumonic)",
+        "Cough",
+        "Asymptomatic (found incidentally)",
+      ],
+      associatedSymptoms: [
+        "Dullness to percussion at base",
+        "Decreased breath sounds at base",
+        "Egophony at upper effusion border",
+        "Friction rub (early pleuritis before fluid accumulates)",
+        "Signs of underlying cause (peripheral edema in CHF, fever in parapneumonic)",
+      ],
+      demographics:
+        "CHF (most common overall), malignancy (lung, breast, lymphoma), parapneumonic, PE, cirrhosis (hepatic hydrothorax — right-sided), nephrotic syndrome, TB (lymphocyte-predominant exudate).",
+    },
+    distinguishingFeatures:
+      "Transudate bilateral in CHF; unilateral right-sided hepatic hydrothorax. Malignant effusion: bloody exudate, cytology positive in 60%. Parapneumonic complicated: pH <7.2, glucose <60, LDH >1000 → empyema requires drainage. Chylothorax: milky fluid, high triglycerides (>110 mg/dL). Hemothorax: hematocrit of fluid >50% of serum hematocrit.",
+    redFlags: [
+      "Tension hydrothorax (massive effusion causing mediastinal shift and hemodynamic compromise)",
+      "Empyema (pH <7.2, glucose <60, frank pus) — requires chest tube drainage",
+      "Bilateral effusions with mediastinal widening (malignancy)",
+      "SpO2 <90% from compressive atelectasis",
+      "Rapid re-accumulation after thoracentesis",
+    ],
+    mnemonics: [
+      {
+        name: "Light's Criteria (EXudate = any ONE of these)",
+        content:
+          "Protein ratio >0.5, LDH ratio >0.6, LDH >2/3 upper limit normal — if none met → transudate",
+      },
+      {
+        name: "CHAMPS (Transudate causes)",
+        content:
+          "CHF (most common), Hepatic hydrothorax (cirrhosis), Atelectasis, Myxedema, PE (can be either), SVC obstruction",
+      },
+    ],
+    pimpingQuestions: [
+      "What are Light's criteria, and how do you use them to classify a pleural effusion?",
+      "What pleural fluid findings indicate a complicated parapneumonic effusion requiring chest tube drainage?",
+      "How does hepatic hydrothorax develop, and why is it usually right-sided?",
+      "What are the causes of a pleural effusion with very low glucose (<30 mg/dL)?",
+      "When is pleurodesis indicated for a recurrent pleural effusion?",
+    ],
+  },
+  {
+    id: "im-lung-cancer",
+    name: "Lung Cancer",
+    icdCode: "C34.90",
+    rotation: "internal-medicine",
+    category: "Pulmonology / Oncology",
+    definition:
+      "Lung cancer is the leading cause of cancer death in the United States. It is divided into non-small cell lung cancer (NSCLC — 85%: adenocarcinoma, squamous cell, large cell) and small cell lung cancer (SCLC — 15%). NSCLC is typically treated surgically if localized; SCLC is usually metastatic at presentation and treated with chemotherapy/radiation. Cigarette smoking accounts for ~85% of cases. The Surgeon General's landmark 1964 report established this association.",
+    diagnosticCriteria:
+      "CXR/CT chest: mass, hilar adenopathy, pleural effusion. CT-guided biopsy or bronchoscopy (BAL, transbronchial biopsy) for tissue diagnosis. PET scan for staging (metabolically active metastases). Brain MRI for staging (SCLC always, NSCLC if stage III-IV). Staging: NSCLC TNM system (I–IV); SCLC: limited stage (one hemithorax, can be encompassed by radiation port) vs. extensive stage. Molecular testing: EGFR, ALK, ROS1, PD-L1 (guides targeted therapy in NSCLC adenocarcinoma).",
+    presentation: {
+      chiefComplaint: [
+        "Persistent cough or change in chronic cough",
+        "Hemoptysis",
+        "Chest pain",
+        "Dyspnea",
+        "Unintentional weight loss",
+      ],
+      associatedSymptoms: [
+        "Hoarseness (left RLN compression)",
+        "Dysphagia (esophageal compression)",
+        "Facial/arm swelling (SVC syndrome)",
+        "Bone pain (metastasis)",
+        "Headache/seizures (brain metastasis)",
+        "Paraneoplastic syndromes: SIADH/hyponatremia (SCLC), hypercalcemia (squamous cell, PTHrP), Cushing's (ectopic ACTH, SCLC), Eaton-Lambert syndrome (SCLC)",
+        "Horner's syndrome + arm pain + apical mass = Pancoast tumor",
+      ],
+      demographics:
+        "Peak incidence 65–70 years, male > female historically (now equalizing). Smoking: RR 15–30 × vs non-smokers. Other risks: radon (2nd leading cause), asbestos (synergistic with smoking), arsenic, chromium. Non-smokers: more likely adenocarcinoma with EGFR/ALK mutations.",
+    },
+    distinguishingFeatures:
+      "Adenocarcinoma: peripheral, more common in non-smokers/women, EGFR/ALK mutations, BAC subtype. Squamous cell: central, cavitating, hypercalcemia (PTHrP). Large cell: peripheral, aggressive. SCLC: central, rapid doubling time, early extensive metastasis, neuroendocrine markers (synaptophysin, chromogranin), paraneoplastic syndromes common. Pancoast tumor: superior sulcus, Horner's + brachial plexopathy + rib destruction.",
+    redFlags: [
+      "Hemoptysis with weight loss and smoking history (lung cancer until proven otherwise)",
+      "SVC syndrome (facial plethora, arm swelling, distended neck veins)",
+      "Horner's syndrome with ipsilateral arm pain (Pancoast tumor)",
+      "New neurologic symptoms (brain metastasis)",
+      "Pathologic fracture (bone metastasis)",
+      "Hyponatremia in smoker (SIADH from SCLC)",
+    ],
+    mnemonics: [
+      {
+        name: "SCLC Paraneoplastic (SCLC EACH)",
+        content:
+          "SIADH, Cushing's (ectopic ACTH), Eaton-Lambert syndrome, Antibodies (anti-Hu encephalopathy), Cerebellar degeneration, Hypercalcemia (less common in SCLC vs. squamous)",
+      },
+      {
+        name: "Lung Cancer Type Memory",
+        content:
+          "Squamous = Sentral + Smoker + hypercalcemia + cavitates; Adeno = peripheral, non-smoker, women; SCLC = Small + paraneoplastic + chemo",
+      },
+    ],
+    pimpingQuestions: [
+      "What paraneoplastic syndromes are associated with SCLC versus squamous cell carcinoma?",
+      "How does the Pancoast tumor present and what is the classic triad?",
+      "What molecular markers are tested in NSCLC adenocarcinoma and why do they matter?",
+      "What is the difference between limited and extensive stage SCLC?",
+      "What are the USPSTF criteria for low-dose CT screening for lung cancer?",
+    ],
+  },
+  {
+    id: "im-osa",
+    name: "Obstructive Sleep Apnea",
+    icdCode: "G47.33",
+    rotation: "internal-medicine",
+    category: "Pulmonology",
+    definition:
+      "Obstructive sleep apnea (OSA) is characterized by repetitive episodes of complete (apnea) or partial (hypopnea) upper airway obstruction during sleep, causing oxyhemoglobin desaturations and arousals. The AHI (apnea-hypopnea index) defines severity: mild 5–14, moderate 15–29, severe ≥30 events/hour. OSA is associated with HTN, atrial fibrillation, stroke, metabolic syndrome, and pulmonary hypertension. Obesity is the strongest modifiable risk factor.",
+    diagnosticCriteria:
+      "Gold standard: in-lab polysomnography (PSG) measuring AHI, oxygen saturation, sleep stages, limb movements. Home sleep apnea testing (HSAT) acceptable for uncomplicated suspected OSA (no heart failure, COPD, or neuromuscular disease). AHI ≥5 events/hour with symptoms OR AHI ≥15 events/hour regardless of symptoms = OSA. STOP-BANG questionnaire: ≥3 positive = intermediate/high risk (sensitivity >90% for moderate-severe OSA).",
+    presentation: {
+      chiefComplaint: [
+        "Witnessed apneic episodes during sleep (partner report)",
+        "Loud snoring",
+        "Excessive daytime sleepiness (Epworth Sleepiness Scale >10)",
+        "Morning headaches",
+        "Nocturia",
+      ],
+      associatedSymptoms: [
+        "Non-restorative sleep",
+        "Difficulty concentrating or memory impairment",
+        "Irritability or mood changes",
+        "Dry mouth on awakening",
+        "Nocturnal diaphoresis",
+        "Resistant hypertension",
+      ],
+      demographics:
+        "Affects ~25% of adults. Male > female (2–3:1), though risk equalizes post-menopause. Strong association with obesity (BMI >30), large neck circumference (>17 inches male, >16 inches female), retrognathia, macroglossia, tonsillar hypertrophy. Hypothyroidism and acromegaly increase risk.",
+    },
+    distinguishingFeatures:
+      "OSA vs. central sleep apnea: OSA has ongoing respiratory effort during apnea (obstructed airway); CSA has no effort (loss of central drive, seen in CHF, opioids). OSA vs. narcolepsy: narcolepsy has cataplexy, sleep paralysis, hypnagogic hallucinations, and normal AHI. Pickwickian syndrome = OSA + obesity hypoventilation (OHS): daytime hypercapnia, polycythemia, cor pulmonale.",
+    redFlags: [
+      "Witnessed apneas with severe desaturations (SpO2 <80%)",
+      "Daytime hypercapnia (OHS/Pickwickian) — indicates ventilatory failure",
+      "Cor pulmonale from OSA-related pulmonary hypertension",
+      "Resistant hypertension not responding to multiple medications",
+      "High-risk profession with untreated severe OSA (commercial driver, pilot)",
+      "Perioperative setting: OSA dramatically increases anesthesia/sedation risk",
+    ],
+    mnemonics: [
+      {
+        name: "STOP-BANG Screening",
+        content:
+          "Snoring (loud), Tired (daytime sleepiness), Observed apneas, Pressure (HTN), BMI >35, Age >50, Neck >40 cm, Gender (male) — ≥3 = high risk",
+      },
+      {
+        name: "OSA Consequences (CHASP)",
+        content:
+          "Car accidents, HTN (resistant), Atrial fibrillation, Stroke, Pulmonary HTN",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the AHI, and how does it define OSA severity?",
+      "How does OSA cause resistant hypertension, and what is the mechanism?",
+      "What distinguishes obstructive from central sleep apnea on polysomnography?",
+      "What are the cardiovascular consequences of untreated OSA?",
+      "How does CPAP therapy improve atrial fibrillation in OSA patients?",
+    ],
+  },
+  {
+    id: "im-ild",
+    name: "Interstitial Lung Disease / Pulmonary Fibrosis",
+    icdCode: "J84.10",
+    rotation: "internal-medicine",
+    category: "Pulmonology",
+    definition:
+      "Interstitial lung disease (ILD) encompasses a heterogeneous group of diffuse parenchymal lung diseases affecting the lung interstitium (alveolar walls, perivascular tissue, and connective tissue). The most common is idiopathic pulmonary fibrosis (IPF), a progressive, irreversible fibrotic lung disease with usual interstitial pneumonia (UIP) pattern and a median survival of 3–5 years. Other ILDs include hypersensitivity pneumonitis (HP), connective tissue disease-associated ILD (CTD-ILD — RA, scleroderma, polymyositis), sarcoidosis, and drug-induced ILD.",
+    diagnosticCriteria:
+      "HRCT chest: IPF shows bilateral basal-predominant honeycombing with traction bronchiectasis (UIP pattern — confident diagnosis without biopsy). Other patterns (GGO, consolidation) require bronchoscopy or surgical lung biopsy. PFTs: restrictive pattern (reduced TLC, FVC, DLCO; normal or elevated FEV1/FVC). 6-minute walk test assesses severity and prognosis. BAL: lymphocytosis in sarcoidosis/HP, eosinophilia in eosinophilic pneumonia. Serology: ANA, RF, anti-Scl-70, anti-Jo-1 to exclude CTD-ILD.",
+    presentation: {
+      chiefComplaint: [
+        "Progressive exertional dyspnea (insidious onset over months to years)",
+        "Dry, non-productive cough",
+      ],
+      associatedSymptoms: [
+        "Bibasilar fine inspiratory 'Velcro' crackles (characteristic of IPF)",
+        "Clubbing of fingers (30–50% of IPF)",
+        "Cyanosis (advanced disease)",
+        "Signs of cor pulmonale (RV failure from pulmonary hypertension)",
+        "Connective tissue disease features (joint pain, skin changes, Raynaud's)",
+        "Occupational/environmental exposure history (asbestos, silica, bird feathers, hot tubs)",
+      ],
+      demographics:
+        "IPF: age >60, male predominance, smoking history (unusual — most ILDs are non-smokers, but IPF is associated with smoking). HP: exposure to organic antigens (farmer's lung — thermophilic actinomyces, bird fancier's lung — avian proteins). CTD-ILD: younger, female, connective tissue disease features.",
+    },
+    distinguishingFeatures:
+      "Velcro crackles + clubbing + progressive dyspnea + older male smoker → IPF until proven otherwise. HP: exposure history, upper lobe predominance, may improve with avoidance. Sarcoidosis: bilateral hilar adenopathy, erythema nodosum, elevated ACE, young patients. Drug-induced: amiodarone, methotrexate, nitrofurantoin, bleomycin. Asbestosis: basal fibrosis + pleural plaques + asbestos exposure.",
+    redFlags: [
+      "Acute exacerbation of IPF (AE-IPF): rapid deterioration with new bilateral GGO on CT — high mortality (>50%)",
+      "Respiratory failure (SpO2 <88% at rest)",
+      "Pulmonary hypertension complicating ILD",
+      "FVC <50% predicted or DLCO <35% (severe disease, transplant evaluation)",
+      "Rapid decline in FVC >10% over 6 months",
+    ],
+    mnemonics: [
+      {
+        name: "IPF 3 Hallmarks",
+        content:
+          "Progressive, Fibrotic, Irreversible — older male + smoking + Velcro crackles + honeycombing on HRCT",
+      },
+      {
+        name: "Causes of ILD (SHIT Drugs)",
+        content:
+          "Sarcoidosis, Hypersensitivity pneumonitis (organic dusts), Idiopathic (IPF), CTD-ILD; Drugs: amiodarone, bleomycin, methotrexate, nitrofurantoin",
+      },
+    ],
+    pimpingQuestions: [
+      "What CT pattern is diagnostic of IPF, and when can biopsy be avoided?",
+      "What is the mechanism of action of pirfenidone and nintedanib in IPF, and what do they achieve?",
+      "How does hypersensitivity pneumonitis differ from IPF on CT and BAL?",
+      "What connective tissue diseases are most commonly associated with ILD?",
+      "What PFT pattern (obstructive vs. restrictive) is seen in ILD, and what does a low DLCO indicate?",
+    ],
+  },
+  {
+    id: "im-pulmonary-hypertension",
+    name: "Pulmonary Hypertension",
+    icdCode: "I27.20",
+    rotation: "internal-medicine",
+    category: "Pulmonology / Cardiology",
+    definition:
+      "Pulmonary hypertension (PH) is defined as mean pulmonary artery pressure (mPAP) ≥20 mmHg at rest on right heart catheterization (updated 2022 ESC/ERS criteria). It is classified by the WHO into 5 groups: Group 1 (PAH — idiopathic, heritable, drug-induced, connective tissue), Group 2 (left heart disease — most common), Group 3 (lung disease/hypoxia — COPD, ILD, OSA), Group 4 (chronic thromboembolic — CTEPH), Group 5 (unclear multifactorial). PAH causes proliferative vasculopathy with irreversible vascular remodeling.",
+    diagnosticCriteria:
+      "Screening: echocardiogram (estimated RVSP ≥40 mmHg suggests PH). Right heart catheterization (RHC): gold standard — mPAP ≥20 mmHg; PAWP ≤15 mmHg (pre-capillary PH, Group 1/3/4) vs. PAWP >15 (post-capillary PH, Group 2). PVR ≥3 WU confirms PAH. V/Q scan (CTEPH workup — sensitivity >96% vs. CT-PA). PFTs, 6MWT, BNP/NT-proBNP, ANA, anti-Scl-70 (baseline workup). WHO functional class (I–IV) guides treatment decisions.",
+    presentation: {
+      chiefComplaint: [
+        "Progressive exertional dyspnea (most common, often delayed diagnosis by 2+ years)",
+        "Fatigue",
+        "Syncope or presyncope (exertional — due to fixed cardiac output)",
+        "Chest pain (right ventricular ischemia)",
+        "Leg edema",
+      ],
+      associatedSymptoms: [
+        "Loud P2 (pulmonic component of S2)",
+        "Right ventricular heave (RV hypertrophy)",
+        "Tricuspid regurgitation murmur (from RV dilation)",
+        "Ascites and peripheral edema (RV failure)",
+        "JVD with prominent a and v waves",
+        "Raynaud's phenomenon, telangiectasias (systemic sclerosis-related PAH)",
+      ],
+      demographics:
+        "PAH: young women 20–40 years (female:male 3:1), connective tissue disease (scleroderma highest risk), HIV, portal hypertension, anorexigens (fenfluramine — historical). Group 2 (most common overall): any patient with HFpEF/HFrEF, valvular disease.",
+    },
+    distinguishingFeatures:
+      "Loud P2 + RV heave + progressive dyspnea in young woman without HF = PAH. Group 2 PH (most common): PAWP >15 on RHC, responds to treating underlying HF. CTEPH (Group 4): mismatched perfusion defects on V/Q; potentially curable with pulmonary endarterectomy. Eisenmenger syndrome: congenital L→R shunt reverses to R→L (Eisenmenger physiology) due to PAH — cyanosis, clubbing.",
+    redFlags: [
+      "Exertional syncope (fixed cardiac output, impending RV failure)",
+      "New-onset right heart failure (ascites, anasarca, severe TR)",
+      "Rapidly progressive dyspnea in known PAH",
+      "BNP >180 pg/mL in PAH (poor prognosis marker)",
+      "Hemoptysis (rare, from pulmonary arterial aneurysm rupture)",
+      "6MWT <300 m (severe functional limitation)",
+    ],
+    mnemonics: [
+      {
+        name: "WHO PH Groups (1-2-3-4-5)",
+        content:
+          "1=PAH (idiopathic/CTD), 2=Left heart (most common), 3=Lung disease/hypoxia, 4=CTEPH (clots), 5=Multifactorial/unclear",
+      },
+      {
+        name: "PAH Treatment by Class",
+        content:
+          "Prostacyclins (epoprostenol, treprostinil), Endothelin receptor antagonists (bosentan, ambrisentan), PDE-5 inhibitors (sildenafil, tadalafil), sGC stimulators (riociguat)",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the gold standard for diagnosing pulmonary hypertension and what values define each subtype?",
+      "How does Group 2 pulmonary hypertension differ from PAH in hemodynamics and treatment?",
+      "What is CTEPH and why is it important to diagnose — what curative treatment exists?",
+      "What is Eisenmenger syndrome and why are vasodilators dangerous in this condition?",
+      "What is the prognostic significance of BNP and the 6-minute walk test in PAH?",
+    ],
+  },
+  {
+    id: "im-tuberculosis",
+    name: "Tuberculosis",
+    icdCode: "A15.0",
+    rotation: "internal-medicine",
+    category: "Pulmonology / Infectious Disease",
+    definition:
+      "Tuberculosis (TB) is caused by Mycobacterium tuberculosis, an acid-fast bacillus (AFB) transmitted via respiratory droplets. Primary TB: initial infection (often asymptomatic, Ghon complex on CXR). Latent TB infection (LTBI): contained infection without active disease (TST or IGRA positive, no symptoms, non-infectious). Reactivation TB: occurs in immunosuppressed patients (HIV — most important risk factor, TNF-alpha inhibitors, diabetes, malnutrition, end-stage renal disease). TB is the leading infectious disease killer worldwide.",
+    diagnosticCriteria:
+      "Latent TB: TST (PPD) ≥5 mm (HIV/close contact), ≥10 mm (high-risk groups), ≥15 mm (low-risk); OR IGRA (QuantiFERON-TB Gold) — preferred in BCG-vaccinated persons. Active TB: AFB smear and culture (gold standard — 6–8 weeks), nucleic acid amplification (NAAT/Xpert MTB/RIF — rapid, detects rifampin resistance). CXR: primary = Ghon complex (parenchymal focus + hilar adenopathy); reactivation = upper lobe cavitary lesions, apical scarring. Bronchoscopy with BAL if sputum non-diagnostic.",
+    presentation: {
+      chiefComplaint: [
+        "Chronic productive cough (>3 weeks)",
+        "Hemoptysis",
+        "Night sweats",
+        "Fever and chills",
+        "Unintentional weight loss",
+      ],
+      associatedSymptoms: [
+        "Fatigue and malaise",
+        "Pleuritic chest pain (pleural TB)",
+        "Upper lobe infiltrate with cavitation on CXR",
+        "Extrapulmonary TB: lymphadenitis (most common extrapulm), meningitis, pericarditis (constrictive), peritonitis, Pott's disease (vertebral TB), genitourinary TB, miliary TB (hematogenous dissemination)",
+        "Erythema nodosum (hypersensitivity reaction)",
+      ],
+      demographics:
+        "Risk factors: HIV (CD4 <200 markedly increases risk), immigrants from high-prevalence countries (Sub-Saharan Africa, Southeast Asia, Eastern Europe), close contacts, homeless/incarcerated, healthcare workers, TNF-alpha inhibitors (infliximab, adalimumab), diabetes, malnutrition, ESRD.",
+    },
+    distinguishingFeatures:
+      "Upper lobe cavitary lesion + night sweats + weight loss + hemoptysis = TB until proven otherwise. Primary TB in children: lower/middle lobe, hilar lymphadenopathy, no cavitation. Miliary TB: millet seed nodules (2–3 mm) throughout both lungs — hematogenous dissemination, most common in immunocompromised. Pott's disease: vertebral body destruction with paravertebral abscess (gibbus deformity).",
+    redFlags: [
+      "AFB smear-positive (highly infectious — airborne isolation immediately)",
+      "Miliary TB (disseminated, life-threatening)",
+      "TB meningitis (high mortality, steroids reduce mortality)",
+      "Multidrug-resistant TB (MDR-TB: resistant to INH + rifampin)",
+      "Extensively drug-resistant TB (XDR-TB)",
+      "Massive hemoptysis from Rasmussen aneurysm (cavitary TB)",
+      "HIV co-infection with CD4 <50 (highest risk for dissemination)",
+    ],
+    mnemonics: [
+      {
+        name: "RIPE (First-Line TB Treatment)",
+        content:
+          "Rifampin + Isoniazid + Pyrazinamide + Ethambutol × 2 months (intensive phase), then Rifampin + Isoniazid × 4 months (continuation phase) = 6 months total LTBI",
+      },
+      {
+        name: "INH Side Effects (HELPS)",
+        content:
+          "Hepatotoxicity, sEnsory neuropathy (B6 prevents), Lupus-like syndrome, Pyridoxine (B6) deficiency, SLE-like",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the difference between latent TB infection and active TB, and how are they each treated?",
+      "What are the classic CXR findings of primary TB versus reactivation TB?",
+      "Why is IGRA preferred over TST in BCG-vaccinated individuals?",
+      "What are the major side effects of isoniazid, rifampin, pyrazinamide, and ethambutol?",
+      "What is miliary TB and what is the mechanism of its dissemination?",
+    ],
+  },
+  {
+    id: "im-ards",
+    name: "Acute Respiratory Distress Syndrome (ARDS)",
+    icdCode: "J80",
+    rotation: "internal-medicine",
+    category: "Pulmonology / Critical Care",
+    definition:
+      "ARDS is an acute, diffuse inflammatory lung injury leading to increased pulmonary vascular permeability, lung weight, and loss of aerated lung tissue. It is defined by the Berlin Criteria (2012): onset within 1 week of known insult or new/worsening respiratory symptoms; bilateral opacities not explained by effusions/collapse/nodules; respiratory failure not fully explained by cardiac failure or volume overload; PaO2/FiO2 ratio ≤300 on PEEP ≥5 cmH2O. Most common causes: sepsis (most common), aspiration, pneumonia, trauma, transfusion (TRALI), pancreatitis.",
+    diagnosticCriteria:
+      "Berlin Criteria: mild ARDS = PF ratio 200–300; moderate = 100–200; severe = <100. CXR/CT: bilateral alveolar infiltrates (ground-glass opacities), 'white-out' bilateral on CXR. Echo or CVP to exclude cardiogenic pulmonary edema (PAWP <18 mmHg in ARDS; elevated in cardiogenic edema). Diagnosis is clinical — no specific lab biomarker. ABG shows hypoxemia, often with respiratory alkalosis initially, then respiratory acidosis as patient tires.",
+    presentation: {
+      chiefComplaint: [
+        "Acute onset severe dyspnea (within hours to 3 days of inciting event)",
+        "Respiratory failure requiring mechanical ventilation",
+      ],
+      associatedSymptoms: [
+        "Bilateral crackles",
+        "Severe hypoxemia refractory to supplemental oxygen",
+        "Tachycardia and tachypnea",
+        "Decreased lung compliance (stiff lungs)",
+        "Signs of the precipitating cause (fever in sepsis/pneumonia, abdominal pain in pancreatitis)",
+        "Frothy or pink-tinged secretions",
+      ],
+      demographics:
+        "Any age, any patient with a known ARDS risk factor. Most common ICU-associated causes: sepsis (#1), severe pneumonia, aspiration (alcoholics at risk), trauma/blood transfusion (TRALI), pancreatitis, drowning, inhalational injury. Mortality ranges 35–45% (severe ARDS).",
+    },
+    distinguishingFeatures:
+      "ARDS vs. cardiogenic pulmonary edema: ARDS = PAWP <18, protein-rich edema fluid, no response to diuretics; cardiogenic = PAWP >18, responds to diuretics, elevated BNP. TRALI: occurs within 6 hours of transfusion, donor anti-HLA antibodies cause neutrophil activation. Refractory hypoxemia despite FiO2 1.0 is hallmark. Decreased static lung compliance <30 mL/cmH2O (stiff lungs).",
+    redFlags: [
+      "PaO2/FiO2 ratio <100 (severe ARDS — very high mortality)",
+      "Refractory hypoxemia on FiO2 1.0 + PEEP 15+",
+      "Failure to improve with lung-protective ventilation",
+      "Multi-organ failure (concurrent AKI, liver failure, DIC)",
+      "Barotrauma: pneumothorax from high peak pressures",
+    ],
+    mnemonics: [
+      {
+        name: "Berlin Criteria for ARDS",
+        content:
+          "Mild: PF 200–300 | Moderate: PF 100–200 | Severe: PF <100 — all require PEEP ≥5 cmH2O and bilateral opacities within 1 week of insult",
+      },
+      {
+        name: "ARDS Lung-Protective Ventilation (ARMA Trial)",
+        content:
+          "Tidal volume 6 mL/kg IBW, Plateau pressure ≤30 cmH2O, PEEP 5–20 (titrate to oxygenation), Permissive hypercapnia accepted, Prone positioning if PF <150",
+      },
+    ],
+    pimpingQuestions: [
+      "What are the Berlin Criteria for ARDS and how do they classify severity?",
+      "What is the evidence base for low tidal volume ventilation in ARDS, and what parameters guide it?",
+      "How do you differentiate ARDS from cardiogenic pulmonary edema clinically and with invasive monitoring?",
+      "What is prone positioning in ARDS and why does it improve oxygenation?",
+      "What is TRALI and how does it differ from TACO?",
+    ],
+  },
+  {
+    id: "im-bronchiectasis",
+    name: "Bronchiectasis",
+    icdCode: "J47.9",
+    rotation: "internal-medicine",
+    category: "Pulmonology",
+    definition:
+      "Bronchiectasis is permanent, abnormal dilation of the bronchi resulting from chronic infection and inflammation that destroys the bronchial wall (mucosa, smooth muscle, and elastic tissue). This leads to impaired mucociliary clearance, chronic bacterial colonization, recurrent purulent infections, and progressive lung function decline. Common causes include post-infectious (childhood pneumonia, TB, whooping cough), cystic fibrosis, primary ciliary dyskinesia, allergic bronchopulmonary aspergillosis (ABPA), and hypogammaglobulinemia.",
+    diagnosticCriteria:
+      "HRCT chest: gold standard — dilated bronchi (airway diameter > adjacent pulmonary artery = 'signet ring sign'), lack of bronchial tapering, bronchi visible within 1 cm of pleura. CXR: 'tram-tracking' (parallel line shadows), 'ring shadows' (dilated bronchi end-on). Sputum culture: identify colonizing organisms (Pseudomonas — most morbid, Haemophilus influenzae most common). PFTs: variable — obstructive, mixed, or restrictive. Workup: sweat chloride test (CF), immunoglobulin levels, ciliary biopsy (PCD).",
+    presentation: {
+      chiefComplaint: [
+        "Chronic productive cough (large volumes of mucopurulent sputum — 'cupful' per day)",
+        "Recurrent respiratory infections (pneumonia, bronchitis)",
+        "Hemoptysis (can be massive — from eroded bronchial arteries)",
+        "Dyspnea",
+      ],
+      associatedSymptoms: [
+        "Coarse crackles over affected areas (lower and middle lobes most common in non-CF)",
+        "Clubbing (advanced disease)",
+        "Purulent sputum (three-layered: frothy top, mucoid middle, purulent bottom — 'nummular sputum')",
+        "Fetid breath (halitosis) from chronic bacterial colonization",
+        "Sinus disease (especially PCD, CF, ABPA)",
+        "Fatigue and weight loss",
+      ],
+      demographics:
+        "Bimodal distribution: children with CF/PCD, and adults >50 post-infectious or idiopathic. CF: young patients with pancreatic insufficiency, infertility, nasal polyps, high sweat chloride. Non-CF: older adults, female predominance in idiopathic bronchiectasis, 'Lady Windermere syndrome' (right middle lobe + lingula, slender older women with postural drainage avoidance).",
+    },
+    distinguishingFeatures:
+      "Massive daily mucopurulent sputum + recurrent infections + HRCT signet ring sign = bronchiectasis. Distinguish from chronic bronchitis (COPD): bronchiectasis has structural dilation on HRCT, larger sputum volumes, more frequent infections. CF: bilaterally, upper lobes, young patient, pancreatic insufficiency, infertility. ABPA: central bronchiectasis, elevated IgE, eosinophilia, Aspergillus sensitivity, mucus plugging.",
+    redFlags: [
+      "Massive hemoptysis (>300 mL/24h) — bronchial artery embolization",
+      "Acute exacerbation with sepsis",
+      "New Pseudomonas aeruginosa isolation (portends worse prognosis)",
+      "Rapid FEV1 decline",
+      "Respiratory failure",
+      "Cor pulmonale from hypoxic pulmonary hypertension",
+    ],
+    mnemonics: [
+      {
+        name: "Bronchiectasis Causes (PAST WIDE)",
+        content:
+          "Post-infectious (TB, pertussis, pneumonia), ABPA, Structural (CF, PCD), Tumor/obstruction, Williams-Campbell (cartilage deficiency), Immune deficiency (hypogammaglobulinemia), Dyskinesia (PCD), EGPA/inflammatory",
+      },
+      {
+        name: "HRCT Findings",
+        content:
+          "Signet ring sign (dilated airway > adjacent artery), Tram-tracking (parallel walls), Non-tapering bronchi, Visible bronchi to pleura",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the 'signet ring sign' on HRCT and what does it indicate?",
+      "How does cystic fibrosis cause bronchiectasis, and how does CF bronchiectasis differ in distribution from non-CF?",
+      "What is ABPA and how does it cause central bronchiectasis?",
+      "What organism most commonly colonizes bronchiectasis and portends worst prognosis?",
+      "What is the management strategy for an acute exacerbation of bronchiectasis?",
+    ],
+  },
+  {
     id: "im-dvt",
     name: "Deep Vein Thrombosis",
     icdCode: "I82.409",
