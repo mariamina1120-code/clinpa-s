@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { RotationSlug, Drug } from "@/types";
-import { getPharmacologyByRotation, ROTATION_DISPLAY_NAMES } from "@/lib/seed";
+import { getPharmacologyByRotation } from "@/lib/seed";
+import { getRotation } from "@/lib/utils";
 
 function groupByClass(drugs: Drug[]): Record<string, Drug[]> {
   return drugs.reduce<Record<string, Drug[]>>((acc, drug) => {
@@ -272,8 +273,9 @@ function DrugCard({ drug }: { drug: Drug }) {
 export default function PharmacologyPage({ params }: { params: { slug: string } }) {
   const slug = params.slug as RotationSlug;
   const drugs = getPharmacologyByRotation(slug);
-  const rotationName = ROTATION_DISPLAY_NAMES[slug as keyof typeof ROTATION_DISPLAY_NAMES];
-  if (!rotationName) notFound();
+  const rotation = getRotation(slug);
+  if (!rotation) notFound();
+  const rotationName = rotation.name;
 
   const grouped = groupByClass(drugs);
   const classes = Object.keys(grouped);

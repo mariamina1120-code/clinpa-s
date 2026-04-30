@@ -281,7 +281,7 @@ export const SUPPORTED_ROTATIONS: Exclude<RotationSlug, "geriatrics">[] = [
   "behavioral-medicine",
 ];
 
-export const ROTATION_DISPLAY_NAMES: Record<Exclude<RotationSlug, "geriatrics">, string> = {
+export const ROTATION_DISPLAY_NAMES: Record<RotationSlug, string> = {
   "family-medicine": "Family Medicine",
   "internal-medicine": "Internal Medicine",
   "general-surgery": "General Surgery",
@@ -289,4 +289,5 @@ export const ROTATION_DISPLAY_NAMES: Record<Exclude<RotationSlug, "geriatrics">,
   "womens-health": "Women's Health",
   "emergency-medicine": "Emergency Medicine",
   "behavioral-medicine": "Behavioral Medicine",
+  "geriatrics": "Geriatrics",
 };
