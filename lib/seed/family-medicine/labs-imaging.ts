@@ -305,7 +305,7 @@ export const familyMedicineLabValues: LabValue[] = [
     abbreviation: "25(OH)D",
     category: "Nutritional/Metabolic",
     normalRange: { min: 30, max: 80, unit: "ng/mL" },
-    rotations: ["family-medicine", "internal-medicine", "geriatrics"],
+    rotations: ["family-medicine", "internal-medicine"],
     interpretation: {
       low: "Deficient: <20 ng/mL (treat with high-dose D3: 50,000 IU weekly × 8–12 weeks). Insufficient: 20–29 ng/mL (1,000–2,000 IU daily supplementation). Risk factors: limited sun exposure, dark skin, obesity, malabsorption (IBD, bariatric surgery), aging.",
       normal: "30–80 ng/mL optimal range",

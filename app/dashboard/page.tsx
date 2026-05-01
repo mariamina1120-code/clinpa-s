@@ -70,35 +70,44 @@ export default async function DashboardPage() {
     <div className="max-w-6xl mx-auto space-y-8">
 
       {/* ── Welcome Banner ── */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 p-7 text-white shadow-lg">
-        {/* Decorative circle */}
-        <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full bg-white/5" />
-        <div className="absolute -right-2 top-12 h-24 w-24 rounded-full bg-white/5" />
-
-        <div className="relative flex items-start justify-between gap-4">
+      <div className="rounded-2xl bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 p-7 text-white shadow-lg">
+        <div className="flex items-start justify-between gap-6">
           <div className="flex-1 min-w-0">
-            <p className="text-teal-200 text-sm font-medium mb-1">Welcome back 👋</p>
+            <p className="text-teal-200 text-sm font-medium mb-1">Welcome back,</p>
             <h1 className="text-3xl font-bold tracking-tight truncate">
               {firstName}
             </h1>
             <p className="text-teal-300 mt-1 text-sm">{programName}</p>
-
-            {/* Progress bar */}
-            <div className="mt-5 max-w-xs">
-              <div className="flex justify-between text-xs text-teal-300 mb-1.5 font-medium">
-                <span>Rotations unlocked</span>
-                <span>{unlockedSlugs.size} / 7</span>
-              </div>
-              <div className="h-2 bg-teal-500/40 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-white/70 rounded-full transition-all duration-500"
-                  style={{ width: `${progressPct}%` }}
-                />
-              </div>
-            </div>
           </div>
 
-          <span className="text-6xl opacity-20 shrink-0 hidden sm:block">🩺</span>
+          {/* Rotation progress — right side */}
+          <div className="shrink-0 hidden sm:flex flex-col items-end gap-1.5">
+            <p className="text-xs font-medium text-teal-200">Rotations unlocked</p>
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold">{unlockedSlugs.size}</span>
+              <span className="text-teal-300 text-sm font-medium">/ 7</span>
+            </div>
+            <div className="w-32 h-1.5 bg-teal-500/40 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-white/80 rounded-full transition-all duration-500"
+                style={{ width: `${Math.min(progressPct, 100)}%` }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile progress bar */}
+        <div className="mt-5 sm:hidden">
+          <div className="flex justify-between text-xs text-teal-300 mb-1.5 font-medium">
+            <span>Rotations unlocked</span>
+            <span>{unlockedSlugs.size} / 7</span>
+          </div>
+          <div className="h-1.5 bg-teal-500/40 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-white/80 rounded-full transition-all duration-500"
+              style={{ width: `${Math.min(progressPct, 100)}%` }}
+            />
+          </div>
         </div>
       </div>
 

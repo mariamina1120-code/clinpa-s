@@ -7,14 +7,13 @@ export type RotationSlug =
   | "pediatrics"
   | "womens-health"
   | "emergency-medicine"
-  | "behavioral-medicine"
-  | "geriatrics";
+  | "behavioral-medicine";
 
 export interface Rotation {
   slug: RotationSlug;
   name: string;
   shortName: string;
-  icon: string; // emoji
+  icon?: string; // optional, legacy emoji — card uses Lucide icons by slug
   color: string; // tailwind color class
   description: string;
 }

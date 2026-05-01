@@ -7,7 +7,7 @@ export const familyMedicinePharmacology: Drug[] = [
     name: "Metformin",
     brandNames: ["Glucophage", "Glumetza", "Fortamet"],
     drugClass: "Biguanide (antidiabetic)",
-    rotations: ["family-medicine", "internal-medicine", "geriatrics"],
+    rotations: ["family-medicine", "internal-medicine"],
     indications: ["Type 2 diabetes mellitus (first-line)", "Prediabetes (USPSTF grade B)", "Polycystic ovarian syndrome (PCOS, off-label)", "Prevention of T2DM in high-risk patients"],
     mechanismOfAction:
       "Metformin primarily reduces hepatic glucose production by inhibiting mitochondrial complex I, which activates AMP-activated protein kinase (AMPK). This decreases gluconeogenesis and glycogenolysis. It also increases peripheral glucose uptake and utilization in muscle, and reduces intestinal glucose absorption. Unlike sulfonylureas, it does not stimulate insulin secretion and therefore does not cause hypoglycemia as monotherapy.",
@@ -42,7 +42,7 @@ export const familyMedicinePharmacology: Drug[] = [
     name: "Lisinopril",
     brandNames: ["Prinivil", "Zestril"],
     drugClass: "Angiotensin-Converting Enzyme Inhibitor (ACE-I)",
-    rotations: ["family-medicine", "internal-medicine", "geriatrics"],
+    rotations: ["family-medicine", "internal-medicine"],
     indications: ["Hypertension", "Heart failure with reduced ejection fraction (HFrEF)", "Post-myocardial infarction (reduce mortality)", "Diabetic nephropathy (reduce proteinuria, slow CKD progression)", "Chronic kidney disease with proteinuria"],
     mechanismOfAction:
       "Lisinopril competitively inhibits angiotensin-converting enzyme (ACE), which prevents the conversion of angiotensin I to angiotensin II. This reduces angiotensin II-mediated vasoconstriction and aldosterone secretion, resulting in vasodilation, decreased blood pressure, and reduced sodium and water retention. ACE inhibition also prevents bradykinin degradation, which contributes to its antihypertensive effect and side effect of dry cough.",
@@ -77,7 +77,7 @@ export const familyMedicinePharmacology: Drug[] = [
     name: "Atorvastatin",
     brandNames: ["Lipitor"],
     drugClass: "HMG-CoA Reductase Inhibitor (Statin) — High-Intensity",
-    rotations: ["family-medicine", "internal-medicine", "geriatrics"],
+    rotations: ["family-medicine", "internal-medicine"],
     indications: ["Primary prevention of ASCVD (10-year risk ≥7.5%)", "Secondary prevention of ASCVD (all patients with established CAD, stroke, PAD)", "Familial hypercholesterolemia (LDL ≥190)", "Diabetic patients aged 40–75"],
     mechanismOfAction:
       "Atorvastatin competitively inhibits HMG-CoA reductase, the rate-limiting enzyme in hepatic cholesterol synthesis. This reduces intracellular cholesterol, upregulates LDL receptors on hepatocytes, and increases LDL clearance from the bloodstream. High-intensity doses (40–80 mg) reduce LDL by ≥50%. Statins also have pleiotropic anti-inflammatory, antioxidant, and plaque-stabilizing effects beyond cholesterol lowering.",
@@ -112,7 +112,7 @@ export const familyMedicinePharmacology: Drug[] = [
     name: "Levothyroxine",
     brandNames: ["Synthroid", "Levoxyl", "Tirosint"],
     drugClass: "Thyroid Hormone Replacement (T4)",
-    rotations: ["family-medicine", "internal-medicine", "geriatrics"],
+    rotations: ["family-medicine", "internal-medicine"],
     indications: ["Hypothyroidism (primary and central)", "TSH suppression in thyroid cancer", "Myxedema coma (IV form)", "Goiter (with hypothyroidism)"],
     mechanismOfAction:
       "Levothyroxine is a synthetic form of thyroxine (T4), the major thyroid hormone secreted by the thyroid gland. T4 is a prohormone that is peripherally converted to the active triiodothyronine (T3) by deiodinase enzymes. T3 binds to nuclear thyroid hormone receptors and regulates gene expression controlling metabolism, growth, cardiac rate, and thermogenesis. Replacement normalizes the pituitary-thyroid feedback axis and restores metabolic function.",
@@ -147,7 +147,7 @@ export const familyMedicinePharmacology: Drug[] = [
     name: "Amlodipine",
     brandNames: ["Norvasc"],
     drugClass: "Dihydropyridine Calcium Channel Blocker (CCB)",
-    rotations: ["family-medicine", "internal-medicine", "geriatrics"],
+    rotations: ["family-medicine", "internal-medicine"],
     indications: ["Hypertension", "Stable angina (reduces myocardial oxygen demand)", "Vasospastic angina (Prinzmetal's)", "Hypertension in Black patients (preferred, alongside thiazide diuretics)"],
     mechanismOfAction:
       "Amlodipine blocks L-type voltage-gated calcium channels in vascular smooth muscle and cardiac cells. Calcium influx blockade causes relaxation of arteriolar smooth muscle, reducing systemic vascular resistance and blood pressure. It is highly selective for vascular smooth muscle over cardiac muscle, causing minimal negative inotropic or chronotropic effects. Its long half-life (35–50 hours) enables once-daily dosing and smooth blood pressure control.",
@@ -452,7 +452,7 @@ export const familyMedicinePharmacology: Drug[] = [
     name: "Gabapentin",
     brandNames: ["Neurontin", "Gralise", "Horizant (enacarbil prodrug)"],
     drugClass: "Alpha-2-Delta Calcium Channel Ligand (Anticonvulsant / Neuropathic Pain Agent)",
-    rotations: ["family-medicine", "internal-medicine", "geriatrics"],
+    rotations: ["family-medicine", "internal-medicine"],
     indications: ["Neuropathic pain (diabetic peripheral neuropathy, postherpetic neuralgia)", "Partial seizures (adjunct therapy)", "Fibromyalgia (off-label)", "Restless leg syndrome (Horizant formulation FDA-approved)", "Alcohol withdrawal seizure prevention (off-label)", "Hot flashes in menopause (off-label)"],
     mechanismOfAction:
       "Gabapentin binds to the alpha-2-delta subunit of voltage-gated calcium channels in the dorsal horn of the spinal cord and brain. This reduces calcium influx and subsequent release of excitatory neurotransmitters (glutamate, substance P, CGRP) from presynaptic terminals, thereby decreasing neuropathic pain transmission. Despite its name, gabapentin does NOT bind to GABA receptors or enhance GABA activity directly. It also has unknown mechanisms contributing to CNS sedation.",

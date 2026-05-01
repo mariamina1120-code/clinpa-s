@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ClinPASLockup } from "@/components/brand/logo";
 import {
   Stethoscope,
   Pill,
@@ -10,6 +11,12 @@ import {
   ClipboardList,
   ArrowRight,
   Check,
+  Activity,
+  Scissors,
+  Baby,
+  Heart,
+  Zap,
+  Brain,
 } from "lucide-react";
 
 const features = [
@@ -52,13 +59,13 @@ const features = [
 ];
 
 const rotations = [
-  { name: "Family Medicine", emoji: "\u{1F3E0}" },
-  { name: "Internal Medicine", emoji: "\u{1FAC0}" },
-  { name: "General Surgery", emoji: "\u{1FA78}" },
-  { name: "Pediatrics", emoji: "\u{1F476}" },
-  { name: "Women's Health", emoji: "\u{1F930}" },
-  { name: "Emergency Medicine", emoji: "\u{1F691}" },
-  { name: "Behavioral Medicine", emoji: "\u{1F9E0}" },
+  { name: "Family Medicine",        shortDesc: "Primary care & chronic disease mgmt",    dot: "bg-teal-500",   icon: Stethoscope },
+  { name: "Internal Medicine",      shortDesc: "Hospital medicine & complex disease",     dot: "bg-blue-500",   icon: Activity    },
+  { name: "General Surgery",        shortDesc: "Peri-op care & abdominal surgery",        dot: "bg-slate-600",  icon: Scissors    },
+  { name: "Pediatrics",             shortDesc: "Newborn through adolescent care",         dot: "bg-amber-400",  icon: Baby        },
+  { name: "Women's Health / OB-GYN",shortDesc: "Reproductive health & obstetric care",   dot: "bg-rose-500",   icon: Heart       },
+  { name: "Emergency Medicine",     shortDesc: "Acute & undifferentiated presentations", dot: "bg-red-500",    icon: Zap         },
+  { name: "Behavioral Medicine",    shortDesc: "Psychiatry, mood disorders & SUD",        dot: "bg-indigo-500", icon: Brain       },
 ];
 
 const pricingTiers = [
@@ -78,7 +85,7 @@ const pricingTiers = [
     name: "Complete Bundle",
     badge: "Digital",
     price: "$149.99",
-    description: "Everything you need for all eight rotations.",
+    description: "Everything you need for all seven PAEA EOR rotations.",
     popular: true,
     features: [
       "All 7 clinical rotations",
@@ -109,11 +116,8 @@ export default function LandingPage() {
       {/* ── Navigation ── */}
       <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-          <Link href="/" className="flex items-center gap-2">
-            <BookOpen className="h-6 w-6 text-teal-600" />
-            <span className="text-xl font-bold tracking-tight text-gray-900">
-              Clinical<span className="text-teal-600">Year</span>
-            </span>
+          <Link href="/" className="flex items-center">
+            <ClinPASLockup size={22} tone="light" />
           </Link>
 
           <nav className="hidden items-center gap-6 text-sm font-medium text-gray-600 md:flex">
@@ -137,41 +141,51 @@ export default function LandingPage() {
       </header>
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-teal-50 via-white to-white">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(13,148,136,0.12),transparent)]" />
-        <div className="relative mx-auto flex max-w-4xl flex-col items-center px-4 pb-24 pt-20 text-center sm:px-6 sm:pt-28 lg:pt-36">
-          <span className="mb-4 inline-block rounded-full border border-teal-200 bg-teal-50 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-teal-700">
-            Built for PA Students
+      <section className="bg-gradient-to-b from-teal-50 via-white to-white">
+        <div className="mx-auto flex max-w-4xl flex-col items-center px-4 pb-24 pt-20 text-center sm:px-6 sm:pt-28 lg:pt-36">
+          <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-4 py-1.5 text-xs font-semibold text-teal-700 tracking-wide">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
+            Aligned with the PAEA EOR Blueprint
           </span>
 
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-            Your Clinical Year{" "}
+            Study smarter through{" "}
             <span className="bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">
-              Companion
+              every rotation
             </span>
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-600 sm:text-xl">
-            Master every rotation and ace the PANCE. Conditions, pharmacology,
-            clinical guidelines, quizzes, and more — organized by rotation so
-            you can study smarter, not harder.
+            High-yield conditions, drug cards, clinical guidelines, EOR-style
+            quizzes, and SOAP tools — all organized by rotation so you always
+            know exactly what to study.
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Button asChild variant="teal" size="xl">
               <Link href="/auth/signup">
-                Get Started
+                Get started free
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="xl">
-              <Link href="#rotations">Browse Rotations</Link>
+              <Link href="#pricing">See pricing</Link>
             </Button>
           </div>
 
-          <p className="mt-6 text-sm text-gray-400">
-            No credit card required to explore. Start studying today.
-          </p>
+          {/* Quick stats */}
+          <div className="mt-14 grid grid-cols-3 gap-8 border-t border-gray-100 pt-10 w-full max-w-lg">
+            {[
+              { value: "7", label: "PAEA EOR rotations" },
+              { value: "175+", label: "Conditions covered" },
+              { value: "500+", label: "Quiz questions" },
+            ].map(({ value, label }) => (
+              <div key={label} className="text-center">
+                <p className="text-2xl font-extrabold text-gray-900">{value}</p>
+                <p className="mt-1 text-xs text-gray-500">{label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -214,26 +228,34 @@ export default function LandingPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              7 Core Rotations Covered
+              All 7 PAEA EOR Rotations
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-              Content mapped to ARC-PA standards and the NCCPA PANCE blueprint
-              so nothing falls through the cracks.
+              Content mapped directly to the EOR blueprint so every study session
+              moves the needle.
             </p>
           </div>
 
-          <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
-            {rotations.map((rotation) => (
-              <div
-                key={rotation.name}
-                className="flex flex-col items-center gap-3 rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm transition hover:border-teal-300 hover:shadow-md"
-              >
-                <span className="text-4xl">{rotation.emoji}</span>
-                <span className="text-sm font-semibold text-gray-800">
-                  {rotation.name}
-                </span>
-              </div>
-            ))}
+          <div className="mt-16 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {rotations.map((rotation) => {
+              const Icon = rotation.icon;
+              return (
+                <div
+                  key={rotation.name}
+                  className="group flex items-center gap-4 rounded-xl border border-gray-200 bg-white px-5 py-4 shadow-sm transition hover:border-gray-300 hover:shadow-md"
+                >
+                  <div className={`h-2.5 w-2.5 rounded-full shrink-0 ${rotation.dot}`} />
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-gray-900 truncate">
+                      {rotation.name}
+                    </p>
+                    <p className="text-xs text-gray-400 mt-0.5 truncate">
+                      {rotation.shortDesc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -317,12 +339,7 @@ export default function LandingPage() {
       {/* ── Footer ── */}
       <footer className="border-t border-gray-200 bg-gray-50">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 py-10 sm:flex-row sm:px-6">
-          <div className="flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-teal-600" />
-            <span className="font-semibold text-gray-800">
-              Clinical<span className="text-teal-600">Year</span>
-            </span>
-          </div>
+          <ClinPASLockup size={18} tone="light" />
 
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
             <Link href="/auth/login" className="transition hover:text-teal-600">
@@ -346,8 +363,7 @@ export default function LandingPage() {
           </nav>
 
           <p className="text-xs text-gray-400">
-            &copy; {new Date().getFullYear()} ClinicalYear. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} ClinPAS. All rights reserved.
           </p>
         </div>
       </footer>

@@ -45,7 +45,6 @@ export default async function RotationSlugLayout({
       <RotationSectionNav
         slug={params.slug as RotationSlug}
         rotationName={rotation.name}
-        rotationIcon={rotation.icon}
         hasPaperTools={hasPaperTools}
       />
       <div className="flex-1 p-6 pb-24 lg:pb-6 min-w-0">

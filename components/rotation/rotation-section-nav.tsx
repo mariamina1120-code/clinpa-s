@@ -19,7 +19,26 @@ import {
   Presentation,
   PanelLeftClose,
   PanelLeftOpen,
+  Activity,
+  Scissors,
+  Baby,
+  Heart,
+  Zap,
+  Brain,
+  type LucideIcon,
 } from "lucide-react";
+
+// ─── Rotation icon + color config (mirrors rotation-card.tsx) ─────────────────
+interface RotationHeaderConfig { icon: LucideIcon; bg: string; iconColor: string; }
+const ROTATION_HEADER: Record<string, RotationHeaderConfig> = {
+  "family-medicine":    { icon: Stethoscope, bg: "bg-teal-50 dark:bg-teal-900/40",   iconColor: "text-teal-600 dark:text-teal-400"   },
+  "internal-medicine":  { icon: Activity,    bg: "bg-blue-50 dark:bg-blue-900/40",   iconColor: "text-blue-600 dark:text-blue-400"   },
+  "general-surgery":    { icon: Scissors,    bg: "bg-slate-100 dark:bg-slate-800",   iconColor: "text-slate-600 dark:text-slate-400" },
+  "pediatrics":         { icon: Baby,        bg: "bg-amber-50 dark:bg-amber-900/40", iconColor: "text-amber-600 dark:text-amber-400" },
+  "womens-health":      { icon: Heart,       bg: "bg-rose-50 dark:bg-rose-900/40",   iconColor: "text-rose-500 dark:text-rose-400"   },
+  "emergency-medicine": { icon: Zap,         bg: "bg-red-50 dark:bg-red-900/40",     iconColor: "text-red-600 dark:text-red-400"     },
+  "behavioral-medicine":{ icon: Brain,       bg: "bg-indigo-50 dark:bg-indigo-900/40", iconColor: "text-indigo-600 dark:text-indigo-400" },
+};
 
 const STORAGE_KEY = "rotationNavCollapsed";
 
@@ -56,16 +75,16 @@ function getSections(slug: RotationSlug, hasPaperTools: boolean): SectionItem[] 
 interface RotationSectionNavProps {
   slug: RotationSlug;
   rotationName: string;
-  rotationIcon: string;
   hasPaperTools: boolean;
 }
 
 export function RotationSectionNav({
   slug,
   rotationName,
-  rotationIcon,
   hasPaperTools,
 }: RotationSectionNavProps) {
+  const headerConfig = ROTATION_HEADER[slug] ?? ROTATION_HEADER["family-medicine"];
+  const HeaderIcon = headerConfig.icon;
   const pathname = usePathname();
   const sections = getSections(slug, hasPaperTools);
   const [collapsed, setCollapsed] = useState(false);
@@ -100,8 +119,8 @@ export function RotationSectionNav({
         <div className="p-3 border-b flex items-center gap-2 min-h-[64px]">
           {!isCollapsed && (
             <div className="flex items-center gap-2.5 min-w-0 flex-1">
-              <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/50 dark:to-teal-900/30 flex items-center justify-center text-xl border border-teal-100 dark:border-teal-800 shrink-0">
-                {rotationIcon}
+              <div className={cn("h-9 w-9 rounded-xl flex items-center justify-center shrink-0 border border-border/50", headerConfig.bg)}>
+                <HeaderIcon className={cn("h-4 w-4", headerConfig.iconColor)} />
               </div>
               <div className="min-w-0">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Rotation</p>
@@ -110,7 +129,9 @@ export function RotationSectionNav({
             </div>
           )}
           {isCollapsed && (
-            <span className="text-xl mx-auto">{rotationIcon}</span>
+            <div className={cn("h-8 w-8 rounded-lg flex items-center justify-center mx-auto", headerConfig.bg)}>
+              <HeaderIcon className={cn("h-4 w-4", headerConfig.iconColor)} />
+            </div>
           )}
           <button
             onClick={toggle}

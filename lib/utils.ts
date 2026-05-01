@@ -11,7 +11,6 @@ export const ROTATIONS: Rotation[] = [
     slug: "family-medicine",
     name: "Family Medicine",
     shortName: "Family Med",
-    icon: "🏠",
     color: "teal",
     description:
       "Comprehensive outpatient primary care covering chronic disease management, preventive care, and acute illness.",
@@ -20,7 +19,6 @@ export const ROTATIONS: Rotation[] = [
     slug: "internal-medicine",
     name: "Internal Medicine",
     shortName: "Internal Med",
-    icon: "🫀",
     color: "blue",
     description:
       "Adult inpatient medicine focusing on complex multi-system disease management and hospital-based care.",
@@ -29,7 +27,6 @@ export const ROTATIONS: Rotation[] = [
     slug: "general-surgery",
     name: "General Surgery",
     shortName: "Surgery",
-    icon: "🔪",
     color: "slate",
     description:
       "Surgical evaluation, peri-operative care, and management of abdominal, breast, and soft tissue conditions.",
@@ -38,8 +35,7 @@ export const ROTATIONS: Rotation[] = [
     slug: "pediatrics",
     name: "Pediatrics",
     shortName: "Pediatrics",
-    icon: "👶",
-    color: "violet",
+    color: "amber",
     description:
       "Child and adolescent health from newborn through 18 years, including developmental surveillance and acute care.",
   },
@@ -47,7 +43,6 @@ export const ROTATIONS: Rotation[] = [
     slug: "womens-health",
     name: "Women's Health / OB-GYN",
     shortName: "Women's Health",
-    icon: "🌸",
     color: "rose",
     description:
       "Reproductive health, obstetric care, gynecologic conditions, and preventive screenings for female patients.",
@@ -56,7 +51,6 @@ export const ROTATIONS: Rotation[] = [
     slug: "emergency-medicine",
     name: "Emergency Medicine",
     shortName: "Emergency Med",
-    icon: "🚨",
     color: "red",
     description:
       "Acute and undifferentiated presentations requiring rapid assessment, stabilization, and time-sensitive intervention.",
@@ -65,19 +59,9 @@ export const ROTATIONS: Rotation[] = [
     slug: "behavioral-medicine",
     name: "Behavioral Medicine / Psychiatry",
     shortName: "Behavioral Med",
-    icon: "🧠",
     color: "indigo",
     description:
       "Mental health evaluation, psychiatric disorders, substance use, and psychopharmacology.",
-  },
-  {
-    slug: "geriatrics",
-    name: "Geriatrics",
-    shortName: "Geriatrics",
-    icon: "🧓",
-    color: "amber",
-    description:
-      "Comprehensive care for older adults, polypharmacy, functional assessment, and age-related syndromes.",
   },
 ];
 

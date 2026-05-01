@@ -147,10 +147,7 @@ export interface RotationSeedData {
  * Keyed lookup of all rotation seed data.
  * Usage: rotationSeedMap["emergency-medicine"].quiz
  */
-export const rotationSeedMap: Record<
-  Exclude<RotationSlug, "geriatrics">,
-  RotationSeedData
-> = {
+export const rotationSeedMap: Record<RotationSlug, RotationSeedData> = {
   "family-medicine": {
     conditions: familyMedicineConditions,
     pharmacology: familyMedicinePharmacology,
@@ -233,7 +230,7 @@ export const rotationSeedMap: Record<
 // ─── Helper Functions ─────────────────────────────────────────────────────────
 
 export function getSeedDataByRotation(slug: RotationSlug): RotationSeedData | undefined {
-  return rotationSeedMap[slug as Exclude<RotationSlug, "geriatrics">];
+  return rotationSeedMap[slug];
 }
 
 export function getQuizByRotation(slug: RotationSlug): QuizQuestion[] {
@@ -271,7 +268,7 @@ export function getGuidelinesByRotation(slug: RotationSlug): Guideline[] {
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-export const SUPPORTED_ROTATIONS: Exclude<RotationSlug, "geriatrics">[] = [
+export const SUPPORTED_ROTATIONS: RotationSlug[] = [
   "family-medicine",
   "internal-medicine",
   "general-surgery",
@@ -289,5 +286,4 @@ export const ROTATION_DISPLAY_NAMES: Record<RotationSlug, string> = {
   "womens-health": "Women's Health",
   "emergency-medicine": "Emergency Medicine",
   "behavioral-medicine": "Behavioral Medicine",
-  "geriatrics": "Geriatrics",
 };
