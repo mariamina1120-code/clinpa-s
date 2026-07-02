@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { SignupForm } from "@/components/auth/signup-form";
 import Link from "next/link";
-import { ShieldCheck } from "lucide-react";
+import { ClinPASLockup } from "@/components/brand/logo";
 
 export const metadata: Metadata = { title: "Create Account" };
 
@@ -10,11 +10,10 @@ export default function SignupPage() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 p-4">
       <div className="w-full max-w-lg">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-2">
-            <ShieldCheck className="h-8 w-8 text-teal-600" />
-            <span className="text-2xl font-bold text-teal-700 dark:text-teal-400">ClinicalYear</span>
+          <Link href="/" className="inline-flex justify-center mb-2">
+            <ClinPASLockup size={36} tone="light" />
           </Link>
-          <p className="text-sm text-muted-foreground">Create your student account</p>
+          <p className="text-sm text-muted-foreground mt-2">Create your student account</p>
         </div>
 
         <div className="bg-white dark:bg-slate-900 rounded-xl shadow-lg border p-8">

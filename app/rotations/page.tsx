@@ -5,6 +5,7 @@ import { ROTATIONS } from "@/lib/utils";
 import { RotationCard } from "@/components/rotation/rotation-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { RotationSlug } from "@/types";
 
 export const metadata: Metadata = { title: "Rotations" };
@@ -41,16 +42,21 @@ export default async function RotationsPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Clinical Rotations</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Your Rotations</h1>
           <p className="text-muted-foreground text-sm mt-1">
-            {unlockedSlugs.size} of 7 rotations unlocked
+            {unlockedSlugs.size === 7
+              ? "All 7 rotations unlocked — ready to study"
+              : `${unlockedSlugs.size} of 7 rotations unlocked`}
           </p>
         </div>
         {unlockedSlugs.size < 7 && (
-          <Button asChild>
-            <Link href="/store">Unlock More</Link>
+          <Button asChild variant="teal" size="sm" className="shrink-0">
+            <Link href="/store">
+              Unlock More
+              <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+            </Link>
           </Button>
         )}
       </div>

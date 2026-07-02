@@ -1,0 +1,60 @@
+<svg width="480" height="110" viewBox="0 0 480 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ClinPAS logo">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#1e3a5f"/>
+    </linearGradient>
+    <radialGradient id="iconShine" cx="36%" cy="31%" r="56%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ── Icon badge (110 × 110) ── -->
+  <circle cx="55" cy="55" r="50"   fill="url(#bgGrad)"/>
+  <circle cx="55" cy="55" r="50"   fill="url(#iconShine)"/>
+  <circle cx="55" cy="55" r="45.5" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <circle cx="55" cy="55" r="41.5" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.75"/>
+
+  <!-- ── Rod of Asclepius (all icon coords ÷ 2, recentred at 55,55) ── -->
+
+  <!-- LAYER 1 — Full snake (below staff) -->
+  <path d="M 56.5,85 C 74,80 74,57.5 55,54
+           C 36,50.5 36,36 55,32.5
+           C 73,29 73,23 60,21.5"
+        fill="none" stroke="white" stroke-width="3.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- LAYER 2 — Staff -->
+  <line x1="55" y1="23.5" x2="55" y2="81.5"
+        stroke="white" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Staff highlight -->
+  <line x1="53.25" y1="25" x2="53.25" y2="80"
+        stroke="rgba(255,255,255,0.28)" stroke-width="1.25" stroke-linecap="round"/>
+
+  <!-- LAYER 3 — Snake front portions (above staff) -->
+  <path d="M 55,54 C 36,50.5 36,36 55,32.5
+           C 73,29 73,23 60,21.5"
+        fill="none" stroke="white" stroke-width="3.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Snake head detail -->
+  <circle cx="56.5" cy="23" r="1.2" fill="url(#bgGrad)"/>
+  <line x1="56" y1="19.5" x2="54" y2="16" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+  <line x1="56" y1="19.5" x2="58" y2="16" stroke="white" stroke-width="0.8" stroke-linecap="round"/>
+
+  <!-- ── Wordmark ── -->
+  <text
+    x="122" y="72"
+    font-family="'Plus Jakarta Sans', 'DM Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif"
+    font-size="52" letter-spacing="-1">
+    <tspan font-weight="600" fill="#1e3a5f">Clin</tspan><tspan font-weight="800" fill="#0d9488">PAS</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text
+    x="123" y="92"
+    font-family="'Plus Jakarta Sans', 'DM Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif"
+    font-size="12" font-weight="500" letter-spacing="2.6"
+    fill="#64748b">CLINICAL YEAR RESOURCE</text>
+</svg>

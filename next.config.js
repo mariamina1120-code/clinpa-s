@@ -36,9 +36,16 @@ const nextConfig = {
             "img-src 'self' data: blob:",
             "font-src 'self'",
             "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.stripe.com",
-            "frame-src https://js.stripe.com",
+            "frame-src 'self' https://js.stripe.com",
           ].join("; "),
         },
+      ],
+    },
+    {
+      // Allow eor-pearls HTML files to be embedded in same-origin iframes
+      source: "/eor-pearls/(.*)",
+      headers: [
+        { key: "X-Frame-Options", value: "SAMEORIGIN" },
       ],
     },
   ],

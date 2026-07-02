@@ -30,7 +30,7 @@ export default function PhysicalExamPage({ params }: { params: { slug: string } 
         <Accordion type="single" collapsible className="space-y-2">
           {findings.map((finding, idx) => {
             const key = finding.id ?? finding.conditionId ?? String(idx);
-            const title = finding.findingName ?? finding.conditionName ?? "Exam Finding";
+            const title = finding.findingName ?? finding.name ?? finding.conditionName ?? "Exam Finding";
 
             return (
               <AccordionItem key={key} value={key} className="border rounded-xl px-4 bg-card">

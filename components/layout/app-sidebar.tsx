@@ -18,6 +18,7 @@ import {
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
+import { ClinPASLockup, ClinPASIcon } from "@/components/brand/logo";
 
 const STORAGE_KEY = "appSidebarCollapsed";
 
@@ -70,33 +71,54 @@ export function AppSidebar({ userName, userInitials }: AppSidebarProps) {
   return (
     <aside
       className={cn(
-        "hidden lg:flex flex-col min-h-screen bg-slate-900 dark:bg-slate-950 text-white border-r border-slate-700 transition-[width] duration-200 ease-in-out",
+        "hidden lg:flex flex-col min-h-screen text-white border-r border-navy-700 transition-[width] duration-200 ease-in-out",
+        "bg-navy-500",
         isCollapsed ? "w-16" : "w-64"
       )}
+      style={{ backgroundColor: "#1e3a5f", borderColor: "#162742" }}
     >
       {/* Logo + collapse toggle */}
-      <div className="p-4 border-b border-slate-700 flex items-center justify-between gap-2 min-h-[64px]">
+      <div className="p-4 border-b flex items-center justify-between gap-2 min-h-[64px]" style={{ borderColor: "#162742" }}>
         {!isCollapsed && (
-          <Link href="/dashboard" className="flex items-center gap-2 min-w-0">
-            <ShieldCheck className="h-6 w-6 text-teal-400 shrink-0" />
-            <span className="font-bold text-lg text-teal-300 truncate">ClinicalYear</span>
+          <Link href="/dashboard" className="flex items-center min-w-0">
+            <ClinPASLockup size={20} tone="dark" />
           </Link>
         )}
-        <button
-          onClick={toggle}
-          aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className={cn(
-            "p-1.5 rounded-md text-slate-400 hover:bg-slate-800 hover:text-white transition-colors shrink-0",
-            isCollapsed && "mx-auto"
-          )}
-        >
-          {isCollapsed ? (
-            <PanelLeftOpen className="h-4 w-4" />
-          ) : (
+        {isCollapsed && (
+          <Link href="/dashboard" className="mx-auto">
+            <ClinPASIcon size={32} />
+          </Link>
+        )}
+        {!isCollapsed && (
+          <button
+            onClick={toggle}
+            aria-label="Collapse sidebar"
+            className="p-1.5 rounded-md text-teal-200/60 hover:bg-white/10 hover:text-white transition-colors shrink-0"
+          >
             <PanelLeftClose className="h-4 w-4" />
-          )}
-        </button>
+          </button>
+        )}
+        {isCollapsed && (
+          <button
+            onClick={toggle}
+            aria-label="Expand sidebar"
+            className="sr-only"
+          />
+        )}
       </div>
+
+      {/* Collapse toggle when collapsed (below icon) */}
+      {isCollapsed && (
+        <div className="flex justify-center py-1">
+          <button
+            onClick={toggle}
+            aria-label="Expand sidebar"
+            className="p-1.5 rounded-md text-teal-200/60 hover:bg-white/10 hover:text-white transition-colors"
+          >
+            <PanelLeftOpen className="h-4 w-4" />
+          </button>
+        </div>
+      )}
 
       {/* Main nav */}
       <nav className="flex-1 p-2 space-y-1" aria-label="Main navigation">
@@ -113,7 +135,7 @@ export function AppSidebar({ userName, userInitials }: AppSidebarProps) {
                 isCollapsed ? "justify-center px-2 py-2.5" : "px-3 py-2.5",
                 active
                   ? "bg-teal-600 text-white"
-                  : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                  : "text-teal-100/80 hover:bg-white/10 hover:text-white"
               )}
               aria-current={active ? "page" : undefined}
             >
@@ -130,14 +152,14 @@ export function AppSidebar({ userName, userInitials }: AppSidebarProps) {
       </nav>
 
       {/* Bottom nav */}
-      <div className="p-2 border-t border-slate-700 space-y-1">
+      <div className="p-2 space-y-1" style={{ borderTop: "1px solid #162742" }}>
         {bottomNavItems.map(({ href, icon: Icon, label }) => (
           <Link
             key={href}
             href={href}
             title={isCollapsed ? label : undefined}
             className={cn(
-              "flex items-center gap-3 rounded-lg text-sm text-slate-400 hover:bg-slate-800 hover:text-white transition-colors",
+              "flex items-center gap-3 rounded-lg text-sm text-teal-100/60 hover:bg-white/10 hover:text-white transition-colors",
               isCollapsed ? "justify-center px-2 py-2" : "px-3 py-2"
             )}
           >
@@ -147,7 +169,7 @@ export function AppSidebar({ userName, userInitials }: AppSidebarProps) {
         ))}
 
         {/* User + sign out */}
-        <div className="pt-2 border-t border-slate-700 mt-2">
+        <div className="pt-2 mt-2" style={{ borderTop: "1px solid #162742" }}>
           <div
             className={cn(
               "flex items-center gap-3 py-2",
@@ -160,7 +182,7 @@ export function AppSidebar({ userName, userInitials }: AppSidebarProps) {
             </div>
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-slate-200 truncate">
+                <p className="text-sm font-medium text-teal-100 truncate">
                   {userName ?? "Student"}
                 </p>
               </div>
@@ -172,7 +194,7 @@ export function AppSidebar({ userName, userInitials }: AppSidebarProps) {
             onClick={handleSignOut}
             title={isCollapsed ? "Sign out" : undefined}
             className={cn(
-              "w-full gap-3 text-slate-400 hover:text-white hover:bg-slate-800 text-sm",
+              "w-full gap-3 text-teal-100/60 hover:text-white hover:bg-white/10 text-sm",
               isCollapsed ? "justify-center px-2" : "justify-start px-3"
             )}
           >

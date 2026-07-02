@@ -16,7 +16,9 @@
       "Bash(brew --version)",
       "Bash(curl -fsSL https://fnm.vercel.app/install)",
       "Bash(bash)",
-      "Bash(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh)"
+      "Bash(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh)",
+      "Bash(rm \"/Users/mariamina/Clinical Year Resource /.git/HEAD.lock\")",
+      "Bash(git commit -m ' *)"
     ]
   }
 }

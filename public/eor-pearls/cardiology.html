@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IM EOR — Cardiology Conditions Reference</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;color:#1a1a1a;background:#f5f4f0;line-height:1.5}
+  .page{max-width:min(98vw,1700px);margin:0 auto;padding:2rem 2.5rem 4rem}
+  h1{font-size:22px;font-weight:500;margin-bottom:4px}
+  .subtitle{font-size:14px;color:#666;margin-bottom:1.5rem}
+  .cats{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.5rem;position:sticky;top:0;background:#f5f4f0;padding:0.75rem 0;z-index:10;border-bottom:1px solid #e0ddd5}
+  .cat-btn{font-size:13px;padding:6px 14px;border-radius:20px;border:1px solid #ccc;background:#fff;color:#555;cursor:pointer;transition:all 0.15s;font-family:inherit}
+  .cat-btn.active{background:#185FA5;color:#fff;border-color:#185FA5}
+  .cat-btn:hover:not(.active){background:#eee}
+  .section-title{font-size:18px;font-weight:500;margin-bottom:4px;color:#1a1a1a}
+  .section-sub{font-size:13px;color:#666;margin-bottom:1.5rem;line-height:1.6}
+  .grid{display:grid;gap:14px;margin-bottom:1.75rem}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:1200px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:700px){.g4,.g3,.g2{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid #e0ddd5;border-radius:12px;padding:1.1rem 1.25rem;border-top:3px solid #ccc}
+  .card.blue{border-top-color:#378ADD}.card.red{border-top-color:#E24B4A}.card.amber{border-top-color:#EF9F27}
+  .card.green{border-top-color:#639922}.card.purple{border-top-color:#7F77DD}.card.teal{border-top-color:#1D9E75}
+  .card.coral{border-top-color:#D85A30}.card.pink{border-top-color:#D4537E}.card.gray{border-top-color:#888780}
+  .cname{font-size:15px;font-weight:500;margin-bottom:3px;color:#1a1a1a}
+  .ctag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:10px;margin-bottom:12px;font-weight:500}
+  .tag-blue{background:#E6F1FB;color:#0C447C}.tag-red{background:#FCEBEB;color:#791F1F}.tag-amber{background:#FAEEDA;color:#633806}
+  .tag-green{background:#EAF3DE;color:#27500A}.tag-purple{background:#EEEDFE;color:#3C3489}.tag-teal{background:#E1F5EE;color:#085041}
+  .tag-coral{background:#FAECE7;color:#712B13}.tag-pink{background:#FBEAF0;color:#72243E}.tag-gray{background:#F1EFE8;color:#444441}
+  .row{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start}
+  .lbl{font-size:11px;font-weight:600;color:#888;min-width:80px;padding-top:3px;text-transform:uppercase;letter-spacing:0.04em;flex-shrink:0}
+  .val{font-size:13px;color:#1a1a1a;line-height:1.55;flex:1}
+  .val strong{font-weight:600;color:#111}
+  .vlist{list-style:disc;padding-left:15px;margin:0;flex:1}
+  .vlist li{font-size:13px;color:#1a1a1a;line-height:1.6;margin-bottom:3px}
+  .vlist li:last-child{margin-bottom:0}
+  .vlist li strong{font-weight:600;color:#111}
+  .divider{height:1px;background:#eee;margin:10px 0}
+  .pearl-box{background:#FAEEDA;border:1px solid #FAC775;border-radius:10px;padding:12px 16px;margin-bottom:1.75rem}
+  .pearl-label{font-size:11px;font-weight:600;color:#633806;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+  .pearl-item{font-size:13px;color:#1a1a1a;line-height:1.6;margin-bottom:5px;padding-left:14px;position:relative}
+  .pearl-item::before{content:"→";position:absolute;left:0;color:#BA7517;font-size:11px;top:2px}
+  .diff-box{background:#E6F1FB;border:1px solid #B5D4F4;border-radius:10px;padding:12px 16px;margin-bottom:1.75rem}
+  .diff-label{font-size:11px;font-weight:600;color:#0C447C;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+  .diff-item{font-size:13px;color:#1a1a1a;line-height:1.6;margin-bottom:5px;padding-left:14px;position:relative}
+  .diff-item::before{content:"⬥";position:absolute;left:0;color:#185FA5;font-size:10px;top:3px}
+  .sec-head{font-size:12px;font-weight:600;color:#888;margin:1.5rem 0 0.75rem;text-transform:uppercase;letter-spacing:0.06em}
+  .compare-table{width:100%;border-collapse:collapse;margin-bottom:1.75rem;font-size:13px}
+  .compare-table th{text-align:left;padding:9px 12px;background:#f0ede6;color:#666;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;border-bottom:1px solid #ddd}
+  .compare-table td{padding:9px 12px;border-bottom:1px solid #eee;vertical-align:top;line-height:1.55}
+  .compare-table tr:last-child td{border-bottom:none}
+  .compare-table .highlight{background:#EAF3DE;color:#27500A;font-weight:600}
+  .compare-table .warn{background:#FCEBEB;color:#791F1F;font-weight:600}
+  #content{display:block}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>IM EOR — Cardiology Conditions</h1>
+  <p class="subtitle">PAEA blueprint — conditions teaching reference. Click a category to navigate.</p>
+  <div class="cats" id="cats"></div>
+  <div id="content"></div>
+</div>
+
+<script>
+const R = (lbl, ...items) => {
+  if (items.length === 1) {
+    return `<div class="row"><span class="lbl">${lbl}</span><span class="val">${items[0]}</span></div>`;
+  }
+  return `<div class="row"><span class="lbl">${lbl}</span><ul class="vlist">${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
+};
+
+const SECTIONS = {
+"ACS":{
+  title:"Acute Coronary Syndrome spectrum",
+  sub:"The ACS spectrum is one decision tree: ECG changes → troponin → timing.",
+  render:()=>`
+    <div class="grid g4">
+      <div class="card blue">
+        <div class="cname">Stable Angina</div><div class="ctag tag-blue">Not ACS</div>
+        ${R("Pain","Exertional, predictable","&lt;5 min duration","Relieved by rest or SL NTG")}
+        ${R("ECG","Normal at rest","ST depression only during stress test")}
+        ${R("Troponin","<strong>Negative</strong>")}
+        ${R("Tx","ASA + beta-blocker + statin","SL NTG PRN","Stress test for workup")}
+      </div>
+      <div class="card amber">
+        <div class="cname">Unstable Angina</div><div class="ctag tag-amber">ACS — no necrosis</div>
+        ${R("Pain","Rest pain","New-onset severe","Crescendo pattern (more frequent/severe)")}
+        ${R("ECG","ST depression","T-wave inversions","Or normal")}
+        ${R("Troponin","<strong>Negative</strong> (serial x2, 3–6h apart)")}
+        ${R("Tx","ASA + heparin + P2Y12 inhibitor","Early invasive within 24–48h")}
+      </div>
+      <div class="card coral">
+        <div class="cname">NSTEMI</div><div class="ctag tag-coral">ACS — partial occlusion</div>
+        ${R("Pain","Rest pain, new-onset, or crescendo","Clinically identical to UA")}
+        ${R("ECG","ST depression or T-wave inversions","Or normal — <strong>NO ST elevation</strong>")}
+        ${R("Troponin","<strong>Positive</strong> (rise and/or fall)","This is what separates it from UA")}
+        ${R("Tx","Heparin + dual antiplatelet (ASA + P2Y12)","Cath within 24–48h (early invasive)")}
+      </div>
+      <div class="card red">
+        <div class="cname">STEMI</div><div class="ctag tag-red">ACS — complete occlusion</div>
+        ${R("Pain","Crushing, severe","Diaphoretic, nausea","Radiates to arm/jaw/back")}
+        ${R("ECG","<strong>ST elevation ≥1mm in ≥2 contiguous leads</strong>","Reciprocal ST depression in opposite leads")}
+        ${R("Troponin","Positive — but do NOT wait for it","ECG alone is sufficient to activate cath lab")}
+        ${R("Tx","<strong>PCI &lt;90 min (door-to-balloon)</strong>","Fibrinolytics if no PCI available within 120 min","Heparin + dual antiplatelet")}
+      </div>
+    </div>
+    <div class="diff-box">
+      <div class="diff-label">The single decision tree</div>
+      <div class="diff-item">ST elevation on ECG? → STEMI → cath lab NOW (door-to-balloon &lt;90 min)</div>
+      <div class="diff-item">No ST elevation + positive troponin? → NSTEMI → early invasive (cath 24–48h)</div>
+      <div class="diff-item">No ST elevation + negative troponin (x2, 3–6h apart) + ACS symptoms? → UA → early invasive</div>
+      <div class="diff-item">Predictable exertional pain + negative troponin + normal rest ECG? → Stable angina → stress test</div>
+    </div>
+    <div class="sec-head">STEMI localization — which leads, which artery</div>
+    <table class="compare-table">
+      <thead><tr><th>Territory</th><th>Leads with ST elevation</th><th>Culprit artery</th><th>Reciprocal changes</th><th>Key complication</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Anterior</strong></td><td>V1–V4</td><td>LAD</td><td>II, III, aVF</td><td>Largest infarct, cardiogenic shock, LBBB</td></tr>
+        <tr><td><strong>Lateral</strong></td><td>I, aVL, V5–V6</td><td>LCx</td><td>II, III, aVF</td><td>MR (papillary muscle rupture)</td></tr>
+        <tr><td><strong>Inferior</strong></td><td>II, III, aVF</td><td>RCA (85%)</td><td>I, aVL</td><td>AV block, RV infarct — always check V4R!</td></tr>
+        <tr><td><strong>RV infarct</strong></td><td>V4R (right-sided lead)</td><td>Proximal RCA</td><td>—</td><td>Hypotension — AVOID nitrates/diuretics, give IV fluids</td></tr>
+        <tr><td><strong>Posterior</strong></td><td>ST depression V1–V3 (mirror image)</td><td>RCA or LCx</td><td>Tall R waves V1–V2</td><td>Easy to miss — do posterior leads V7–V9</td></tr>
+      </tbody>
+    </table>
+    <div class="sec-head">STEMI mimics — hardest differentiators</div>
+    <div class="grid g3">
+      <div class="card teal">
+        <div class="cname">Pericarditis vs STEMI</div><div class="ctag tag-teal">ECG distinction</div>
+        ${R("ST shape","Pericarditis: <strong>concave up</strong> (saddle-shaped)","STEMI: <strong>convex up</strong> (tombstone)")}
+        ${R("Distribution","Pericarditis: <strong>diffuse</strong> — all leads","STEMI: localized to territory + reciprocal changes")}
+        ${R("PR segment","Pericarditis: <strong>PR depression</strong> (most specific)","STEMI: no PR changes")}
+        ${R("Pain","Pericarditis: pleuritic, better leaning forward","STEMI: crushing, not positional")}
+      </div>
+      <div class="card purple">
+        <div class="cname">Wellens Syndrome</div><div class="ctag tag-purple">Pre-infarction warning</div>
+        ${R("Pattern","Biphasic or deeply inverted T waves in V2–V3","Occurs during <strong>pain-free</strong> period")}
+        ${R("Significance","Critical proximal LAD stenosis","Patient is about to have anterior STEMI")}
+        ${R("Action","<strong>Do NOT stress test</strong> (can precipitate MI)","→ Urgent cath")}
+        ${R("Pitfall","Patient feels fine at presentation — easy to miss and discharge")}
+      </div>
+      <div class="card pink">
+        <div class="cname">de Winter T waves</div><div class="ctag tag-pink">STEMI equivalent</div>
+        ${R("Pattern","Upsloping ST depression at J-point in V1–V6","Tall, symmetric T waves","ST elevation in aVR")}
+        ${R("Artery","Proximal LAD occlusion")}
+        ${R("Key","No classic ST elevation — very easy to miss","Treat as STEMI → activate cath lab")}
+      </div>
+    </div>
+    <div class="pearl-box">
+      <div class="pearl-label">High-yield EOR pearls — ACS</div>
+      <div class="pearl-item">Inferior STEMI → always check right-sided lead V4R for RV infarct. RV infarct + hypotension: give fluids, avoid nitrates/diuretics/morphine</div>
+      <div class="pearl-item">Troponin rises 3–6h after onset, peaks 12–24h, normalizes 7–10d (TnI). CK-MB normalizes faster (48–72h) — useful for re-infarction detection</div>
+      <div class="pearl-item">New LBBB + chest pain = STEMI equivalent (Sgarbossa criteria if old LBBB exists)</div>
+      <div class="pearl-item">Post-MI medications: ACEi/ARB if EF&lt;40%, beta-blocker, high-intensity statin, dual antiplatelet x12 months, cardiac rehab</div>
+      <div class="pearl-item">Prinzmetal/variant angina: coronary vasospasm, ST elevation at rest, normal coronaries on cath, occurs at night. Treat with CCB + nitrates. Avoid beta-blockers</div>
+    </div>
+  `
+},
+"Heart Failure":{
+  title:"Heart failure — HFrEF vs HFpEF vs ADHF",
+  sub:"The EOR tests whether you can distinguish HFrEF from HFpEF and know which drugs reduce mortality in each.",
+  render:()=>`
+    <div class="grid g3">
+      <div class="card blue">
+        <div class="cname">HFrEF (Systolic HF)</div><div class="ctag tag-blue">EF &lt;40%</div>
+        ${R("Mechanism","Reduced contractility","LV is <strong>dilated</strong> and hypokinetic")}
+        ${R("Echo","EF &lt;40%","Dilated LV","Global hypokinesis")}
+        ${R("Causes","Ischemia/MI (#1)","Dilated cardiomyopathy","Myocarditis","Alcohol, peripartum, Chagas")}
+        ${R("Mortality Rx","<strong>ACEi / ARB / ARNI</strong>","<strong>Beta-blocker</strong> (carvedilol, metoprolol succinate)","<strong>MRA</strong> (spironolactone, eplerenone)","<strong>SGLT2i</strong> (dapagliflozin, empagliflozin)")}
+        ${R("Device Rx","ICD if EF&lt;35% after 3 months of GDMT","CRT if EF&lt;35% + LBBB + QRS&gt;150ms")}
+      </div>
+      <div class="card amber">
+        <div class="cname">HFpEF (Diastolic HF)</div><div class="ctag tag-amber">EF ≥50%</div>
+        ${R("Mechanism","Impaired relaxation/filling","LV is <strong>stiff</strong>, often hypertrophied","Contractility is preserved")}
+        ${R("Echo","EF ≥50%","LV hypertrophy","Impaired relaxation (elevated E/e')","Small or normal LV cavity")}
+        ${R("Risk factors","Older female","Hypertension","Obesity","Diabetes mellitus","Atrial fibrillation","Obstructive sleep apnea")}
+        ${R("Mortality Rx","<strong>SGLT2i</strong> reduces HF hospitalizations","Diuretics for volume (symptom relief only)","Control BP and heart rate")}
+        ${R("Key point","No proven mortality benefit from ACEi, BB, or MRA in HFpEF (unlike HFrEF)")}
+      </div>
+      <div class="card red">
+        <div class="cname">Acute Decompensated HF</div><div class="ctag tag-red">Emergency</div>
+        ${R("Triggers","Medication non-compliance","Dietary sodium excess","New atrial fibrillation","Infection / sepsis","New MI","NSAID use")}
+        ${R("Signs","Orthopnea, PND","Bilateral crackles","JVD, S3 gallop","Peripheral pitting edema","Pink frothy sputum (pulmonary edema)")}
+        ${R("CXR","Cardiomegaly","Kerley B lines","Bat-wing pulmonary edema","Vascular cephalization")}
+        ${R("Tx","<strong>IV furosemide</strong> (aggressive diuresis)","O2 / BiPAP for respiratory support","IV nitrates if hypertensive","Sit upright (reduces preload)","Hold beta-blocker if severely decompensated")}
+        ${R("Cardiogenic shock","Low BP + low output state","Dobutamine (inotrope) + vasopressors","Avoid aggressive diuresis")}
+      </div>
+    </div>
+    <div class="sec-head">Mortality-reducing drugs — memorize this table</div>
+    <table class="compare-table">
+      <thead><tr><th>Drug class</th><th>HFrEF mortality benefit</th><th>HFpEF mortality benefit</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>ACEi / ARB</td><td class="highlight">Yes</td><td class="warn">No</td><td>Ramipril, lisinopril, valsartan</td></tr>
+        <tr><td>ARNI (sacubitril/valsartan)</td><td class="highlight">Yes — superior to ACEi</td><td class="warn">No</td><td>Do not combine with ACEi; wait 36h washout</td></tr>
+        <tr><td>Beta-blocker</td><td class="highlight">Yes</td><td class="warn">No proven mortality benefit</td><td>Carvedilol, metoprolol succinate, bisoprolol ONLY</td></tr>
+        <tr><td>MRA (spironolactone, eplerenone)</td><td class="highlight">Yes (EF&lt;35%)</td><td class="warn">No</td><td>Watch K+; avoid if K+&gt;5.0 or Cr&gt;2.5</td></tr>
+        <tr><td>SGLT2i (dapagliflozin, empagliflozin)</td><td class="highlight">Yes</td><td class="highlight">Yes (reduces HF hospitalizations)</td><td>Only class with benefit in BOTH HFrEF and HFpEF</td></tr>
+        <tr><td>Hydralazine + nitrate</td><td class="highlight">Yes — Black patients intolerant of ACEi</td><td class="warn">No</td><td>BiDil — used when ACEi/ARB not tolerated</td></tr>
+        <tr><td>Diuretics (furosemide)</td><td>Symptom relief only</td><td>Symptom relief only</td><td>No mortality benefit — but essential for congestion</td></tr>
+        <tr><td>Digoxin</td><td>Reduces hospitalization, not mortality</td><td>No</td><td>Rate control in HFrEF + afib</td></tr>
+      </tbody>
+    </table>
+    <div class="pearl-box">
+      <div class="pearl-label">High-yield EOR pearls — Heart failure</div>
+      <div class="pearl-item">BNP/NT-proBNP: best test to distinguish cardiac vs pulmonary dyspnea. BNP &lt;100 = unlikely HF; &gt;500 = very likely HF</div>
+      <div class="pearl-item">S3 gallop = volume overload / dilated LV (HFrEF). S4 gallop = stiff LV / HTN / HFpEF</div>
+      <div class="pearl-item">ARNI preferred over ACEi in HFrEF — do NOT combine with ACEi (angioedema risk) — wait 36h after stopping ACEi before starting ARNI</div>
+      <div class="pearl-item">Avoid in HF: NSAIDs, CCBs (except amlodipine), most antiarrhythmics, thiazolidinediones (TZDs), cilostazol</div>
+      <div class="pearl-item">Small Cr rise (&lt;0.3) is acceptable during decongestion — do not reflexively stop diuretic for cardiorenal syndrome</div>
+    </div>
+  `
+},
+"HTN":{
+  title:"Hypertension — urgency vs emergency vs secondary causes",
+  sub:"The key EOR split: does severely elevated BP have end-organ damage? And does this HTN have a secondary cause?",
+  render:()=>`
+    <div class="grid g2">
+      <div class="card amber">
+        <div class="cname">Hypertensive Urgency</div><div class="ctag tag-amber">Severe BP, no end-organ damage</div>
+        ${R("BP","&gt;180/120 mmHg")}
+        ${R("End-organ","<strong>Absent</strong> — normal Cr, UA, fundoscopy, neuro exam")}
+        ${R("Symptoms","Headache, anxiety","No focal neuro deficits","No confusion","No chest pain or visual changes")}
+        ${R("Treatment","Oral agents: labetalol, amlodipine, or clonidine","Reduce BP over <strong>24–48 hours</strong>","Outpatient follow-up acceptable")}
+        ${R("Key point","Do NOT lower BP too rapidly — risk of ischemic stroke / watershed infarcts")}
+      </div>
+      <div class="card red">
+        <div class="cname">Hypertensive Emergency</div><div class="ctag tag-red">Severe BP + end-organ damage</div>
+        ${R("BP","&gt;180/120 mmHg (same threshold — end-organ damage makes it emergency)")}
+        ${R("End-organ","<strong>Any of:</strong> Hypertensive encephalopathy","AKI (acute kidney injury)","Acute MI or aortic dissection","Pulmonary edema","Eclampsia / HELLP","Papilledema on fundoscopy")}
+        ${R("Treatment","IV agents in ICU: <strong>labetalol</strong> or <strong>nicardipine</strong>","Reduce MAP by 25% in first hour","Then gradually to goal over 24h")}
+        ${R("Special cases","Aortic dissection → IV labetalol (HR control first)","Eclampsia → IV Mg + hydralazine or labetalol","Cocaine HTN → benzodiazepines + phentolamine; <strong>NO beta-blockers</strong>")}
+      </div>
+    </div>
+    <div class="sec-head">Secondary hypertension — clue-based diagnosis</div>
+    <table class="compare-table">
+      <thead><tr><th>Condition</th><th>Classic clue in vignette</th><th>Confirmatory test</th><th>Treatment</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Primary hyperaldosteronism</strong></td><td>Young pt, hypokalemia, resistant HTN despite 3 agents, adrenal mass on imaging</td><td>Aldosterone:renin ratio (elevated) → salt-loading test</td><td>Adenoma → adrenalectomy; Bilateral → spironolactone</td></tr>
+        <tr><td><strong>Renovascular HTN</strong></td><td>Renal bruit, young woman (FMD) or older smoker (atherosclerotic), Cr worsens on ACEi</td><td>Renal artery duplex US → CT/MR angiography</td><td>FMD → balloon angioplasty; Atherosclerotic → optimize medically</td></tr>
+        <tr><td><strong>Pheochromocytoma</strong></td><td>Episodic HTN, classic triad: headache + diaphoresis + palpitations (paroxysmal "spells")</td><td>24h urine metanephrines or plasma free metanephrines</td><td>Alpha-blocker FIRST (phenoxybenzamine) → then beta-blocker → then surgery</td></tr>
+        <tr><td><strong>Cushing syndrome</strong></td><td>Central obesity, moon face, buffalo hump, purple striae, DM, osteoporosis</td><td>24h urine free cortisol or 1mg overnight DST</td><td>Depends on etiology (pituitary vs adrenal vs ectopic ACTH)</td></tr>
+        <tr><td><strong>Obstructive sleep apnea</strong></td><td>Obese, snoring, daytime somnolence, morning headache, resistant HTN</td><td>Polysomnography (sleep study)</td><td>CPAP → improves BP control</td></tr>
+        <tr><td><strong>Coarctation of aorta</strong></td><td>Young patient, arm BP &gt; leg BP, rib notching on CXR, radio-femoral delay</td><td>Echo or CT angiography</td><td>Surgical or endovascular repair</td></tr>
+      </tbody>
+    </table>
+    <div class="pearl-box">
+      <div class="pearl-label">High-yield EOR pearls — HTN</div>
+      <div class="pearl-item">Primary HTN first-line: thiazide diuretic, ACEi/ARB, or long-acting CCB. Target &lt;130/80 for most patients (ACC 2017 guidelines)</div>
+      <div class="pearl-item">ACEi + ARB together = avoid (dual RAAS blockade → AKI + hyperkalemia)</div>
+      <div class="pearl-item">HTN in pregnancy: safe = labetalol, hydralazine, nifedipine. AVOID ACEi/ARB (teratogenic)</div>
+      <div class="pearl-item">Pheo: ALWAYS alpha-block BEFORE beta-block. Beta-blocker alone → unopposed alpha stimulation = hypertensive crisis</div>
+      <div class="pearl-item">Aortic dissection: IV labetalol first (reduces both HR and BP), goal HR &lt;60, SBP &lt;120. Rate of shear force reduction is key</div>
+    </div>
+  `
+},
+"Arrhythmias":{
+  title:"Arrhythmias — rate, rhythm, and intervention decisions",
+  sub:"Pattern recognition on the ECG description + the correct immediate management step.",
+  render:()=>`
+    <div class="sec-head">Supraventricular arrhythmias</div>
+    <div class="grid g3">
+      <div class="card blue">
+        <div class="cname">Atrial Fibrillation</div><div class="ctag tag-blue">Most common sustained arrhythmia</div>
+        ${R("ECG","<strong>Irregularly irregular</strong> rhythm","Absent P waves","Fibrillatory baseline (~350–600 bpm atrial rate)","Variable ventricular rate")}
+        ${R("Rate control","Beta-blocker (metoprolol, carvedilol)","Non-DHP CCB (diltiazem, verapamil)","Goal: resting HR &lt;80 bpm")}
+        ${R("Anticoag","CHA₂DS₂-VASc ≥2 men / ≥3 women → anticoagulate","DOAC preferred over warfarin","DOAC NOT used if mechanical valve or APLS → warfarin")}
+        ${R("Cardioversion","&lt;48h onset + hemodynamically stable → may cardiovert","&gt;48h → anticoagulate ≥3 weeks first","OR TEE to rule out LA thrombus before cardioverting")}
+      </div>
+      <div class="card teal">
+        <div class="cname">Atrial Flutter</div><div class="ctag tag-teal">Organized atrial re-entry</div>
+        ${R("ECG","<strong>Regular sawtooth</strong> pattern in II, III, aVF","Atrial rate ~300 bpm","2:1 block → ventricular rate 150","4:1 block → ventricular rate 75")}
+        ${R("Key point","Rate of exactly <strong>150 bpm</strong> → always think flutter with 2:1 block","Carotid massage reveals flutter waves by slowing conduction")}
+        ${R("Tx","Same anticoagulation rules as afib","Cardioversion preferred over rate control","Catheter ablation is highly effective (90%+ cure)")}
+      </div>
+      <div class="card purple">
+        <div class="cname">SVT (AVNRT / AVRT)</div><div class="ctag tag-purple">Narrow complex, regular</div>
+        ${R("ECG","Regular, narrow-complex tachycardia","Rate 150–250 bpm","Retrograde P waves buried in or just after QRS","Pseudo-R' in V1 or pseudo-S in inferior leads")}
+        ${R("Acute Tx","Vagal maneuvers first (Valsalva, carotid massage)","Adenosine 6mg IV rapid push → 12mg if no response","Synchronized cardioversion if refractory or unstable")}
+        ${R("WPW","Delta wave (slurred QRS upstroke) + short PR interval","WPW + afib: <strong>AVOID adenosine, digoxin, CCB</strong>","Use procainamide or cardiovert instead")}
+      </div>
+    </div>
+    <div class="sec-head">Ventricular arrhythmias</div>
+    <div class="grid g3">
+      <div class="card amber">
+        <div class="cname">Stable VT</div><div class="ctag tag-amber">Wide complex, hemodynamically stable</div>
+        ${R("ECG","Wide complex (&gt;120ms), regular","Rate 100–250 bpm","AV dissociation (P waves independent of QRS)","Fusion beats and capture beats (pathognomonic)")}
+        ${R("Rule","Wide complex + regular = <strong>VT until proven otherwise</strong>","Especially true in post-MI patients")}
+        ${R("Tx","IV amiodarone (first-line) or procainamide","Synchronized cardioversion if refractory")}
+      </div>
+      <div class="card red">
+        <div class="cname">Unstable VT / VF</div><div class="ctag tag-red">Hemodynamic emergency</div>
+        ${R("Unstable signs","Hypotension","Altered consciousness / syncope","Chest pain or shock")}
+        ${R("Tx","<strong>Unsynchronized defibrillation immediately</strong>","Pulseless VT/VF = ACLS → CPR + shock","Synchronized cardioversion if pulse is present")}
+      </div>
+      <div class="card pink">
+        <div class="cname">Torsades de Pointes</div><div class="ctag tag-pink">Polymorphic VT</div>
+        ${R("ECG","QRS twisting around baseline","Prolonged QTc (&gt;500ms)","Varying QRS amplitude")}
+        ${R("Causes","Antipsychotics (haloperidol, quetiapine)","Macrolide antibiotics (azithromycin)","Fluoroquinolones","Class IA/III antiarrhythmics (sotalol, quinidine)","Hypokalemia, hypomagnesemia","Congenital long QT syndrome")}
+        ${R("Tx","<strong>IV magnesium sulfate 2g</strong> (even if Mg is normal)","Correct electrolytes (K+, Mg2+)","Overdrive pacing or isoproterenol to shorten QT","Remove the offending drug")}
+      </div>
+    </div>
+    <div class="sec-head">AV conduction blocks</div>
+    <table class="compare-table">
+      <thead><tr><th>Block</th><th>PR interval</th><th>QRS dropped?</th><th>Pattern</th><th>Treatment</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1st degree</strong></td><td>Prolonged (&gt;200ms), constant</td><td>Never</td><td>Every P wave conducts</td><td>None — benign, no treatment needed</td></tr>
+        <tr><td><strong>2nd degree Mobitz I (Wenckebach)</strong></td><td>Progressively lengthens each beat</td><td>Yes — after longest PR</td><td>Group beating pattern</td><td>Usually benign; atropine if symptomatic</td></tr>
+        <tr><td><strong>2nd degree Mobitz II</strong></td><td>Constant PR before dropped beat</td><td>Yes — suddenly, without warning</td><td>Fixed ratio (2:1, 3:1)</td><td class="warn">Pacemaker — high risk of progressing to complete block</td></tr>
+        <tr><td><strong>3rd degree (complete)</strong></td><td>No relationship between P and QRS</td><td>Complete AV dissociation</td><td>P rate &gt; QRS rate; escape rhythm</td><td class="warn">Emergency pacemaker (temporary then permanent)</td></tr>
+        <tr><td><strong>New LBBB + chest pain</strong></td><td>—</td><td>—</td><td>Broad QRS, notched R in I/V5/V6</td><td class="warn">STEMI equivalent → activate cath lab immediately</td></tr>
+      </tbody>
+    </table>
+    <div class="pearl-box">
+      <div class="pearl-label">High-yield EOR pearls — Arrhythmias</div>
+      <div class="pearl-item">CHA₂DS₂-VASc: CHF(1), HTN(1), Age≥75(2), DM(1), Stroke/TIA(2), Vascular disease(1), Age 65–74(1), Sex category female(1)</div>
+      <div class="pearl-item">Adenosine terminates re-entrant SVT. Will NOT convert afib or flutter (but reveals flutter waves). Contraindicated in WPW + afib</div>
+      <div class="pearl-item">Unstable = any arrhythmia causing hemodynamic compromise → cardiovert/defibrillate first, diagnose after</div>
+      <div class="pearl-item">Mobitz II and 3rd degree blocks require pacemaker. Mobitz I (Wenckebach) is usually benign — especially inferior MI (vagal tone) and athletes</div>
+    </div>
+  `
+},
+"Valvular":{
+  title:"Valvular heart disease — murmur differentiation",
+  sub:"Every valve question: timing (systolic/diastolic), location, radiation, and what maneuvers do to the murmur.",
+  render:()=>`
+    <div class="sec-head">Systolic murmurs</div>
+    <div class="grid g3">
+      <div class="card red">
+        <div class="cname">Aortic Stenosis</div><div class="ctag tag-red">Systolic ejection murmur</div>
+        ${R("Murmur","Harsh crescendo-decrescendo","Location: <strong>RUSB</strong> (right upper sternal border)","Radiates to <strong>carotids</strong>")}
+        ${R("Classic triad","<strong>Syncope</strong> with exertion","<strong>Angina</strong>","<strong>Dyspnea</strong> (SAD) — each symptom = 2–5yr survival without repair")}
+        ${R("Exam","Pulsus parvus et tardus (weak, late-peaking carotid pulse)","Displaced PMI","S4 gallop")}
+        ${R("Severe AS","AVA &lt;1 cm²","Mean gradient &gt;40 mmHg","Peak velocity &gt;4 m/s")}
+        ${R("Tx","Symptomatic severe → surgical AVR or TAVR","No effective medical therapy to delay surgery")}
+      </div>
+      <div class="card coral">
+        <div class="cname">Mitral Regurgitation</div><div class="ctag tag-coral">Holosystolic murmur</div>
+        ${R("Murmur","Holosystolic (pansystolic)","Blowing quality","Location: <strong>apex</strong>","Radiates to <strong>axilla</strong>")}
+        ${R("Causes","Mitral valve prolapse (most common in US)","Rheumatic fever","Ischemic (papillary muscle rupture post-MI)","Infective endocarditis","Dilated cardiomyopathy (annular dilation)")}
+        ${R("Exam","Displaced PMI (volume overloaded LV)","S3 gallop","LA enlargement → afib risk")}
+        ${R("Tx","Symptomatic + EF&lt;60% or ESD&gt;40mm → surgical repair (preferred) or replacement")}
+      </div>
+      <div class="card purple">
+        <div class="cname">HCM (Obstructive)</div><div class="ctag tag-purple">Dynamic LVOT obstruction</div>
+        ${R("Murmur","Harsh systolic murmur","Location: <strong>LLSB</strong>","Does NOT radiate to carotids (unlike AS)")}
+        ${R("Dynamic changes","<strong>LOUDER</strong> with Valsalva or standing (↓ LV preload = more obstruction)","<strong>SOFTER</strong> with squatting or passive leg raise (↑ preload)")}
+        ${R("vs AS","AS does NOT change significantly with these maneuvers","This dynamic behavior is the key differentiator")}
+        ${R("Tx","Beta-blocker or verapamil (first-line)","ICD if high-risk for SCD","Avoid: vasodilators, diuretics, vigorous exercise, dehydration")}
+      </div>
+    </div>
+    <div class="sec-head">Diastolic murmurs (always abnormal)</div>
+    <div class="grid g2">
+      <div class="card blue">
+        <div class="cname">Aortic Regurgitation</div><div class="ctag tag-blue">Diastolic decrescendo</div>
+        ${R("Murmur","High-pitched, blowing, decrescendo","Location: <strong>LLSB</strong>","Best heard: leaning forward, end-expiration")}
+        ${R("Classic signs","Wide pulse pressure","Bounding Corrigan's pulse","de Musset sign (head bobbing)","Quincke's pulse (nail bed pulsations)","Duroziez sign (femoral bruit)")}
+        ${R("Austin Flint","Low-pitched diastolic rumble at apex","AR jet striking anterior mitral leaflet — mimics MS")}
+        ${R("Tx","Symptomatic or EF&lt;50% or ESD&gt;50mm → surgical AVR")}
+      </div>
+      <div class="card teal">
+        <div class="cname">Mitral Stenosis</div><div class="ctag tag-teal">Diastolic rumble</div>
+        ${R("Murmur","Low-pitched diastolic rumble","Location: <strong>apex</strong>","Best heard: left lateral decubitus position, bell of stethoscope","Preceded by an <strong>opening snap</strong>")}
+        ${R("Opening snap","Closer OS to S2 = higher LA pressure = <strong>more severe</strong> stenosis","Longer diastolic rumble = more severe")}
+        ${R("Cause","Almost always <strong>rheumatic fever</strong>","LA enlargement → afib, hoarseness (Ortner's), dysphagia")}
+        ${R("Tx","Diuretics for symptoms","Anticoagulation if afib","Percutaneous balloon valvuloplasty if MVA &lt;1.5 cm² and valve is pliable/non-calcified")}
+      </div>
+    </div>
+    <div class="grid g2">
+      <div class="card pink">
+        <div class="cname">Mitral Valve Prolapse</div><div class="ctag tag-pink">Midsystolic click</div>
+        ${R("Murmur","Midsystolic click","Followed by late systolic murmur","Associated: Marfan syndrome, connective tissue disorders, young women")}
+        ${R("Click timing","<strong>Smaller LV → click earlier in systole</strong>","Standing or Valsalva (↓ LV volume) → click moves earlier","Squatting or supine (↑ LV volume) → click moves later")}
+        ${R("vs HCM","MVP: click timing changes with maneuvers","HCM: murmur intensity changes with maneuvers","Different mechanisms — both tested together")}
+        ${R("Tx","Usually benign","Beta-blocker for palpitations","Surgery if severe MR develops")}
+      </div>
+      <div class="card gray">
+        <div class="cname">Maneuver cheat sheet</div><div class="ctag tag-gray">All murmurs</div>
+        ${R("Valsalva / Stand","Decreases most murmurs (↓ preload)","<strong>EXCEPTIONS:</strong> HCM gets louder, MVP click moves earlier")}
+        ${R("Squat / Lie","Increases most murmurs (↑ preload)","HCM gets softer","MVP click moves later")}
+        ${R("Inspiration","Increases <strong>right-sided</strong> murmurs","TR, PR, TS, PS — Carvallo's sign")}
+        ${R("Expiration","Increases <strong>left-sided</strong> murmurs","MR, AS, AR, MS")}
+      </div>
+    </div>
+    <div class="pearl-box">
+      <div class="pearl-label">High-yield EOR pearls — Valvular disease</div>
+      <div class="pearl-item">All diastolic murmurs = pathological. Holosystolic = always pathological (MR, TR, VSD). Early systolic murmur in young patient = often benign flow murmur</div>
+      <div class="pearl-item">MS severity: closer OS to S2 = more severe. Longer diastolic rumble = more severe (more time for flow through narrowed valve)</div>
+      <div class="pearl-item">Endocarditis prophylaxis (dental procedures): prosthetic valves, prior IE, unrepaired congenital HD, cardiac transplant with valvulopathy — NOT MVP alone</div>
+      <div class="pearl-item">Bicuspid aortic valve: most common congenital HD. Associated with AS, AR, and aortic dilation/dissection. Screen aorta with echo</div>
+    </div>
+  `
+},
+"Cardiomyopathy":{
+  title:"Cardiomyopathies — dilated vs hypertrophic vs restrictive",
+  sub:"Think structurally: big and floppy (DCM), thick and obstructed (HCM), stiff and non-compliant (RCM).",
+  render:()=>`
+    <div class="grid g3">
+      <div class="card blue">
+        <div class="cname">Dilated Cardiomyopathy</div><div class="ctag tag-blue">Big, floppy heart</div>
+        ${R("Echo","Dilated all four chambers","<strong>EF &lt;40%</strong>","Global hypokinesis","Thin walls")}
+        ${R("Causes (ABCDE)","<strong>A</strong>lcohol","<strong>B</strong>abies (peripartum cardiomyopathy)","<strong>C</strong>hagas disease / Coxsackie B myocarditis","<strong>D</strong>oxorubicin (chemotherapy)","<strong>E</strong>verything else: idiopathic, hemochromatosis, thyroid disease, cocaine")}
+        ${R("Presentation","HFrEF symptoms: dyspnea, orthopnea, edema","S3 gallop","MR murmur from annular dilation")}
+        ${R("Tx","HFrEF GDMT: ACEi + BB + MRA + SGLT2i","ICD if EF&lt;35% after 3 months GDMT","Treat underlying cause (stop alcohol, iron chelation, etc.)")}
+      </div>
+      <div class="card amber">
+        <div class="cname">Hypertrophic Cardiomyopathy</div><div class="ctag tag-amber">Thick, obstructed heart</div>
+        ${R("Echo","<strong>Asymmetric septal hypertrophy</strong> (septum &gt;1.3x posterior wall)","LVOT obstruction","SAM (systolic anterior motion of mitral valve)","<strong>Preserved or hyperdynamic EF</strong>")}
+        ${R("Genetics","Autosomal dominant (sarcomere protein mutations)","Myosin heavy chain, troponin T most common","Family history of sudden cardiac death")}
+        ${R("Murmur","Harsh systolic at LLSB","Louder with Valsalva/standing","Softer with squatting/passive leg raise")}
+        ${R("SCD risk","#1 cause of SCD in young athletes","ICD indications: prior SCD or syncope, massive hypertrophy &gt;30mm, NSVT, family SCD history, hypotensive exercise response")}
+        ${R("Tx","Beta-blocker or verapamil (first-line)","Avoid: vasodilators, diuretics, dehydration, vigorous exercise","Septal myectomy or alcohol ablation if refractory")}
+      </div>
+      <div class="card purple">
+        <div class="cname">Restrictive Cardiomyopathy</div><div class="ctag tag-purple">Stiff, non-compliant heart</div>
+        ${R("Echo","Normal or slightly thickened walls","<strong>Preserved EF</strong>","Severely impaired diastolic filling","Bilateral atrial enlargement","Markedly elevated filling pressures")}
+        ${R("Causes","<strong>Amyloidosis</strong> (#1) — sparkling echo appearance","Sarcoidosis","Hemochromatosis","Post-radiation fibrosis","Loeffler endocarditis","Fabry disease")}
+        ${R("Amyloid clue","Thickened walls on echo + <strong>low voltage on ECG</strong> (classic discrepancy)","Nephrotic range proteinuria (AL type)","Carpal tunnel syndrome","Macroglossia","Periorbital purpura")}
+        ${R("vs Constrictive","Restrictive = <strong>myocardium</strong> problem (stiff muscle)","Constrictive = <strong>pericardium</strong> problem (thickened/scarred)","Kussmaul sign, pericardial knock, septal bounce on echo → all point to constrictive")}
+        ${R("Tx","Treat underlying cause","Careful diuresis","Cardiac transplant for end-stage disease")}
+      </div>
+    </div>
+    <div class="sec-head">Restrictive CM vs Constrictive Pericarditis — the hard differentiator</div>
+    <table class="compare-table">
+      <thead><tr><th>Feature</th><th>Restrictive CM</th><th>Constrictive Pericarditis</th></tr></thead>
+      <tbody>
+        <tr><td>Problem location</td><td>Stiff myocardium</td><td>Thickened/scarred/calcified pericardium</td></tr>
+        <tr><td>Pericardium on CT/MRI</td><td>Normal</td><td class="highlight">Thickened ≥4mm (pathognomonic)</td></tr>
+        <tr><td>Kussmaul sign (JVD rises on inspiration)</td><td>Absent or variable</td><td class="highlight">Present — pathognomonic</td></tr>
+        <tr><td>Pericardial knock</td><td>Absent</td><td class="highlight">Present (early, sharp S3-like sound)</td></tr>
+        <tr><td>Septal bounce on echo</td><td>Absent</td><td class="highlight">Present</td></tr>
+        <tr><td>Low ECG voltage</td><td class="highlight">Present in amyloidosis</td><td>Absent</td></tr>
+        <tr><td>Pericardial calcification on CXR</td><td>Absent</td><td class="highlight">May be present (especially TB)</td></tr>
+        <tr><td>Treatment</td><td>Treat cause + careful diuretics</td><td class="highlight">Pericardiectomy (definitive surgical cure)</td></tr>
+      </tbody>
+    </table>
+    <div class="pearl-box">
+      <div class="pearl-label">High-yield EOR pearls — Cardiomyopathy</div>
+      <div class="pearl-item">Peripartum CM: last month of pregnancy to 5 months postpartum. EF &lt;45%. Standard HFrEF treatment. Avoid ACEi during pregnancy → use hydralazine + nitrate instead</div>
+      <div class="pearl-item">HCM: do NOT give digoxin, nitrates, or diuretics (↓ preload → worse LVOT obstruction). Do NOT give vasodilators</div>
+      <div class="pearl-item">Amyloid triple: Thick echo walls + Low ECG voltage + Nephrotic proteinuria = systemic AL amyloidosis. Also: carpal tunnel, macroglossia, periorbital purpura</div>
+      <div class="pearl-item">Hemochromatosis: restrictive CM + bronze diabetes + liver cirrhosis + arthropathy + hypogonadism. Tx: phlebotomy (iron removal)</div>
+    </div>
+  `
+},
+"Pericardial":{
+  title:"Pericardial disease — pericarditis, effusion, tamponade, constrictive",
+  sub:"Each condition has a signature physical finding or ECG pattern. Master those and you'll nail every vignette.",
+  render:()=>`
+    <div class="grid g2">
+      <div class="card blue">
+        <div class="cname">Pericarditis</div><div class="ctag tag-blue">Pericardial inflammation</div>
+        ${R("Pain","<strong>Pleuritic, sharp chest pain</strong>","Worse when supine","<strong>Better leaning forward</strong> (prayer position)","Worse with deep inspiration")}
+        ${R("Exam","<strong>Pericardial friction rub</strong>","Scratchy, 3-component, leathery sound","Best at LLSB, leaning forward, end-expiration")}
+        ${R("ECG","<strong>Diffuse ST elevation</strong> — all leads, concave (saddle-shaped)","<strong>PR depression</strong> in most leads (most specific finding)","No reciprocal changes (except aVR: PR elevation + ST depression)")}
+        ${R("Causes","Viral (#1) — Coxsackie B, parvovirus, echovirus","Uremia","Post-MI (Dressler syndrome — weeks later)","Autoimmune (lupus, RA)","Malignancy","TB (especially worldwide)")}
+        ${R("Tx","<strong>NSAIDs</strong> (ibuprofen or indomethacin)","<strong>Colchicine</strong> (reduces recurrence ~50%)","Restrict exercise until asymptomatic","Steroids only if refractory — avoid broadly (↑ recurrence)")}
+      </div>
+      <div class="card red">
+        <div class="cname">Cardiac Tamponade</div><div class="ctag tag-red">Pericardial emergency</div>
+        ${R("Beck's triad","<strong>Hypotension</strong>","<strong>Muffled (distant) heart sounds</strong>","<strong>JVD</strong> (elevated venous pressure)")}
+        ${R("Pulsus paradoxus","<strong>&gt;10 mmHg drop in SBP during inspiration</strong>","Pathognomonic for tamponade","Measure with sphygmomanometer during quiet breathing")}
+        ${R("ECG","<strong>Electrical alternans</strong> (alternating QRS amplitude — heart swinging in fluid)","Sinus tachycardia","Low voltage throughout")}
+        ${R("Echo","<strong>RV diastolic collapse</strong> — most specific finding","RA systolic collapse also seen","Pericardial effusion present")}
+        ${R("Tx","<strong>Pericardiocentesis immediately</strong> — do not delay","Do NOT give diuretics (will worsen)","IV fluids as temporizing measure","Patient should lean forward")}
+      </div>
+    </div>
+    <div class="grid g2">
+      <div class="card teal">
+        <div class="cname">Pericardial Effusion</div><div class="ctag tag-teal">Fluid in pericardial space</div>
+        ${R("Key concept","Rate of accumulation &gt; total volume in determining tamponade","Rapid 150 mL accumulation → tamponade","Slow 2L accumulation → no tamponade (pericardium stretches)")}
+        ${R("Large effusion","CXR: enlarged cardiac silhouette (\"water bottle\" heart)","Echo: anechoic fluid around heart")}
+        ${R("Tx","Treat underlying cause","Drain if causing tamponade, or if large and symptomatic")}
+      </div>
+      <div class="card purple">
+        <div class="cname">Constrictive Pericarditis</div><div class="ctag tag-purple">Scarred, rigid pericardium</div>
+        ${R("Causes","Prior pericarditis (any cause)","TB (#1 worldwide)","Prior cardiac surgery","Chest radiation","Uremia")}
+        ${R("Signs","<strong>Kussmaul sign</strong> — JVD rises (rather than falls) on inspiration","<strong>Pericardial knock</strong> — early, sharp S3-like sound","Severe right-sided congestion: ascites, edema, hepatomegaly")}
+        ${R("Imaging","Pericardial calcification on CXR or CT","Pericardial thickening ≥4mm on CT/MRI","Septal bounce + IVC plethora on echo")}
+        ${R("Tx","<strong>Pericardiectomy</strong> (surgical stripping) — definitive cure","Diuretics for symptom relief only")}
+      </div>
+    </div>
+    <div class="diff-box">
+      <div class="diff-label">Pericarditis ECG vs STEMI — the critical distinction</div>
+      <div class="diff-item">Pericarditis: <strong>diffuse ST elevation</strong> in all leads with <strong>PR depression</strong> and concave (saddle-shaped) morphology — no reciprocal changes except aVR</div>
+      <div class="diff-item">STEMI: <strong>localized</strong> ST elevation in a vascular territory + <strong>reciprocal ST depression</strong> in opposite leads + convex (tombstone) morphology</div>
+      <div class="diff-item">Pericarditis pain: positional (better leaning forward), pleuritic, friction rub on exam, often preceded by viral illness</div>
+      <div class="diff-item">STEMI pain: crushing/pressure, diaphoretic, not positional, no friction rub, risk factors for CAD</div>
+    </div>
+    <div class="pearl-box">
+      <div class="pearl-label">High-yield EOR pearls — Pericardial disease</div>
+      <div class="pearl-item">Dressler syndrome: autoimmune pericarditis 2–10 weeks post-MI or cardiac surgery. Fever + pericarditic pain + elevated ESR/CRP. Treat with NSAIDs + colchicine</div>
+      <div class="pearl-item">Uremic pericarditis: treat with dialysis (NOT NSAIDs). Effusion is often bloody. Unique presentation</div>
+      <div class="pearl-item">Pulsus paradoxus also seen in severe asthma/COPD — distinguish by absence of JVD and muffled heart sounds in those conditions</div>
+      <div class="pearl-item">Colchicine reduces pericarditis recurrence from ~30% to ~15% — always add to NSAIDs on the first episode</div>
+    </div>
+  `
+},
+"Vascular":{
+  title:"Vascular disease, aorta, and PE",
+  sub:"Three distinct presentations, each with a signature vignette setup and one specific management step that separates the answer.",
+  render:()=>`
+    <div class="grid g3">
+      <div class="card blue">
+        <div class="cname">Peripheral Artery Disease</div><div class="ctag tag-blue">Arterial insufficiency</div>
+        ${R("Classic Sx","<strong>Intermittent claudication</strong>","Reproducible calf pain/cramping with exertion","Relieved by rest within minutes (not just stopping)")}
+        ${R("Exam","Diminished or absent distal pulses","Cool extremity","Shiny, hairless skin","Pallor on elevation, rubor on dependency","Prolonged capillary refill")}
+        ${R("ABI","0.9–1.3 = normal","<strong>&lt;0.9 = PAD</strong>","0.4–0.9 = moderate claudication","&lt;0.4 = critical limb ischemia (rest pain, ulcers, gangrene)")}
+        ${R("Tx","Smoking cessation (most important)","Supervised walking exercise program","Aspirin + statin + ACEi","<strong>Cilostazol</strong> for claudication symptoms — avoid if HF")}
+      </div>
+      <div class="card amber">
+        <div class="cname">Aortic Aneurysm (AAA)</div><div class="ctag tag-amber">Aortic dilation</div>
+        ${R("Repair threshold","<strong>≥5.5 cm in men</strong> (≥5.0 cm in women)","Rapidly expanding &gt;0.5 cm per 6 months","Symptomatic at any size")}
+        ${R("Surveillance","3.0–3.9 cm: repeat ultrasound every 3 years","4.0–4.9 cm: every 12 months","5.0–5.4 cm: every 6 months")}
+        ${R("Rupture triad","Sudden severe back or flank pain","Hypotension","Pulsatile abdominal mass → emergent surgery")}
+        ${R("Screening","One-time abdominal ultrasound","Males aged 65–75 who ever smoked (≥100 cigarettes lifetime)")}
+      </div>
+      <div class="card red">
+        <div class="cname">Aortic Dissection</div><div class="ctag tag-red">Aortic emergency</div>
+        ${R("Classic Sx","<strong>Sudden tearing or ripping chest pain</strong>","Radiates to the back","<strong>Maximum severity at onset</strong> (unlike STEMI which builds)")}
+        ${R("Exam","BP differential between arms <strong>&gt;20 mmHg</strong>","Widened mediastinum on CXR","Pulse deficits in distal extremities")}
+        ${R("Type A vs B","<strong>Type A</strong> (ascending aorta involved) → <strong>emergency surgery</strong>","<strong>Type B</strong> (descending only) → <strong>medical management</strong>")}
+        ${R("Medical Tx","IV <strong>labetalol first</strong> (reduces both HR and BP simultaneously)","Goal: HR &lt;60 bpm, SBP 100–120 mmHg","Add nitroprusside only AFTER beta-blocker is on board")}
+        ${R("Critical avoid","<strong>NEVER thrombolytics</strong> — if dissection suspected, hold heparin and lytics even if looks like STEMI")}
+      </div>
+    </div>
+    <div class="grid g2">
+      <div class="card teal">
+        <div class="cname">DVT</div><div class="ctag tag-teal">Venous thrombosis</div>
+        ${R("Classic Sx","Unilateral leg swelling","Redness and warmth","Tenderness along venous distribution")}
+        ${R("Risk factors (Virchow's)","<strong>Stasis:</strong> immobility, prolonged travel, pregnancy","<strong>Endothelial injury:</strong> surgery, trauma, catheter","<strong>Hypercoagulability:</strong> malignancy, factor V Leiden, OCP, antiphospholipid syndrome")}
+        ${R("Dx","Compression ultrasound (first-line)","D-dimer: useful to rule OUT if low pre-test probability","CT venography if US inconclusive")}
+        ${R("Tx","DOAC preferred (rivaroxaban, apixaban)","Warfarin if APLS or mechanical valve","Duration: provoked → 3 months; unprovoked → 6+ months; malignancy / recurrent → indefinite")}
+      </div>
+      <div class="card coral">
+        <div class="cname">Pulmonary Embolism</div><div class="ctag tag-coral">DVT complication</div>
+        ${R("Classic Sx","Pleuritic chest pain","Dyspnea (most common)","Tachycardia","Hypoxia","DVT symptoms present in ~50%")}
+        ${R("ECG","Sinus tachycardia (#1 finding)","Classic: <strong>S1Q3T3</strong> (deep S in I, Q wave + T inversion in III)","RBBB pattern","New afib")}
+        ${R("Dx","<strong>CT pulmonary angiography (CTPA)</strong> = gold standard","V/Q scan if contrast allergy or renal failure","Echo: RV dilation, McConnell sign (RV free wall hypokinesis, preserved apex)")}
+        ${R("Tx","Hemodynamically stable → DOAC anticoagulation","Massive PE + shock → <strong>systemic tPA</strong>","Or catheter-directed thrombolysis or surgical embolectomy")}
+      </div>
+    </div>
+    <div class="sec-head">Leg pain differentiation</div>
+    <table class="compare-table">
+      <thead><tr><th>Feature</th><th>PAD</th><th>DVT</th><th>Venous insufficiency</th><th>Neurogenic claudication (spinal stenosis)</th></tr></thead>
+      <tbody>
+        <tr><td>Pain character</td><td>Cramping with exertion</td><td>Aching, constant</td><td>Heaviness, worse at end of day</td><td>Radicular, cramping with walking</td></tr>
+        <tr><td>Relief</td><td>Rest (minutes)</td><td>Not relieved by rest or elevation</td><td>Elevation of legs</td><td>Flexion/sitting — NOT just rest alone</td></tr>
+        <tr><td>Swelling</td><td>Absent</td><td>Unilateral, acute onset</td><td>Bilateral, chronic</td><td>Absent</td></tr>
+        <tr><td>Pulses</td><td class="warn">Diminished or absent</td><td>Normal</td><td>Normal or bounding</td><td>Normal</td></tr>
+        <tr><td>Skin changes</td><td>Shiny, hairless, cool, atrophic</td><td>Warm, red (acute phase)</td><td>Stasis dermatitis, medial ankle ulcers</td><td>Normal</td></tr>
+        <tr><td>ABI</td><td class="warn">Low (&lt;0.9)</td><td>Normal</td><td>Normal</td><td>Normal</td></tr>
+      </tbody>
+    </table>
+    <div class="pearl-box">
+      <div class="pearl-label">High-yield EOR pearls — Vascular</div>
+      <div class="pearl-item">Dissection vs STEMI: both cause chest pain. Dissection = tearing, maximal at onset, back radiation, arm BP difference, normal troponin initially. STEMI = pressure/crushing, builds over minutes, troponin rises. Suspected dissection → hold lytics and heparin</div>
+      <div class="pearl-item">Massive PE = hemodynamic instability → systemic tPA. Sub-massive = RV strain but hemodynamically stable → anticoagulation ± catheter-directed therapy</div>
+      <div class="pearl-item">Wells criteria for PE: clinical signs DVT(3), alt diagnosis less likely(3), HR&gt;100(1.5), immobilization/surgery(1.5), prior DVT/PE(1.5), hemoptysis(1), malignancy(1). &gt;4 = high probability → go straight to CTPA</div>
+      <div class="pearl-item">Cilostazol (PDE3 inhibitor): improves claudication in PAD — contraindicated in HF because PDE3 inhibitors increase mortality in heart failure</div>
+    </div>
+  `
+}
+};
+
+const CATS_LIST = Object.keys(SECTIONS);
+let currentCat = CATS_LIST[0];
+
+function renderCats(){
+  document.getElementById('cats').innerHTML = CATS_LIST.map(c=>`<button class="cat-btn${c===currentCat?' active':''}" onclick="showCat('${c}')">${c}</button>`).join('');
+}
+
+function showCat(cat){
+  currentCat = cat;
+  renderCats();
+  const s = SECTIONS[cat];
+  document.getElementById('content').innerHTML = `
+    <div class="section-title">${s.title}</div>
+    <div class="section-sub">${s.sub}</div>
+    ${s.render()}
+  `;
+  window.scrollTo(0,0);
+}
+
+renderCats();
+showCat(currentCat);
+</script>
+</body>
+</html>

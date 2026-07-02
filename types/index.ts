@@ -115,6 +115,8 @@ export interface PhysicalExamFinding {
   conditionName?: string;
   /** Finding name (seed data format) */
   findingName?: string;
+  /** Generic name field used by some rotations */
+  name?: string;
   rotation?: RotationSlug;
   rotationSlug?: RotationSlug;
   category?: string;

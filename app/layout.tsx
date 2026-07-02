@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Lora } from "next/font/google";
+import { Plus_Jakarta_Sans, Lora } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { InactivityWatcher } from "@/components/auth/inactivity-watcher";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
 const lora = Lora({
   subsets: ["latin"],
   variable: "--font-lora",
@@ -13,8 +18,8 @@ const lora = Lora({
 
 export const metadata: Metadata = {
   title: {
-    default: "ClinicalYear — PA Student Rotation Companion",
-    template: "%s | ClinicalYear",
+    default: "ClinPAS — Clinical Year Resource",
+    template: "%s | ClinPAS",
   },
   description:
     "HIPAA-compliant clinical rotation companion for PA students. Diagnostic criteria, pharmacology, SOAP charting, case logs, and study tools for all ARC-PA rotations.",
@@ -36,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${lora.variable} font-sans antialiased`}>
+      <body className={`${plusJakartaSans.variable} ${lora.variable} font-sans antialiased`}>
         <InactivityWatcher />
         {children}
         <Toaster />

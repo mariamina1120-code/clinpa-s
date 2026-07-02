@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { LoginForm } from "@/components/auth/login-form";
 import Link from "next/link";
-import { ShieldCheck } from "lucide-react";
+import { ClinPASLockup } from "@/components/brand/logo";
 
 export const metadata: Metadata = { title: "Sign In" };
 
@@ -15,11 +15,10 @@ export default function LoginPage({
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-2">
-            <ShieldCheck className="h-8 w-8 text-teal-600" />
-            <span className="text-2xl font-bold text-teal-700 dark:text-teal-400">ClinicalYear</span>
+          <Link href="/" className="inline-flex justify-center mb-2">
+            <ClinPASLockup size={36} tone="light" />
           </Link>
-          <p className="text-sm text-muted-foreground">PA Student Rotation Companion</p>
+          <p className="text-sm text-muted-foreground mt-2">PA Student Rotation Companion</p>
         </div>
 
         {/* Inactivity warning */}

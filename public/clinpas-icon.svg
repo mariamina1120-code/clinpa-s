@@ -1,0 +1,52 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ClinPAS icon">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#1e3a5f"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="34%" cy="27%" r="58%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ── Background ── -->
+  <circle cx="100" cy="100" r="98" fill="url(#bgGrad)"/>
+  <circle cx="100" cy="100" r="98" fill="url(#shine)"/>
+  <circle cx="100" cy="100" r="91" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
+  <circle cx="100" cy="100" r="83" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+  <!-- ══════════════════════════════════════════
+       Rod of Asclepius
+       Drawn in three z-order layers to create
+       the snake-wrapping-around-staff illusion.
+       ══════════════════════════════════════════ -->
+
+  <!-- LAYER 1 — Full snake body (sits below the staff) -->
+  <path d="M 103,160 C 138,150 138,115 100,108
+           C 62,101 62,72 100,65
+           C 136,58 136,46 110,43"
+        fill="none" stroke="white" stroke-width="7"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- LAYER 2 — Staff (covers the snake's "behind" crossing near y≈108–120) -->
+  <line x1="100" y1="47" x2="100" y2="163"
+        stroke="white" stroke-width="9" stroke-linecap="round"/>
+  <!-- Staff highlight stripe (suggests cylindrical depth) -->
+  <line x1="96.5" y1="50" x2="96.5" y2="160"
+        stroke="rgba(255,255,255,0.28)" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- LAYER 3 — Snake front portions (redrawn above the staff)
+       Covers: left bulge, front-crossing back, second right arc to head -->
+  <path d="M 100,108 C 62,101 62,72 100,65
+           C 136,58 136,46 110,43"
+        fill="none" stroke="white" stroke-width="7"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ── Snake head detail ── -->
+  <!-- Eye -->
+  <circle cx="113" cy="46" r="2.4" fill="url(#bgGrad)"/>
+  <!-- Forked tongue -->
+  <line x1="112" y1="39" x2="108" y2="32" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="112" y1="39" x2="116" y2="32" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

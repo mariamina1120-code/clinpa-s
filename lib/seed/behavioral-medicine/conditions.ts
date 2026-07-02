@@ -6,7 +6,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Major Depressive Disorder",
     icdCode: "F32.1",
     rotation: "behavioral-medicine",
-    category: "Mood Disorders",
+    category: "Psychiatric / Mood Disorders",
     definition:
       "A mood disorder characterized by persistent depressed mood or loss of interest/pleasure lasting at least 2 weeks, causing significant functional impairment, not attributable to substances or another medical condition.",
     diagnosticCriteria:
@@ -66,7 +66,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Generalized Anxiety Disorder",
     icdCode: "F41.1",
     rotation: "behavioral-medicine",
-    category: "Anxiety Disorders",
+    category: "Psychiatric / Anxiety Disorders",
     definition:
       "A chronic anxiety disorder characterized by excessive, uncontrollable worry about multiple domains of life (work, health, family, finances) occurring more days than not for at least 6 months, associated with somatic symptoms and functional impairment.",
     diagnosticCriteria:
@@ -121,7 +121,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Panic Disorder",
     icdCode: "F41.0",
     rotation: "behavioral-medicine",
-    category: "Anxiety Disorders",
+    category: "Psychiatric / Anxiety Disorders",
     definition:
       "A disorder characterized by recurrent unexpected panic attacks — abrupt surges of intense fear or discomfort reaching a peak within minutes — followed by persistent concern about future attacks or maladaptive behavioral changes lasting at least 1 month.",
     diagnosticCriteria:
@@ -177,7 +177,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Social Anxiety Disorder",
     icdCode: "F40.10",
     rotation: "behavioral-medicine",
-    category: "Anxiety Disorders",
+    category: "Psychiatric / Anxiety Disorders",
     definition:
       "A marked fear or anxiety about social situations in which the individual may be scrutinized by others, fearing humiliation or embarrassment, leading to avoidance or endured distress and significant functional impairment lasting ≥6 months.",
     diagnosticCriteria:
@@ -230,7 +230,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Posttraumatic Stress Disorder",
     icdCode: "F43.10",
     rotation: "behavioral-medicine",
-    category: "Trauma and Stressor-Related Disorders",
+    category: "Psychiatric / Trauma and Stressor-Related Disorders",
     definition:
       "A disorder that develops after exposure to actual or threatened death, serious injury, or sexual violence, characterized by intrusion symptoms, avoidance of trauma-related stimuli, negative alterations in cognition/mood, and alterations in arousal/reactivity lasting more than 1 month.",
     diagnosticCriteria:
@@ -287,7 +287,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Bipolar I Disorder",
     icdCode: "F31.10",
     rotation: "behavioral-medicine",
-    category: "Bipolar and Related Disorders",
+    category: "Psychiatric / Bipolar and Related Disorders",
     definition:
       "A mood disorder characterized by at least one manic episode (lasting ≥7 days or requiring hospitalization) that is not attributable to substances or another medical/psychiatric condition. Depressive episodes are common but not required for diagnosis.",
     diagnosticCriteria:
@@ -343,7 +343,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Bipolar II Disorder",
     icdCode: "F31.81",
     rotation: "behavioral-medicine",
-    category: "Bipolar and Related Disorders",
+    category: "Psychiatric / Bipolar and Related Disorders",
     definition:
       "A mood disorder characterized by at least one hypomanic episode (lasting ≥4 days, not requiring hospitalization, no psychotic features) and at least one major depressive episode, without any full manic episode.",
     diagnosticCriteria:
@@ -393,7 +393,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Schizophrenia",
     icdCode: "F20.9",
     rotation: "behavioral-medicine",
-    category: "Schizophrenia Spectrum Disorders",
+    category: "Psychiatric / Schizophrenia Spectrum Disorders",
     definition:
       "A chronic psychotic disorder characterized by positive symptoms (hallucinations, delusions, disorganized speech/behavior), negative symptoms (flat affect, alogia, avolition, anhedonia, asociality), and cognitive dysfunction lasting ≥6 months with ≥1 month of active-phase symptoms, causing significant functional decline.",
     diagnosticCriteria:
@@ -454,7 +454,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Schizoaffective Disorder",
     icdCode: "F25.0",
     rotation: "behavioral-medicine",
-    category: "Schizophrenia Spectrum Disorders",
+    category: "Psychiatric / Schizophrenia Spectrum Disorders",
     definition:
       "A disorder characterized by psychotic symptoms meeting Criterion A for schizophrenia occurring concurrently with a major mood episode (manic or depressive), where psychotic symptoms must also be present for ≥2 weeks in the absence of mood episodes during the lifetime course.",
     diagnosticCriteria:
@@ -502,7 +502,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Attention-Deficit/Hyperactivity Disorder (Adult)",
     icdCode: "F90.2",
     rotation: "behavioral-medicine",
-    category: "Neurodevelopmental Disorders",
+    category: "Psychiatric / Neurodevelopmental Disorders",
     definition:
       "A neurodevelopmental disorder characterized by persistent inattention and/or hyperactivity-impulsivity that interferes with functioning, with several symptoms present before age 12, occurring in multiple settings, and not solely due to another disorder.",
     diagnosticCriteria:
@@ -558,7 +558,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Borderline Personality Disorder",
     icdCode: "F60.3",
     rotation: "behavioral-medicine",
-    category: "Personality Disorders",
+    category: "Psychiatric / Personality Disorders",
     definition:
       "A personality disorder characterized by a pervasive pattern of instability in interpersonal relationships, self-image, and affect, and marked impulsivity, beginning by early adulthood and present in multiple contexts, causing significant distress or functional impairment.",
     diagnosticCriteria:
@@ -613,7 +613,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Obsessive-Compulsive Disorder",
     icdCode: "F42.2",
     rotation: "behavioral-medicine",
-    category: "OCD and Related Disorders",
+    category: "Psychiatric / OCD and Related Disorders",
     definition:
       "A disorder characterized by the presence of obsessions (recurrent, persistent, intrusive thoughts/urges/images that cause distress) and/or compulsions (repetitive behaviors or mental acts performed to reduce distress), which are time-consuming (>1 hour/day) or cause significant functional impairment.",
     diagnosticCriteria:
@@ -668,7 +668,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Alcohol Use Disorder",
     icdCode: "F10.20",
     rotation: "behavioral-medicine",
-    category: "Substance-Related Disorders",
+    category: "Psychiatric / Substance-Related Disorders",
     definition:
       "A problematic pattern of alcohol use leading to clinically significant impairment or distress, manifested by ≥2 of 11 DSM-5 criteria within a 12-month period, classified as mild (2-3), moderate (4-5), or severe (≥6).",
     diagnosticCriteria:
@@ -729,7 +729,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Opioid Use Disorder",
     icdCode: "F11.20",
     rotation: "behavioral-medicine",
-    category: "Substance-Related Disorders",
+    category: "Psychiatric / Substance-Related Disorders",
     definition:
       "A problematic pattern of opioid use leading to clinically significant impairment or distress, manifested by ≥2 of 11 DSM-5 criteria within a 12-month period, including features of tolerance, withdrawal, and compulsive use despite adverse consequences.",
     diagnosticCriteria:
@@ -785,7 +785,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Cannabis Use Disorder",
     icdCode: "F12.20",
     rotation: "behavioral-medicine",
-    category: "Substance-Related Disorders",
+    category: "Psychiatric / Substance-Related Disorders",
     definition:
       "A problematic pattern of cannabis use causing clinically significant impairment or distress, with ≥2 of 11 DSM-5 criteria in 12 months, including evidence of tolerance, withdrawal, and compulsive use. Cannabis withdrawal syndrome is now recognized in DSM-5.",
     diagnosticCriteria:
@@ -839,7 +839,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Anorexia Nervosa",
     icdCode: "F50.01",
     rotation: "behavioral-medicine",
-    category: "Feeding and Eating Disorders",
+    category: "Psychiatric / Feeding and Eating Disorders",
     definition:
       "An eating disorder characterized by restriction of energy intake relative to requirements leading to significantly low body weight, intense fear of weight gain, and disturbance in self-perceived weight or shape, associated with serious medical complications.",
     diagnosticCriteria:
@@ -896,7 +896,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Bulimia Nervosa",
     icdCode: "F50.2",
     rotation: "behavioral-medicine",
-    category: "Feeding and Eating Disorders",
+    category: "Psychiatric / Feeding and Eating Disorders",
     definition:
       "An eating disorder characterized by recurrent episodes of binge eating followed by inappropriate compensatory behaviors to prevent weight gain (purging, laxatives, excessive exercise, fasting), occurring at least once weekly for 3 months, with self-evaluation unduly influenced by body shape and weight.",
     diagnosticCriteria:
@@ -951,7 +951,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Insomnia Disorder",
     icdCode: "G47.00",
     rotation: "behavioral-medicine",
-    category: "Sleep-Wake Disorders",
+    category: "Psychiatric / Sleep-Wake Disorders",
     definition:
       "A sleep disorder characterized by dissatisfaction with sleep quantity or quality, with difficulty initiating or maintaining sleep, or early-morning awakening, occurring ≥3 nights per week for ≥3 months, causing significant distress or daytime impairment despite adequate opportunity for sleep.",
     diagnosticCriteria:
@@ -1005,7 +1005,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Adjustment Disorder",
     icdCode: "F43.20",
     rotation: "behavioral-medicine",
-    category: "Trauma and Stressor-Related Disorders",
+    category: "Psychiatric / Trauma and Stressor-Related Disorders",
     definition:
       "Emotional or behavioral symptoms in response to an identifiable stressor, developing within 3 months of the stressor onset, that are either disproportionate to the stressor or cause significant distress/impairment, and resolve within 6 months of stressor termination.",
     diagnosticCriteria:
@@ -1058,7 +1058,7 @@ export const behavioralMedicineConditions: Condition[] = [
     name: "Suicidal Ideation (Presenting Condition)",
     icdCode: "R45.851",
     rotation: "behavioral-medicine",
-    category: "Crisis Presentations",
+    category: "Psychiatric / Crisis Presentations",
     definition:
       "Thoughts of ending one's own life, ranging from passive death wishes to active suicidal ideation with or without a plan, intent, or history of attempts. Suicidal ideation is a psychiatric emergency requiring structured risk assessment and appropriate level-of-care determination.",
     diagnosticCriteria:
@@ -1112,6 +1112,336 @@ export const behavioralMedicineConditions: Condition[] = [
       "What is means restriction counseling and what is the evidence for firearm safety counseling?",
       "Name five static and five dynamic risk factors for suicide.",
       "What is the appropriate disposition for a patient presenting with high-risk suicidal ideation?",
+    ],
+  },
+
+  // ─── Additional PAEA Blueprint Conditions ─────────────────────────────────
+
+  {
+    id: "bm-cond-21",
+    name: "Persistent Depressive Disorder, Cyclothymia, and PMDD",
+    icdCode: "F34.1",
+    rotation: "behavioral-medicine",
+    category: "Psychiatric / Depressive and Mood Disorders",
+    definition:
+      "Persistent Depressive Disorder (PDD, formerly dysthymia): depressed mood for ≥2 years (adults) or 1 year (children/adolescents) + ≥2 of: poor appetite or overeating, insomnia or hypersomnia, low energy, low self-esteem, poor concentration, hopelessness. Less severe than MDD but more chronic — greater lifetime burden in some. 'Double depression': MDD episode superimposed on PDD. Cyclothymic Disorder: numerous periods of hypomanic symptoms AND depressive symptoms over ≥2 years (1 year in children) that do NOT meet criteria for hypomanic or MDD episodes; never symptom-free >2 months. Premenstrual Dysphoric Disorder (PMDD): severe mood and physical symptoms in luteal phase (1–2 weeks before menses) → dramatic improvement within days of menses onset. Core: marked mood lability, irritability, anxiety, depressed mood + physical symptoms (bloating, breast tenderness, joint pain). Must track prospectively for 2 menstrual cycles to confirm pattern.",
+    diagnosticCriteria:
+      "PDD: DSM-5 — depressed mood most of the day, more days than not, ≥2 years, never symptom-free >2 months. PHQ-9 (screening). Cyclothymia: mood chart tracking; rule out Bipolar I/II. PMDD: prospective symptom tracking × 2 cycles (Daily Record of Severity of Problems — DRSP); at least 5 symptoms in luteal phase, markedly improve after menstruation, absent in follicular phase. Lab: TSH (hypothyroidism mimics PDD), CBC (anemia), vitamin D level.",
+    presentation: {
+      chiefComplaint: [
+        "\"I've been feeling mildly depressed for as long as I can remember\"",
+        "\"Every month before my period I become a completely different person\"",
+        "\"I go from feeling great to feeling low constantly — never stable\"",
+      ],
+      associatedSymptoms: [
+        "PDD: chronic low-grade depression; patients often do not recognize it as depression ('I've always been like this'); anhedonia, low energy, poor self-esteem; treatment: SSRIs (first-line) + psychotherapy",
+        "PMDD: marked mood symptoms in luteal phase, typically resolving within 2–3 days of menstrual onset; anger/irritability may be the dominant symptom (not just sadness); impairs daily functioning and relationships",
+        "Cyclothymia: mood instability, impulsivity, difficult interpersonal relationships; does not meet full hypomanic or MDD criteria; must rule out substance use, medical causes",
+      ],
+      demographics: "PDD: lifetime prevalence 2–6%; women 2× men. PMDD: 3–8% of menstruating women; distinct from PMS (less severe). Cyclothymia: 0.4–1%; equal sex ratio; onset adolescence/early adulthood.",
+    },
+    distinguishingFeatures:
+      "PDD vs. MDD: PDD = ≥2 years duration, less severe, chronic; MDD = ≥2 weeks, more severe, episodic. PMDD vs. PMS: PMS = milder, common (80%); PMDD = severe, functional impairment, met by only 3–8%, treated with SSRIs (daily or luteal phase) or OCP (drospirenone — Yaz). Cyclothymia vs. Bipolar II: Cyclothymia does NOT meet full criteria for hypomanic or depressive episodes; Bipolar II has full hypomanic AND full depressive episodes.",
+    redFlags: [
+      "Double depression (PDD + MDD episode): more severe, harder to treat — may need combination SSRI + augmentation",
+      "PMDD with suicidal ideation in luteal phase: psychiatric evaluation; track mood with menstrual cycle — if suicidality is luteal-phase specific, that is still a crisis",
+      "Cyclothymia evolving to Bipolar II: watch for emergence of full hypomanic or major depressive episodes",
+    ],
+    mnemonics: [
+      {
+        name: "Depressive Spectrum — Duration Criteria",
+        content:
+          "MDD: ≥2 weeks (5 of 9 SIGECAPS symptoms, depressed mood or anhedonia required)\nPDD (Dysthymia): ≥2 YEARS (2 of 6 symptoms)\nBereavement: normal grief → 1 year (per DSM-5-TR for Prolonged Grief Disorder)\nCyclothymia: ≥2 years of subthreshold hypomania AND depression\n\nPMDD: Luteal phase symptoms → resolve with menses\nTreatment: SSRIs (continuous or luteal phase) → OCPs (drospirenone/EE)\n\nDouble Depression = PDD + MDD episode on top\n→ Treat the MDD episode first, then address underlying PDD",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the duration criterion for persistent depressive disorder?",
+      "How does PMDD differ from PMS?",
+      "What is 'double depression'?",
+      "What is the first-line treatment for PMDD?",
+      "How does cyclothymia differ from Bipolar II disorder?",
+    ],
+  },
+
+  {
+    id: "bm-cond-22",
+    name: "Somatic Symptom Disorder, Illness Anxiety Disorder, and Factitious Disorder",
+    icdCode: "F45.1",
+    rotation: "behavioral-medicine",
+    category: "Psychiatric / Somatic and Functional Disorders",
+    definition:
+      "Somatic Symptom Disorder (SSD): ≥1 somatic symptom causing distress/disruption + excessive thoughts/feelings/behaviors regarding symptoms (health anxiety, catastrophizing, disproportionate time/energy spent on symptoms); ≥6 months. NOT 'medically unexplained' — symptoms may or may not have medical explanation; it's the PSYCHOLOGICAL response that is disordered. Illness Anxiety Disorder (IAD, formerly hypochondriasis): preoccupation with having or acquiring a serious illness despite absence of significant somatic symptoms (or only mild symptoms); high health anxiety + maladaptive health behaviors (excessive checking, avoidance of healthcare); ≥6 months. Factitious Disorder (Munchausen syndrome): intentional production/feigning of symptoms in oneself (Factitious Disorder Imposed on Self) or another (Factitious Disorder Imposed on Another — FDIA, formerly Munchausen by Proxy); no external incentives (vs. malingering = external gain).",
+    diagnosticCriteria:
+      "SSD: DSM-5 criteria; rule out all medical causes first. IAD: excessive preoccupation despite reassurance; either 'care-seeking' (frequent appointments) or 'care-avoidant' (refuses tests/doctors for fear of bad news). Factitious Disorder: pattern of recurrent hospitalizations, inconsistent lab findings (urine shows exogenous insulin C-peptide suppressed, factitious hypoglycemia), condition only deteriorates when unobserved; legal considerations for reporting FDIA (child abuse). Malingering vs. Factitious: Malingering = conscious feigning for EXTERNAL gain (money, avoiding prison, obtaining medications); Factitious = conscious feigning for INTERNAL gain (sick role, attention).",
+    presentation: {
+      chiefComplaint: [
+        "\"I have this pain that no doctor can find a cause for — I know something is seriously wrong\"",
+        "\"I keep reading about diseases online and I'm convinced I have cancer\"",
+        "\"This patient keeps coming to the ER with different complaints that never pan out\"",
+      ],
+      associatedSymptoms: [
+        "SSD: high utilization of healthcare, multiple specialists, frustration with medical system; underlying anxiety or depression common; does NOT mean symptoms are 'fake' — real distress",
+        "IAD: despite negative workup and physician reassurance, cannot be comforted; temporarily relieved then returns with new concern (anxiety cycles); avoidant subtype avoids all medical care (denial)",
+        "Factitious Disorder: inconsistencies in history and exam; symptoms improve only with attention; patient has medical knowledge, history in healthcare; resistance to psychiatric evaluation; 'symptom wandering'",
+        "FDIA: a child with recurrent unexplained illness that only occurs around primary caregiver — improvement when separated from caregiver is diagnostic clue; report to CPS",
+      ],
+      demographics: "SSD: women > men; middle-aged. IAD: equal sex ratio; peaks 20–40s. Factitious Disorder: more common in healthcare workers; FDIA perpetrators are typically mothers of young children.",
+    },
+    distinguishingFeatures:
+      "SSD vs. IAD: SSD = distressing somatic symptoms are central; IAD = preoccupation with having illness despite minimal/no symptoms. Both require psychotherapy (CBT most evidence); SSRIs help both. Factitious vs. Malingering: Factitious = no external gain, internal motivation (sick role); Malingering = external incentive (not a mental disorder per DSM-5). Conversion Disorder (Functional Neurological Symptom Disorder, FND): neurological symptoms (weakness, non-epileptic seizures, blindness) inconsistent with known neurological disease; positive signs (Hoover's sign — hip extension weakness with voluntary hip flexion normalizes on contralateral hip extension).",
+    redFlags: [
+      "Factitious Disorder Imposed on Another (FDIA): mandatory reporting to child protective services; separate child from suspected perpetrator",
+      "SSD or IAD with severe functional impairment: inpatient or intensive outpatient psychiatric treatment; avoid unnecessary procedures (harm from iatrogenesis)",
+      "Physician who treats functional disorder with excessive workup: reinforces illness behavior; use 'no unnecessary tests' contract",
+    ],
+    mnemonics: [
+      {
+        name: "Somatic Spectrum — Key Distinctions",
+        content:
+          "SSD: Symptoms ARE present + EXCESSIVE psychological response\nIAD: Symptoms minimal/absent + Excessive FEAR of illness\nConversion: Neurological symptoms inconsistent with anatomy (positive Hoover's sign)\nMalingering: CONSCIOUS feigning for EXTERNAL gain (not a mental disorder)\nFactitious: CONSCIOUS feigning for INTERNAL gain (sick role)\n\nFDIA (Munchausen by Proxy):\nChild with recurrent unexplained illness\nImproves AWAY from caregiver\n→ Mandatory CPS report\n\nTreatment for SSD/IAD:\n1. Therapeutic alliance (validate, don't dismiss)\n2. CBT (most evidence)\n3. Scheduled regular appointments (reduces ER use)\n4. SSRIs (especially with comorbid depression/anxiety)",
+      },
+    ],
+    pimpingQuestions: [
+      "How do you distinguish somatic symptom disorder from illness anxiety disorder?",
+      "What is the key difference between factitious disorder and malingering?",
+      "What is FDIA and what are the mandatory reporting obligations?",
+      "What is conversion disorder and what is Hoover's sign?",
+      "What is the treatment approach for somatic symptom disorder?",
+    ],
+  },
+
+  {
+    id: "bm-cond-23",
+    name: "Brief Psychotic Disorder, Delusional Disorder, and Psychotic Spectrum",
+    icdCode: "F23",
+    rotation: "behavioral-medicine",
+    category: "Psychiatric / Schizophrenia Spectrum",
+    definition:
+      "Brief Psychotic Disorder: sudden onset of ≥1 psychotic symptom (delusions, hallucinations, disorganized speech, disorganized/catatonic behavior) lasting ≥1 day but <1 month; full return to premorbid level of functioning. Often precipitated by stress ('brief reactive psychosis'). Delusional Disorder: ≥1 delusion(s) ≥1 month; behavior not markedly odd or bizarre outside the delusion; functioning relatively preserved; auditory/visual hallucinations not prominent. Delusion types: Erotomanic, Grandiose, Jealous, Persecutory (most common), Somatic. Shared Psychotic Disorder (Folie à Deux): delusional belief adopted from another person in a close relationship. Catatonia: motor syndrome — immobility, mutism, rigidity, waxy flexibility, echolalia/echopraxia; can occur in psychosis, mood disorders, medical causes; treat with benzodiazepines (lorazepam test) and ECT if refractory; Neuroleptic Malignant Syndrome (NMS): life-threatening reaction to antipsychotics — FALTER mnemonic.",
+    diagnosticCriteria:
+      "Brief Psychotic Disorder: rule out substance use, medical causes, other psychiatric disorders. Delusional Disorder: no schizophrenia spectrum symptoms (negative symptoms, disorganized behavior outside delusion). Catatonia: Bush-Francis Catatonia Rating Scale; lorazepam 1–2 mg IV test (improvement = catatonia); rule out NMS (elevated CK, fever, rigidity, autonomic instability — STOP antipsychotic immediately; dantrolene + bromocriptine). NMS: rigidity + hyperthermia + autonomic instability + mental status change + elevated CK (often >1,000 IU/L); onset hours to days after antipsychotic start or dose change.",
+    presentation: {
+      chiefComplaint: [
+        "\"My patient suddenly became psychotic after a huge stressor\"",
+        "\"My patient is convinced their spouse is cheating without evidence\"",
+        "\"My patient is on an antipsychotic and now has extreme rigidity and fever\"",
+      ],
+      associatedSymptoms: [
+        "Brief Psychotic Disorder: sudden onset delusions/hallucinations/disorganization, often after identifiable stressor; patient often appears confused, frightened; resolves completely within 1 month",
+        "Delusional Disorder: fixed belief not amenable to reason; outside the delusion, behavior appears normal; may be seen by other MDs for somatic delusions (convinced have parasites — Ekbom syndrome — or smell bad)",
+        "Catatonia: waxy flexibility (limbs maintain position placed by examiner — 'lead pipe'), stupor, mutism, negativism, stereotypies, or excited catatonia (hyperactive, dangerous)",
+        "NMS: hyperthermia (>38°C), severe rigidity ('lead pipe'), autonomic instability (BP fluctuations, diaphoresis, tachycardia), altered consciousness; associated with typical and atypical antipsychotics, STOP immediately",
+      ],
+      demographics: "Brief Psychotic Disorder: young adults, often postpartum trigger (postpartum psychosis can be brief psychotic disorder or bipolar with psychotic features). Delusional Disorder: middle-aged to older adults. NMS: any age, any antipsychotic; higher risk with depot formulations, rapid dose escalation, dehydration.",
+    },
+    distinguishingFeatures:
+      "Brief Psychotic Disorder vs. Schizophreniform vs. Schizophrenia: duration differentiates — <1 month = brief psychotic; 1–6 months = schizophreniform; >6 months = schizophrenia. Delusional Disorder vs. Schizophrenia: delusional disorder = 1 type of delusion, preserved function, no prominent hallucinations or negative symptoms. NMS vs. Serotonin Syndrome: NMS = SLOW onset (days to weeks), lead-pipe rigidity, antipsychotics; Serotonin syndrome = FAST onset (hours), clonus/hyperreflexia, serotonergic drugs. Both have hyperthermia + altered MS; key distinguishing feature = clonus (SS) vs. rigidity (NMS).",
+    redFlags: [
+      "NMS (Neuroleptic Malignant Syndrome): STOP antipsychotic immediately; supportive care (cooling, IV fluids, Foley); dantrolene (muscle relaxant) + bromocriptine (dopamine agonist); ICU level care; do not rechallenge with antipsychotics for ≥2 weeks",
+      "Catatonia with NMS features: do NOT give benzodiazepines in NMS (worsens); use dantrolene; electroconvulsive therapy (ECT) for severe/refractory catatonia",
+      "Postpartum psychosis: psychiatric emergency — remove mother from infant until stabilized; high risk of infanticide and suicide; hospitalize; mood stabilizer (lithium) + antipsychotic",
+    ],
+    mnemonics: [
+      {
+        name: "NMS vs. Serotonin Syndrome — FALTER",
+        content:
+          "NMS: FALTER\nF — Fever (hyperthermia)\nA — Autonomic instability (BP fluctuations, diaphoresis)\nL — Lead-pipe Rigidity\nT — Tremor\nE — Elevated CK\nR — Reduced consciousness / confusion\n→ Caused by antipsychotics (dopamine blockade)\n→ Treatment: STOP drug + Dantrolene + Bromocriptine\n\nSerotonin Syndrome: CLONUS (key distinguishing feature)\n→ Caused by serotonergic drugs\n→ Treatment: STOP drug + Cyproheptadine + Benzodiazepines\n\nDuration Spectrum:\n<1 month: Brief Psychotic Disorder\n1–6 months: Schizophreniform Disorder\n>6 months: Schizophrenia (with 6+ months of continuous disturbance)",
+      },
+    ],
+    pimpingQuestions: [
+      "How does brief psychotic disorder differ from schizophrenia by duration?",
+      "What is delusional disorder and how does it differ from schizophrenia?",
+      "What is NMS and what is the management?",
+      "How do you distinguish NMS from serotonin syndrome?",
+      "What is the lorazepam test for catatonia?",
+    ],
+  },
+
+  {
+    id: "bm-cond-24",
+    name: "Stimulant, Sedative, and Tobacco Use Disorders",
+    icdCode: "F15.10",
+    rotation: "behavioral-medicine",
+    category: "Psychiatric / Substance Use Disorders",
+    definition:
+      "Stimulant Use Disorder (cocaine, amphetamines/methamphetamine): pattern of stimulant use causing impairment — intoxication: euphoria, tachycardia, hypertension, mydriasis, diaphoresis, decreased appetite, paranoia/psychosis with heavy use; withdrawal: 'crash' (fatigue, hypersomnia, increased appetite, depression — unlike opioid/alcohol withdrawal, not medically dangerous but psychologically difficult). Sedative/Hypnotic/Anxiolytic Use Disorder (benzodiazepines, Z-drugs, barbiturates): CNS depression class; withdrawal: DANGEROUS (seizures, delirium — similar to alcohol withdrawal) — must taper; tolerance develops rapidly; DO NOT abruptly stop. Tobacco Use Disorder: nicotine dependence — most common preventable cause of premature death in US; nicotine withdrawal: irritability, anxiety, insomnia, increased appetite, difficulty concentrating (within 24h of cessation). Pharmacotherapy: varenicline (Chantix — partial nicotinic receptor agonist, most effective), bupropion SR, NRT (patch, gum, lozenge, inhaler, nasal spray).",
+    diagnosticCriteria:
+      "DSM-5 SUD criteria apply across all substance classes (11 criteria — 2+ = SUD; 6+ = severe). Stimulant: UDS (urine drug screen — cocaine metabolite benzoylecgonine detectable 2–4 days; amphetamines 1–3 days; methamphetamine 3–5 days). Benzodiazepine withdrawal: CIWA-B (modified CIWA for benzo withdrawal); seizure risk requires medical monitoring. Tobacco: Fagerström Test for Cigarette Dependence; CO breath test for recent use; biomarker cotinine (nicotine metabolite).",
+    presentation: {
+      chiefComplaint: [
+        "\"I've been using cocaine and I want to stop but I can't\"",
+        "\"I've been on Xanax for years and my doctor wants me to stop but when I try I have seizures\"",
+        "\"I want help quitting smoking\"",
+      ],
+      associatedSymptoms: [
+        "Cocaine intoxication: euphoria, grandiosity, paranoia, tactile hallucinations (formication — 'cocaine bugs'), perforated nasal septum (chronic snorting), coronary vasospasm (chest pain/MI in young patients), rhabdomyolysis",
+        "Methamphetamine: severe dental decay ('meth mouth'), weight loss, formication (picking at skin — excoriations), paranoid psychosis indistinguishable from schizophrenia during intoxication",
+        "Benzodiazepine withdrawal: similar to alcohol withdrawal — tremors, anxiety, diaphoresis, seizures (24–72h), delirium; must be medically managed with slow taper",
+        "Nicotine withdrawal: anxiety, irritability, insomnia, difficulty concentrating, increased appetite, craving (peaks 24–48h, subsides in 3–4 weeks); not physically dangerous but causes relapse",
+      ],
+      demographics: "Cocaine: urban, young adults. Methamphetamine: rural/suburban, affects diverse demographics. Benzo use disorder: often iatrogenic (prescribed for anxiety/insomnia then escalated); older women with anxiety. Tobacco: 14% of US adults; higher rates in psychiatric patients, low-income populations.",
+    },
+    distinguishingFeatures:
+      "Stimulant withdrawal vs. opioid withdrawal: stimulant = dysphoric 'crash' (no physical danger, just psychological); opioid = flu-like physical withdrawal. Benzo vs. alcohol withdrawal: both DANGEROUS (seizures, DTs) — benzo withdrawal often needs longer taper (weeks to months for high-dose chronic users). Varenicline (Chantix) is most effective smoking cessation aid — must monitor for neuropsychiatric effects (rare: depression, suicidal ideation). NRT doubles cessation rates vs. placebo.",
+    redFlags: [
+      "Cocaine/stimulant chest pain: assume MI until proven otherwise — coronary vasospasm can occur without plaque; treat with benzodiazepines + aspirin + nitrates; AVOID beta-blockers (unopposed alpha-adrenergic stimulation)",
+      "Abrupt benzodiazepine discontinuation after chronic high-dose use: life-threatening withdrawal — hospitalize for monitored taper; use long-acting benzodiazepine (diazepam or chlordiazepoxide) for taper",
+      "Stimulant-induced psychosis: may be indistinguishable from schizophrenia during intoxication; UDS to distinguish; typically resolves with abstinence",
+    ],
+    mnemonics: [
+      {
+        name: "Smoking Cessation — Effectiveness Ranking",
+        content:
+          "Most → Least Effective:\n1. Varenicline (Chantix) — partial nicotinic receptor agonist; most effective\n2. Combination NRT (patch + short-acting) — better than single NRT\n3. Bupropion SR (Wellbutrin) — also used for depression\n4. Single NRT (patch alone, gum alone)\n5. Behavioral counseling alone\n\nCombination (Chantix + NRT or Chantix + Bupropion) = even more effective\n\nCocaine MI: NO beta-blockers → Benzodiazepines + Phentolamine\nBenzo Withdrawal: DANGEROUS = medical taper (DO NOT abruptly stop)\nAlcohol + Benzos: CROSS-TOLERANT (benzos treat alcohol withdrawal too)\n\nStimulant Withdrawal: Dysphoric 'crash' = Not life-threatening (no seizures)",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the most effective pharmacotherapy for tobacco use disorder?",
+      "Why are beta-blockers contraindicated in cocaine-induced chest pain?",
+      "Why is abrupt benzodiazepine discontinuation dangerous?",
+      "How does stimulant withdrawal differ from opioid withdrawal in terms of medical danger?",
+      "What is 'formication' and which substance is it associated with?",
+    ],
+  },
+
+  {
+    id: "bm-cond-25",
+    name: "Acute Stress Disorder, Prolonged Grief, and Abuse/Neglect",
+    icdCode: "F43.0",
+    rotation: "behavioral-medicine",
+    category: "Psychiatric / Trauma and Stress-Related Disorders",
+    definition:
+      "Acute Stress Disorder (ASD): trauma response identical to PTSD criteria (intrusions, avoidance, negative cognitions, hyperarousal) but duration ≥3 days and <1 month after trauma. If symptoms persist ≥1 month → PTSD diagnosis. Prolonged Grief Disorder (PGD, DSM-5-TR): grief lasting ≥1 year after bereavement (6 months in DSM-5-TR, 12 months in ICD-11) with intense yearning for deceased, difficulty accepting the death, persistent suffering causing functional impairment. Intimate Partner Violence (IPV): physical, sexual, emotional, or financial abuse between current or former intimate partners; universal screening recommended (USPSTF B recommendation); SAFE mnemonic for screening. Child abuse: physical, sexual, emotional abuse and neglect — mandatory reporting in all 50 states. Elder abuse/neglect: similarly reportable; financial abuse most common form of elder abuse.",
+    diagnosticCriteria:
+      "ASD: trauma exposure (directly or as witness) + PTSD-like symptoms (intrusions, dissociation, negative mood, avoidance, arousal) + 3 days–1 month duration + functional impairment. PTSD if >1 month. Prolonged Grief: DSM-5-TR requires ≥1 year; ongoing yearning + ≥3 of: identity disruption, disbelief, intense emotional pain, difficulty re-engaging with life, emotional numbness, bitterness, meaninglessness, loneliness. IPV screening: HITS (Hurt, Insult, Threaten, Scream) or SAFE (Stressed, Afraid, Friends/Family, Emergency plan). Elder abuse: APS (Adult Protective Services) report; mandatory in most states.",
+    presentation: {
+      chiefComplaint: [
+        "\"I was in a car accident 2 weeks ago and I keep having flashbacks\"",
+        "\"My husband died 18 months ago and I still can't function or stop thinking about him\"",
+        "\"I want to be screened for domestic violence\"",
+      ],
+      associatedSymptoms: [
+        "ASD: flashbacks, nightmares, intrusive memories (intrusions), avoiding trauma reminders, hypervigilance, startle response, difficulty sleeping, dissociation (feeling detached from oneself/surroundings — derealization/depersonalization)",
+        "Prolonged Grief: intense yearning for the deceased, disbelief or difficulty accepting the loss, avoidance of reminders OR excessive focus on the deceased, bitterness about the loss, loss of interest in ongoing life; does NOT respond to standard antidepressants alone",
+        "IPV: unexplained or inconsistent injuries, frequent ED visits, partner controlling or present during examination, delayed care-seeking, depression/PTSD, substance use as coping",
+        "Child abuse indicators: pattern of injuries at different stages of healing, injuries inconsistent with developmental stage, delay in seeking care, implausible explanation for injuries",
+      ],
+      demographics: "IPV: 1 in 4 women (25%) and 1 in 9 men (11%) experience severe IPV; LGBTQ+ individuals at higher risk. ASD: 20–30% of individuals exposed to trauma develop ASD. Prolonged Grief: 10–15% of bereaved individuals; higher risk with sudden/violent death, prior trauma, poor social support.",
+    },
+    distinguishingFeatures:
+      "ASD vs. PTSD: ASD = 3 days to 1 month post-trauma; PTSD = >1 month. Early CBT treatment for ASD reduces progression to PTSD. Normal grief vs. Prolonged Grief Disorder: normal grief = gradually improving over time with maintained function; PGD = persists with functional impairment >1 year. IPV safety planning: safety plan with patient (does NOT require mandatory reporting in most states for adults — patient autonomy; only mandated for minors and elders in most states).",
+    redFlags: [
+      "ASD with active suicidal ideation or self-harm: psychiatric evaluation; early trauma-focused CBT is first-line treatment",
+      "Child abuse/neglect: MANDATORY REPORT to CPS in all 50 states; do not need proof — only reasonable suspicion; failure to report = criminal offense in most states",
+      "IPV with immediate danger: safety plan; offer hotline (National DV Hotline: 1-800-799-7233); do NOT pressure leaving immediately (most dangerous time is when leaving)",
+      "Elder abuse: APS report; assess for capacity; consider guardianship evaluation if cognitive impairment present",
+    ],
+    mnemonics: [
+      {
+        name: "ASD vs. PTSD Duration + Abuse Reporting",
+        content:
+          "ASD: 3 DAYS to 1 MONTH after trauma → treat with trauma-focused CBT\nPTSD: >1 MONTH after trauma → SSRIs (sertraline, paroxetine FDA-approved) + Trauma-focused CBT\nAdjustment Disorder: emotional response to identified stressor, does NOT meet ASD/PTSD criteria\n\nMandatory Reporting:\nChild abuse → CPS (all 50 states — mandatory for all providers)\nElder abuse → APS (most states — mandatory for most providers)\nIPV in adults → NOT mandatory (patient autonomy — offer support, safety plan)\n\nIPV Screening: SAFE\nS — Stress/Safety: Are you safe at home?\nA — Afraid: Are you afraid of your partner?\nF — Friends/Family: Can you call them?\nE — Emergency: Do you have a safety plan?\n\nProlonged Grief: >1 year + ongoing yearning + functional impairment\n→ Grief-specific therapy (complicated grief treatment)",
+      },
+    ],
+    pimpingQuestions: [
+      "What is the duration criterion that distinguishes ASD from PTSD?",
+      "What is prolonged grief disorder and how does it differ from normal bereavement?",
+      "What are the mandatory reporting laws for child abuse?",
+      "What is the mandatory reporting requirement for IPV in adult patients?",
+      "What is the most dangerous time for a victim of IPV and why?",
+    ],
+  },
+
+  {
+    id: "bm-cond-26",
+    name: "Autism Spectrum Disorder (Adult Presentation) and Dissociative Disorders",
+    icdCode: "F84.0",
+    rotation: "behavioral-medicine",
+    category: "Psychiatric / Neurodevelopmental and Dissociative",
+    definition:
+      "Autism Spectrum Disorder (ASD) adult presentation: persistent deficits in social communication/interaction across multiple contexts + restricted/repetitive behaviors (DSM-5 Level 1–3 severity). Many adults receive late diagnosis (especially women who 'mask' or camouflage). Associated: sensory sensitivities, co-occurring anxiety/depression (70%), ADHD (50%), intellectual disability (varies). Dissociative Disorders: disruption in normal integration of consciousness, memory, identity, emotion, behavior, perception, or cognition. Types: Dissociative Identity Disorder (DID, formerly MPD — multiple distinct personality states; history of severe childhood trauma), Dissociative Amnesia (inability to recall autobiographical information, usually trauma-related; may include dissociative fugue — traveling/taking on new identity), Depersonalization/Derealization Disorder (persistent feeling of being detached from one's mind/body or that surroundings are unreal; intact reality testing distinguishes from psychosis).",
+    diagnosticCriteria:
+      "ASD: DSM-5 — persistent deficits in social communication (impaired reciprocal social interaction, nonverbal communication, developing/maintaining relationships) + restricted/repetitive behaviors (stereotypies, insistence on sameness, restricted interests, sensory abnormalities) + present from early developmental period + functional impairment. Screening: Adult ASD assessment tools (RAADS-R, AQ-10). Dissociative Amnesia: psychological testing; structured clinical interviews. DID: evaluate for childhood trauma history; dissociative experiences scale (DES). Rule out medical causes (seizure — SPECT, EEG; neurological).",
+    presentation: {
+      chiefComplaint: [
+        "\"I've always struggled socially and never understood unwritten rules\"",
+        "\"I lose periods of time and find myself in places I don't remember going to\"",
+        "\"I feel like I'm watching myself from outside my body\"",
+      ],
+      associatedSymptoms: [
+        "ASD adult: difficulty with theory of mind (understanding others' perspectives), literal interpretation of language (sarcasm/humor difficult), preference for routines, intense focused interests, sensory sensitivities (over/under-reactive to light/sound/touch); high-functioning ASD women often camouflage through imitation ('masking') — delayed diagnosis",
+        "DID: recurrent gaps in recall of events, finding themselves with no memory of how they got somewhere, others reporting behaviors they don't recall, hearing internal 'voices' (internal voices of alters, not psychosis), distinct identity states with different names, ages, mannerisms",
+        "Depersonalization/derealization: feeling like an outside observer of one's own body or thoughts; surroundings seem dreamlike, foggy, artificial; intact reality testing ('I know this is not real but it feels that way')",
+      ],
+      demographics: "ASD: prevalence 1:36 (US, 2023 CDC); 4:1 male:female (underdiagnosis in females). DID: 1–3% prevalence; nearly all have history of severe childhood trauma. Depersonalization/derealization: second most common dissociative symptom after dissociative amnesia; peak onset 16 years.",
+    },
+    distinguishingFeatures:
+      "ASD masking in women: women with ASD often perform social behaviors through learned imitation — 'masking' — leading to exhaustion, burnout, and late diagnosis; anxiety and depression as presenting complaint. DID vs. schizophrenia: DID = distinct identity states, childhood trauma, dissociative amnesia between states; schizophrenia = auditory hallucinations perceived as external voices, thought insertion, negative symptoms. Depersonalization vs. derealization vs. psychosis: key = REALITY TESTING IS INTACT in dissociative disorders ('I feel unreal but I know I'm real').",
+    redFlags: [
+      "ASD adult with co-occurring severe depression or suicidal ideation: higher suicide risk than neurotypical population — proactive screening and safety planning",
+      "DID misdiagnosed as schizophrenia: antipsychotics unhelpful and may harm; trauma-focused psychotherapy is the treatment",
+      "Dissociative fugue: legal implications — establish identity, safety, medical clearance; rule out medical causes (postictal, TBI, encephalitis)",
+    ],
+    mnemonics: [
+      {
+        name: "Dissociative Disorders — DIRt",
+        content:
+          "D — DID (Dissociative Identity Disorder): multiple identity states, childhood trauma, amnesia between alters\nI — Identity disruption + amnesia + trauma history\nR — Reality testing INTACT (distinguishes from psychosis)\nt — trauma-focused psychotherapy is treatment\n\nDepersonalization/Derealization: '2-D's'\nDerealization = Surroundings feel unreal/dreamlike\nDepersonalization = Detached from OWN body/thoughts\nReality testing intact: 'I know it's not real but it feels that way'\n\nASD in Women — MASKING:\nM — Mimicking social behavior\nA — Anxiety/depression as presenting symptoms\nS — Sensory differences (often hidden)\nK — 'Knowing the rules' but not naturally\nI — Intense interests\nN — Neurological but missed diagnosis\nG — Girls/women under-recognized and diagnosed later",
+      },
+    ],
+    pimpingQuestions: [
+      "What is 'masking' in autism spectrum disorder and why does it lead to underdiagnosis in women?",
+      "How do you distinguish DID from schizophrenia?",
+      "What is depersonalization and how does it differ from derealization?",
+      "Why is the presence of intact reality testing important in dissociative disorders?",
+      "What is the treatment for dissociative identity disorder?",
+    ],
+  },
+
+  {
+    id: "bm-cond-27",
+    name: "Binge Eating Disorder, ARFID, and Other Eating/Personality Disorders",
+    icdCode: "F50.81",
+    rotation: "behavioral-medicine",
+    category: "Psychiatric / Eating and Personality Disorders",
+    definition:
+      "Binge Eating Disorder (BED): most common eating disorder in the US — recurrent binge eating episodes (eating large amounts in discrete period + feeling out of control) ≥1×/week × 3 months + marked distress + NO compensatory behaviors (unlike bulimia). Associated with obesity. Treatment: CBT + SSRIs; lisdexamfetamine (Vyvanse) — first FDA-approved medication for BED. ARFID (Avoidant/Restrictive Food Intake Disorder): persistent failure to meet nutritional needs, NOT driven by body image concerns; based on sensory characteristics, fear of choking/vomiting, or apparent lack of interest in food; common in children with ASD. Personality disorders overview: Cluster A (odd/eccentric) — Paranoid, Schizoid, Schizotypal; Cluster B (dramatic/emotional) — Antisocial (ASPD), Borderline (BPD), Histrionic, Narcissistic; Cluster C (anxious/fearful) — Avoidant, Dependent, Obsessive-Compulsive (OCPD). Antisocial PD (ASPD): pervasive disregard for/violation of rights of others since age 15; prior conduct disorder before 15.",
+    diagnosticCriteria:
+      "BED: DSM-5 — binge eating ≥1×/week × 3 months + ≥3 of: eating faster than normal, eating until uncomfortably full, eating large amounts when not hungry, eating alone due to embarrassment, feeling disgusted/depressed/guilty after binge + marked distress + NO purging/compensation. ARFID: nutritional/energy deficiency + ≥1 of: significant weight loss, nutritional deficiency, dependence on supplements, or interfering with psychosocial functioning; not due to food unavailability or cultural practice, not explained by body dysmorphia. Cluster B PD diagnosis: persistent maladaptive pattern from adolescence/early adulthood across multiple contexts.",
+    presentation: {
+      chiefComplaint: [
+        "\"I eat huge amounts of food in one sitting and can't stop myself, and then I feel disgusted\"",
+        "\"My child only eats 5 foods and is losing weight — not because they think they're fat\"",
+        "\"My patient has repeatedly been arrested and shows no remorse\"",
+      ],
+      associatedSymptoms: [
+        "BED: overweight/obesity in most; bingeing occurs in response to negative emotions; episodes feel out of control; significant shame/guilt; NOT followed by purging (distinguishes from bulimia)",
+        "ARFID: extreme picky eating in child beyond normal toddler stage; limited food repertoire based on texture/color/smell; avoids based on fear of choking/vomiting; not about weight or appearance",
+        "ASPD: deceitfulness, impulsivity, irritability, aggression, reckless disregard for safety, irresponsibility, lack of remorse; history of conduct disorder; often presents in legal/forensic context; diagnosis requires age ≥18 (but conduct disorder symptoms before 15)",
+        "Narcissistic PD: grandiose sense of self-importance, preoccupation with fantasies of success/power, belief in being special, need for admiration, lack of empathy, envious of others",
+      ],
+      demographics: "BED: affects 3.5% of women, 2% of men; all ethnic groups (more common in Latinx and white individuals in US studies). ARFID: more common in males, children with ASD or anxiety disorders. ASPD: 3% in men, 1% in women; highly represented in incarcerated populations (up to 40–70%).",
+    },
+    distinguishingFeatures:
+      "BED vs. Bulimia Nervosa: BED = binge without compensatory behaviors; bulimia = binge WITH purging/compensation (vomiting, laxatives, exercise). BED associated with obesity; bulimia patients often normal weight. OCPD vs. OCD: OCPD = ego-syntonic (consistent with self, not distressing to patient — 'perfectionism is a virtue'); OCD = ego-dystonic (intrusive, unwanted, distressing). ASPD vs. BPD: ASPD = consistent callousness, exploitation, disregard for others, criminal behavior, lacks empathy (predatory); BPD = emotional dysregulation, fear of abandonment, identity disturbance, impulsivity driven by emotional pain (not predatory).",
+    redFlags: [
+      "ARFID with severe malnutrition: may require medical stabilization (NG feeds); nutritional rehabilitation before behavioral interventions",
+      "BED with comorbid depression/suicidality: treat eating disorder AND mood disorder (SSRIs help both); lisdexamfetamine is first-line FDA-approved for BED",
+      "ASPD in therapeutic setting: no FDA-approved pharmacotherapy; therapy has limited efficacy; focus on managing specific comorbidities (depression, SUD); do not prescribe controlled substances",
+    ],
+    mnemonics: [
+      {
+        name: "Personality Disorder Clusters — 'Weird, Wild, Worried'",
+        content:
+          "Cluster A — WEIRD (Odd/Eccentric):\nParanoid (suspicious)\nSchizoid (detached, no interest in relationships)\nSchizotypal (magical thinking, odd perceptions, eccentric)\n\nCluster B — WILD (Dramatic/Emotional/Erratic):\nAntisocial (callous, violates rights — 'Bad')\nBorderline (emotional dysregulation, splitting — 'Borderline')\nHistrionic (attention-seeking, dramatic — 'Hello!')\nNarcissistic (grandiose, lacks empathy — 'Number 1')\n\nCluster C — WORRIED (Anxious/Fearful):\nAvoidant (avoids relationships, fears rejection)\nDependent (excessive need to be cared for)\nOCPD (perfectionism, rigid, orderly)\n\nBED vs Bulimia: BED = Binge Only (no purge)\nASPD: Must have Conduct Disorder BEFORE age 15\nVyvanse (lisdexamfetamine) = FDA-approved for BED",
+      },
+    ],
+    pimpingQuestions: [
+      "How does binge eating disorder differ from bulimia nervosa?",
+      "What is the first FDA-approved medication for binge eating disorder?",
+      "What is ARFID and how does it differ from anorexia nervosa?",
+      "What are the three personality disorder clusters and which disorders fall in each?",
+      "What is the key distinction between OCPD and OCD?",
     ],
   },
 ];

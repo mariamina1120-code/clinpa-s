@@ -25,6 +25,7 @@ import {
   Heart,
   Zap,
   Brain,
+  Star,
   type LucideIcon,
 } from "lucide-react";
 
@@ -66,6 +67,9 @@ function getSections(slug: RotationSlug, hasPaperTools: boolean): SectionItem[] 
     { href: `${base}/procedures`, icon: CheckSquare, label: "Procedures", activeColor: "text-rose-700 dark:text-rose-300", activeBg: "bg-rose-50 dark:bg-rose-900/40" },
     { href: `${base}/quiz`, icon: HelpCircle, label: "Quiz", activeColor: "text-purple-700 dark:text-purple-300", activeBg: "bg-purple-50 dark:bg-purple-900/40" },
     { href: `${base}/presentation`, icon: Presentation, label: "Presentation", activeColor: "text-indigo-700 dark:text-indigo-300", activeBg: "bg-indigo-50 dark:bg-indigo-900/40" },
+    ...(slug === "internal-medicine"
+      ? [{ href: `${base}/eor-pearls`, icon: Star, label: "EOR Pearls", activeColor: "text-blue-700 dark:text-blue-300", activeBg: "bg-blue-50 dark:bg-blue-900/40" }]
+      : []),
     ...(hasPaperTools
       ? [{ href: "/paper-tools", icon: Download, label: "Paper Tools", paperOnly: true, activeColor: "text-teal-700 dark:text-teal-300", activeBg: "bg-teal-50 dark:bg-teal-900/40" }]
       : []),

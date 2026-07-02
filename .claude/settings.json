@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"/Users/mariamina/Clinical Year Resource \" && npx vercel deploy --prod --yes 2>&1 | tail -5",
+            "async": true,
+            "statusMessage": "Deploying to Vercel...",
+            "timeout": 300
+          }
+        ]
+      }
+    ]
+  }
+}

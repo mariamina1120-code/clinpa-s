@@ -35,3 +35,7 @@ next-env.d.ts
 
 # netlify
 .netlify
+
+# local archives & design handoffs
+ClinPA-S.zip
+design_handoff_clinpas_logo 2/
