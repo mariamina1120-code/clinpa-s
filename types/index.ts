@@ -158,10 +158,12 @@ export interface LabValue {
   id: string;
   name: string;
   abbreviation?: string;
+  category?: string;
   rotation?: RotationSlug | RotationSlug[];
   rotationSlug?: RotationSlug;
-  /** String format (seed data) */
-  normalRange?: string;
+  rotations?: RotationSlug[];
+  /** String format (seed data) or structured {min,max,unit,note} (FM data) */
+  normalRange?: string | { min?: number; max?: number; unit?: string; note?: string };
   /** Structured format (original) */
   normalRangeStructured?: {
     adult: string;
@@ -171,17 +173,22 @@ export interface LabValue {
   };
   units?: string;
   clinicalSignificance?: string;
-  criticalValues?: string;
+  clinicalContext?: string;
+  criticalValues?: string | { low?: number; high?: number };
   interpretation?:
     | {
         elevated?: { clinicalMeaning: string; nextSteps: string };
         decreased?: { clinicalMeaning: string; nextSteps: string };
       }
+    | { low?: string; normal?: string; high?: string }
     | { finding: string; meaning: string }[];
   clinicalPearl?: string;
   clinicalPearls?: string[];
   whenToOrder?: string[];
   boardRecallTips?: string[];
+  boardPearl?: string;
+  associatedConditions?: string[];
+  commonOrders?: string[];
 }
 
 export interface ImagingFinding {

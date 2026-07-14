@@ -9,6 +9,45 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+// ── Normalizers: FM data uses structured objects, older rotations use strings ──
+function formatNormalRange(nr: unknown, units?: string): string | null {
+  if (!nr) return null;
+  if (typeof nr === "string") return units ? `${nr} (${units})` : nr;
+  if (typeof nr === "object") {
+    const o = nr as { min?: number; max?: number; unit?: string; note?: string };
+    const range = o.min != null && o.max != null ? `${o.min}–${o.max}${o.unit ? ` ${o.unit}` : ""}` : null;
+    return [range, o.note].filter(Boolean).join(" · ") || null;
+  }
+  return null;
+}
+
+function formatCriticalValues(cv: unknown): string | null {
+  if (!cv) return null;
+  if (typeof cv === "string") return cv;
+  if (typeof cv === "object") {
+    const o = cv as { low?: number; high?: number };
+    const parts: string[] = [];
+    if (o.low != null) parts.push(`Low: <${o.low}`);
+    if (o.high != null) parts.push(`High: >${o.high}`);
+    return parts.join("  ·  ") || null;
+  }
+  return null;
+}
+
+type InterpRow = { finding: string; meaning: string };
+function normalizeInterpretation(interp: unknown): InterpRow[] {
+  if (!interp) return [];
+  if (Array.isArray(interp)) return interp as InterpRow[];
+  if (typeof interp === "object") {
+    const o = interp as Record<string, string>;
+    const labels: Record<string, string> = { low: "↓ Low", normal: "Normal", high: "↑ High" };
+    return Object.entries(o)
+      .filter(([, v]) => typeof v === "string" && v)
+      .map(([k, v]) => ({ finding: labels[k] ?? k, meaning: v }));
+  }
+  return [];
+}
+
 export default function LabsPage({ params }: { params: { slug: string } }) {
   const slug = params.slug as RotationSlug;
   const { labs, imaging } = getLabsImagingByRotation(slug);
@@ -34,39 +73,64 @@ export default function LabsPage({ params }: { params: { slug: string } }) {
               <AccordionItem key={lab.id} value={lab.id} className="border rounded-xl px-4 bg-card">
                 <AccordionTrigger className="hover:no-underline py-4">
                   <div className="text-left w-full pr-2">
-                    <p className="font-semibold text-sm">{lab.name}</p>
-                    {lab.normalRange && typeof lab.normalRange === "string" && (
+                    <p className="font-semibold text-sm">
+                      {lab.name}
+                      {lab.category && (
+                        <span className="ml-2 text-xs font-normal text-muted-foreground">{lab.category}</span>
+                      )}
+                    </p>
+                    {formatNormalRange(lab.normalRange, lab.units) && (
                       <p className="text-xs text-muted-foreground mt-0.5">
-                        Normal: {lab.normalRange}
-                        {lab.units ? ` (${lab.units})` : ""}
+                        Normal: {formatNormalRange(lab.normalRange, lab.units)}
                       </p>
                     )}
                   </div>
                 </AccordionTrigger>
 
                 <AccordionContent className="pb-4 space-y-4">
-                  {lab.clinicalSignificance && (
+                  {typeof lab.clinicalSignificance === "string" && lab.clinicalSignificance && (
                     <p className="text-sm">{lab.clinicalSignificance}</p>
                   )}
+                  {typeof lab.clinicalContext === "string" && lab.clinicalContext && (
+                    <p className="text-sm">{lab.clinicalContext}</p>
+                  )}
 
-                  {lab.criticalValues && (
+                  {formatCriticalValues(lab.criticalValues) && (
                     <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3">
                       <p className="text-xs font-bold text-red-700 dark:text-red-300 mb-0.5">⚠️ Critical Values</p>
-                      <p className="text-sm text-red-800 dark:text-red-200">{lab.criticalValues}</p>
+                      <p className="text-sm text-red-800 dark:text-red-200">{formatCriticalValues(lab.criticalValues)}</p>
                     </div>
                   )}
 
-                  {Array.isArray(lab.interpretation) && lab.interpretation.length > 0 && (
+                  {normalizeInterpretation(lab.interpretation).length > 0 && (
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Interpretation</h3>
                       <div className="space-y-2">
-                        {(lab.interpretation as { finding: string; meaning: string }[]).map((interp, i) => (
+                        {normalizeInterpretation(lab.interpretation).map((interp, i) => (
                           <div key={i} className="border rounded-lg p-3 bg-muted/30">
                             <p className="text-xs font-semibold text-muted-foreground mb-0.5">{interp.finding}</p>
                             <p className="text-sm">{interp.meaning}</p>
                           </div>
                         ))}
                       </div>
+                    </div>
+                  )}
+
+                  {Array.isArray(lab.commonOrders) && lab.commonOrders.length > 0 && (
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">Commonly Ordered With</h3>
+                      <div className="flex flex-wrap gap-1.5">
+                        {lab.commonOrders.map((o: string, i: number) => (
+                          <Badge key={i} variant="outline" className="text-xs font-normal">{o}</Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {typeof lab.boardPearl === "string" && lab.boardPearl && (
+                    <div className="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-3 border border-teal-200 dark:border-teal-800">
+                      <h3 className="text-xs font-bold text-teal-700 dark:text-teal-300 mb-1">🎯 Board Pearl</h3>
+                      <p className="text-sm text-teal-900 dark:text-teal-100">{lab.boardPearl}</p>
                     </div>
                   )}
 
