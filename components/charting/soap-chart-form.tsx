@@ -26,6 +26,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import Link from "next/link";
+import { HpiToolkit } from "@/components/charting/hpi-toolkit";
 
 // ─── Constants ──────────────────────────────────────────────────────────────────
 
@@ -417,11 +418,17 @@ export function SOAPChartForm({
                 History of Present Illness (HPI)
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2">
+            <CardContent className="space-y-3">
               <p className="text-xs text-muted-foreground italic">{HPI_PROMPTS}</p>
+              <HpiToolkit
+                chiefComplaint={soapData.chiefComplaint}
+                onInsert={(text) =>
+                  updateField("hpi", soapData.hpi ? `${soapData.hpi.trimEnd()}\n\n${text}` : text)
+                }
+              />
               <Textarea
                 id="hpi"
-                placeholder="Describe the history of present illness using the LOCQRATS framework..."
+                placeholder="Describe the history of present illness using the LOCQRATS framework — or build it with the tools above..."
                 value={soapData.hpi}
                 onChange={(e) => updateField("hpi", e.target.value)}
                 rows={6}
