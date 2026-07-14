@@ -185,6 +185,37 @@ function PresentationBlock({ presentation }: { presentation: NonNullable<Conditi
   );
 }
 
+// ── OpenEvidence quick-link ────────────────────────────────────────────────────
+function AskOpenEvidence({ conditionName }: { conditionName: string }) {
+  const [copied, setCopied] = useState(false);
+  const question = `What is the current evidence-based approach to the diagnosis and management of ${conditionName}?`;
+
+  const handleClick = async () => {
+    try {
+      await navigator.clipboard.writeText(question);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      /* clipboard unavailable — still open OpenEvidence */
+    }
+    window.open("https://www.openevidence.com/", "_blank", "noopener,noreferrer");
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={handleClick}
+      title="Copies a question to your clipboard and opens OpenEvidence — paste to ask"
+      className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-lg border border-border bg-muted/30 text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
+    >
+      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+      </svg>
+      {copied ? "Question copied — paste it there" : "Ask OpenEvidence"}
+    </button>
+  );
+}
+
 // ── Individual condition card ──────────────────────────────────────────────────
 function ConditionCard({ condition }: { condition: Condition }) {
   return (
@@ -212,6 +243,9 @@ function ConditionCard({ condition }: { condition: Condition }) {
       </summary>
 
       <div className="px-4 pb-5 border-t border-border space-y-6 pt-5">
+        <div className="flex justify-end -mb-2">
+          <AskOpenEvidence conditionName={condition.name} />
+        </div>
         {condition.definition && (
           <div>
             <SectionLabel>Definition</SectionLabel>
