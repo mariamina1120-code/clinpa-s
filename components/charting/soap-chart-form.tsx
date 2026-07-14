@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { HpiToolkit } from "@/components/charting/hpi-toolkit";
+import { RosChips, PeChips, Icd10Picker } from "@/components/charting/exam-chips";
 
 // ─── Constants ──────────────────────────────────────────────────────────────────
 
@@ -555,13 +556,19 @@ export function SOAPChartForm({
                         </Label>
                       </div>
                       {isReviewed && (
-                        <Textarea
-                          placeholder="Pertinent positives/negatives..."
-                          value={(soapData.ros[notesKey] as string) ?? ""}
-                          onChange={(e) => updateROS(notesKey, e.target.value)}
-                          rows={2}
-                          className="text-sm min-h-[44px]"
-                        />
+                        <>
+                          <RosChips
+                            systemKey={key}
+                            onChange={(text) => updateROS(notesKey, text)}
+                          />
+                          <Textarea
+                            placeholder="Pertinent positives/negatives — or click the chips above..."
+                            value={(soapData.ros[notesKey] as string) ?? ""}
+                            onChange={(e) => updateROS(notesKey, e.target.value)}
+                            rows={2}
+                            className="text-sm min-h-[44px]"
+                          />
+                        </>
                       )}
                     </div>
                   );
@@ -584,6 +591,11 @@ export function SOAPChartForm({
                 {PE_SYSTEMS.map(({ key, label }) => (
                   <div key={key} className="space-y-2">
                     {fieldLabel(label, `pe-${key}`)}
+                    <PeChips
+                      systemKey={key}
+                      currentValue={soapData.physicalExam[key] ?? ""}
+                      onChange={(text) => updatePE(key, text)}
+                    />
                     <Textarea
                       id={`pe-${key}`}
                       placeholder={getPhysicalExamPlaceholder(key)}
@@ -608,10 +620,18 @@ export function SOAPChartForm({
                 Assessment
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2">
+            <CardContent className="space-y-3">
+              <Icd10Picker
+                onSelect={(line) =>
+                  updateField(
+                    "assessment",
+                    soapData.assessment ? `${soapData.assessment.trimEnd()}\n${line}` : line
+                  )
+                }
+              />
               <Textarea
                 id="assessment"
-                placeholder="Summarize the clinical picture, your working diagnosis, and reasoning..."
+                placeholder="Summarize the clinical picture, your working diagnosis, and reasoning — or pick ICD-10 codes above..."
                 value={soapData.assessment}
                 onChange={(e) => updateField("assessment", e.target.value)}
                 rows={5}
