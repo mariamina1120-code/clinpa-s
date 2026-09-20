@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Loader2 } from "lucide-react";
-import type { RotationSlug } from "@/types";
+import type { PurchasableSlug } from "@/lib/products";
 
 interface PurchaseButtonProps {
-  rotationSlugs: RotationSlug[];
+  rotationSlugs: PurchasableSlug[];
   hasPaperTools: boolean;
   label: string;
   priceInCents: number;

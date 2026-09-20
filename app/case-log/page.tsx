@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
-import { ClipboardList, Plus, Trash2, Loader2 } from "lucide-react";
+import { ClipboardList, Plus, Trash2, Loader2, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ROTATIONS } from "@/lib/utils";
 import type { RotationSlug } from "@/types";
@@ -85,6 +85,51 @@ export default function CaseLogPage() {
   const rotationName = (slug: string) =>
     ROTATIONS.find((r) => r.slug === slug)?.name ?? slug;
 
+  // ── Typhon-ready CSV export ──────────────────────────────────────────────
+  // Column order mirrors Typhon's (PAST) case entry screen so encounters can
+  // be transcribed or bulk-imported quickly by programs.
+  function exportCsv() {
+    const esc = (v: string | undefined | null) =>
+      `"${String(v ?? "").replace(/"/g, '""')}"`;
+
+    const header = [
+      "Encounter Date",
+      "Course/Rotation",
+      "Visit Type",
+      "Patient Age Group",
+      "Patient Gender",
+      "Reason for Visit (Chief Complaint)",
+      "Diagnosis Category",
+      "Preceptor",
+      "Logged At",
+    ];
+
+    const rows = logs.map((log) =>
+      [
+        esc(log.encounter_date),
+        esc(rotationName(log.rotation_slug)),
+        esc(log.encounter_type),
+        esc(log.patient_age_group),
+        esc(log.patient_gender),
+        esc(log.chief_complaint),
+        esc(log.diagnosis_category),
+        esc(log.preceptor_name),
+        esc(new Date(log.created_at).toISOString()),
+      ].join(",")
+    );
+
+    const csv = [header.map((h) => esc(h)).join(","), ...rows].join("\r\n");
+    const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `clinpas-case-log-${new Date().toISOString().split("T")[0]}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
   if (loading) return (
     <div className="flex items-center justify-center py-24">
       <Loader2 className="h-6 w-6 animate-spin text-teal-600 mr-2" />
@@ -102,9 +147,19 @@ export default function CaseLogPage() {
             <p className="text-sm text-muted-foreground">{logs.length} encounter{logs.length !== 1 ? "s" : ""} logged</p>
           </div>
         </div>
-        <Button onClick={() => setShowForm(!showForm)} className="bg-teal-600 hover:bg-teal-700">
-          <Plus className="h-4 w-4 mr-2" /> Log Encounter
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            onClick={exportCsv}
+            disabled={logs.length === 0}
+            title="Download your encounters as a CSV with Typhon-ready columns"
+          >
+            <Download className="h-4 w-4 mr-2" /> Export CSV
+          </Button>
+          <Button onClick={() => setShowForm(!showForm)} className="bg-teal-600 hover:bg-teal-700">
+            <Plus className="h-4 w-4 mr-2" /> Log Encounter
+          </Button>
+        </div>
       </div>
 
       {showForm && (

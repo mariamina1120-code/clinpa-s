@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { AI_SCRIBE_SLUG, isFounderEmail } from "@/lib/products";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -24,6 +25,31 @@ export async function POST(req: Request) {
   } = await supabase.auth.getUser();
   if (!user) {
     return NextResponse.json({ error: "Please sign in to use the AI scribe." }, { status: 401 });
+  }
+
+  // AI Scribe is a paid add-on: owned directly, included with the Complete
+  // Bundle + Paper Tools tier (has_paper_tools = true), or founder account.
+  const { data: modules } = await supabase
+    .from("user_modules")
+    .select("rotation_slug, has_paper_tools")
+    .eq("user_id", user.id);
+
+  const hasScribeAccess =
+    isFounderEmail(user.email) ||
+    (modules ?? []).some(
+      (m: { rotation_slug: string; has_paper_tools: boolean }) =>
+        m.rotation_slug === AI_SCRIBE_SLUG || m.has_paper_tools
+    );
+
+  if (!hasScribeAccess) {
+    return NextResponse.json(
+      {
+        error:
+          "AI Scribe is a premium add-on ($19.99 one-time, or included with Complete Bundle + Paper Tools). Unlock it in the Store.",
+        upgradeUrl: "/store#ai-scribe",
+      },
+      { status: 403 }
+    );
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;

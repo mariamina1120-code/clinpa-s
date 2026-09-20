@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { ROTATIONS, getRotation } from "@/lib/utils";
+import { isFounderEmail } from "@/lib/products";
 import type { RotationSlug } from "@/types";
 import { RotationSectionNav } from "@/components/rotation/rotation-section-nav";
 
@@ -27,17 +28,22 @@ export default async function RotationSlugLayout({
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) redirect("/auth/login");
 
-    const { data: module } = await supabase
-      .from("user_modules")
-      .select("rotation_slug, has_paper_tools")
-      .eq("user_id", user.id)
-      .eq("rotation_slug", params.slug)
-      .single();
+    if (isFounderEmail(user.email)) {
+      // Founder accounts get full access to everything
+      hasPaperTools = true;
+    } else {
+      const { data: module } = await supabase
+        .from("user_modules")
+        .select("rotation_slug, has_paper_tools")
+        .eq("user_id", user.id)
+        .eq("rotation_slug", params.slug)
+        .single();
 
-    if (!module) {
-      redirect(`/store?rotation=${params.slug}`);
+      if (!module) {
+        redirect(`/store?rotation=${params.slug}`);
+      }
+      hasPaperTools = module.has_paper_tools ?? false;
     }
-    hasPaperTools = module.has_paper_tools ?? false;
   }
 
   return (

@@ -1,18 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
-import type { RotationSlug } from "@/types";
-
-const VALID_SLUGS: RotationSlug[] = [
-  "family-medicine",
-  "internal-medicine",
-  "general-surgery",
-  "pediatrics",
-  "womens-health",
-  "emergency-medicine",
-  "behavioral-medicine",
-];
+import {
+  VALID_PURCHASABLE_SLUGS,
+  type PurchasableSlug,
+} from "@/lib/products";
 
 export async function POST(request: NextRequest) {
+  // SECURITY: this endpoint grants modules without payment. It exists for
+  // local development only and must never run in production — real purchases
+  // go through /api/checkout (Stripe) + /api/stripe-webhook.
+  if (process.env.NODE_ENV === "production" && process.env.STRIPE_SECRET_KEY) {
+    return NextResponse.json(
+      { error: "Not available — use the store checkout" },
+      { status: 403 }
+    );
+  }
+
   if (!isSupabaseConfigured) {
     return NextResponse.json(
       { error: "Supabase is not configured" },
@@ -47,7 +50,7 @@ export async function POST(request: NextRequest) {
 
   // Validate all slugs
   for (const slug of rotationSlugs) {
-    if (!VALID_SLUGS.includes(slug as RotationSlug)) {
+    if (!VALID_PURCHASABLE_SLUGS.includes(slug as PurchasableSlug)) {
       return NextResponse.json(
         { error: `Invalid rotation slug: ${slug}` },
         { status: 400 }

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getRotation } from "@/lib/utils";
 import type { RotationSlug } from "@/types";
+import { EOR_BLUEPRINTS } from "@/lib/seed/shared/eor-blueprints";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
@@ -106,6 +107,11 @@ export default function RotationHubPage({ params }: { params: { slug: string } }
   const rotation = getRotation(params.slug as RotationSlug);
   if (!rotation) notFound();
 
+  const blueprint = EOR_BLUEPRINTS[params.slug as RotationSlug];
+  const maxWeight = blueprint
+    ? Math.max(...blueprint.categories.map((c) => c.weight))
+    : 0;
+
   const allSections = params.slug === "internal-medicine"
     ? [...SECTIONS, ...IM_EXTRA_SECTIONS]
     : SECTIONS;
@@ -133,6 +139,110 @@ export default function RotationHubPage({ params }: { params: { slug: string } }
           </div>
         </div>
       </div>
+
+      {/* ── PAEA EOR Blueprint ── */}
+      {blueprint && (
+        <div className="rounded-2xl border border-border bg-card overflow-hidden">
+          <details className="group">
+            <summary className="flex items-center justify-between gap-3 px-6 py-4 cursor-pointer list-none select-none hover:bg-muted/20 transition-colors">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-0.5">
+                  PAEA EOR Blueprint
+                </p>
+                <h2 className="font-bold text-sm leading-tight">
+                  {blueprint.examName} · {blueprint.questionCount} questions
+                </h2>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {blueprint.blueprintVersion} — what&apos;s actually tested, by weight
+                </p>
+              </div>
+              <svg
+                className="h-4 w-4 text-muted-foreground transition-transform group-open:rotate-180 shrink-0"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+
+            <div className="px-6 pb-6 border-t border-border pt-5 space-y-6">
+              {/* Content area weights */}
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                  Content Areas
+                </p>
+                <div className="space-y-2">
+                  {blueprint.categories.map((cat) => (
+                    <div key={cat.name} className="flex items-center gap-3">
+                      <span className="w-56 shrink-0 text-xs leading-tight">{cat.name}</span>
+                      <div className="flex-1 h-2.5 rounded-full bg-muted overflow-hidden">
+                        <div
+                          className="h-full rounded-full bg-teal-500"
+                          style={{ width: `${(cat.weight / maxWeight) * 100}%` }}
+                        />
+                      </div>
+                      <span className="w-9 shrink-0 text-right text-xs font-bold text-teal-700">
+                        {cat.weight}%
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Task areas */}
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                  Task Areas
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {blueprint.taskAreas.map((task) => (
+                    <span
+                      key={task.name}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted/30 px-2.5 py-1.5 text-xs"
+                    >
+                      {task.name}
+                      <span className="font-bold text-teal-700">{task.weight}%</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Periop targets (Surgery only) */}
+              {blueprint.periopTargets && (
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                    Perioperative Setting Targets
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {blueprint.periopTargets.map((p) => (
+                      <span
+                        key={p.name}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted/30 px-2.5 py-1.5 text-xs"
+                      >
+                        {p.name}
+                        <span className="font-bold text-teal-700">{p.weight}%</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {blueprint.note && (
+                <p className="text-xs text-muted-foreground italic">{blueprint.note}</p>
+              )}
+
+              <a
+                href={blueprint.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-semibold text-teal-600 hover:text-teal-700 transition-colors"
+              >
+                Official PAEA blueprint PDF
+                <ArrowRight className="h-3 w-3" />
+              </a>
+            </div>
+          </details>
+        </div>
+      )}
 
       {/* ── Section Grid ── */}
       <div>

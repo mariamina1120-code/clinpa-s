@@ -16,7 +16,41 @@ import {
   Heart,
   Zap,
   Brain,
+  NotebookPen,
+  BookOpenCheck,
+  Timer,
+  GraduationCap,
 } from "lucide-react";
+
+const pillars = [
+  {
+    icon: NotebookPen,
+    label: "Track",
+    title: "Log every patient in seconds",
+    description:
+      "Structured encounter logging built for the pace of clinic — age group, chief complaint, diagnosis, encounter type, preceptor. Capture it between patients, not at 9pm.",
+    href: "/case-log",
+    cta: "See the case log",
+  },
+  {
+    icon: BookOpenCheck,
+    label: "Study",
+    title: "Study exactly what's tested",
+    description:
+      "Every rotation organized around the PAEA EOR blueprint — high-yield conditions, drug cards, and PANCE-style quizzes so no study session is wasted.",
+    href: "#rotations",
+    cta: "Browse rotations",
+  },
+  {
+    icon: Stethoscope,
+    label: "Reference",
+    title: "Answers at the bedside",
+    description:
+      "Drug dosing, lab reference ranges, clinical guidelines, physical exam maneuvers, and SOAP documentation phrases — pulled up in seconds when your preceptor asks.",
+    href: "#features",
+    cta: "See the tools",
+  },
+];
 
 const features = [
   {
@@ -137,6 +171,7 @@ const pricingTiers = [
     popular: true,
     features: [
       "All 7 clinical rotations",
+      "Patient case log included",
       "175+ conditions & drug cards",
       "Full quiz bank with explanations",
       "Lifetime digital access",
@@ -150,12 +185,20 @@ const pricingTiers = [
     description: "The full digital bundle plus printable PDFs for the wards.",
     features: [
       "Everything in Complete Bundle",
+      "AI Scribe included — dictate encounters, get a polished HPI ($19.99 value)",
       "Printable PDF pocket references",
       "SOAP note templates",
       "H&P documentation cheat sheets",
       "Case log tracking sheets",
     ],
   },
+];
+
+const caseLogRows = [
+  { cc: "Chest pain", dx: "Cardiovascular", type: "New Patient", age: "65+" },
+  { cc: "Sore throat", dx: "ENT / Infectious", type: "New Patient", age: "5–12" },
+  { cc: "Med refill · T2DM", dx: "Endocrine", type: "Follow-up", age: "40–64" },
+  { cc: "Laceration repair", dx: "Procedure", type: "Procedure", age: "18–39" },
 ];
 
 export default function LandingPage() {
@@ -168,7 +211,8 @@ export default function LandingPage() {
             <ClinPASLockup size={22} tone="light" />
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium text-gray-600 md:flex">
-            <Link href="#features" className="transition hover:text-teal-600">Features</Link>
+            <Link href="#tracking" className="transition hover:text-teal-600">Patient Tracking</Link>
+            <Link href="#features" className="transition hover:text-teal-600">Study Tools</Link>
             <Link href="#rotations" className="transition hover:text-teal-600">Rotations</Link>
             <Link href="#pricing" className="transition hover:text-teal-600">Pricing</Link>
             <Link href="/auth/login" className="transition hover:text-teal-600">Log In</Link>
@@ -192,20 +236,19 @@ export default function LandingPage() {
             <div>
               <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-4 py-1.5 text-xs font-semibold text-teal-700 tracking-wide">
                 <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
-                Aligned with the PAEA EOR Blueprint
+                The all-in-one clinical year platform for PA students
               </span>
 
               <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.08] sm:text-[58px]">
-                Study smarter<br />
-                through{" "}
-                <span className="text-teal-600">every</span><br />
-                rotation.
+                Track every patient.<br />
+                Ace every{" "}
+                <span className="text-teal-600">EOR</span>.
               </h1>
 
               <p className="mt-6 max-w-lg text-xl leading-relaxed text-gray-500">
-                High-yield conditions, drug cards, clinical guidelines, EOR-style
-                quizzes, and SOAP tools — organized by rotation so you always know
-                exactly what to study.
+                Log encounters in seconds, study content mapped to the PAEA EOR
+                blueprint, and pull up clinical references at the bedside — one
+                platform for everything clinical year throws at you.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -222,6 +265,7 @@ export default function LandingPage() {
 
               <div className="mt-12 flex gap-10 border-t border-gray-100 pt-6">
                 {[
+                  { value: "<30s", label: "To log an encounter" },
                   { value: "7", label: "PAEA EOR rotations" },
                   { value: "175+", label: "Conditions covered" },
                   { value: "500+", label: "Quiz questions" },
@@ -234,7 +278,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* App mockup */}
+            {/* App mockup — case log */}
             <div className="relative hidden lg:block">
               <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-teal-100/60 to-sky-100/40 blur-2xl" />
               <div className="relative overflow-hidden rounded-2xl border border-gray-200/80 shadow-2xl">
@@ -246,7 +290,7 @@ export default function LandingPage() {
                     <div className="h-3 w-3 rounded-full bg-green-400/80" />
                   </div>
                   <div className="flex-1 rounded border border-gray-200 bg-white px-3 py-1 font-mono text-xs text-gray-400">
-                    clinpas.com/rotations
+                    clinpas.com/case-log
                   </div>
                 </div>
 
@@ -267,29 +311,36 @@ export default function LandingPage() {
 
                   {/* Content */}
                   <div className="flex-1 overflow-hidden bg-gray-50 p-4">
-                    <p className="mb-0.5 text-[11px] font-bold text-gray-800">Clinical Rotations</p>
-                    <p className="mb-3 text-[9px] text-gray-400">7 of 7 unlocked</p>
-                    <div className="grid grid-cols-2 gap-2">
-                      {[
-                        { name: "Family Medicine",   desc: "Primary care & chronic disease",  color: "bg-teal-500"  },
-                        { name: "Internal Medicine", desc: "Hospital medicine & complex",     color: "bg-blue-500"  },
-                        { name: "General Surgery",   desc: "Peri-op & abdominal surgery",     color: "bg-slate-500" },
-                        { name: "Pediatrics",        desc: "Newborn through adolescent",      color: "bg-amber-400" },
-                        { name: "Women's Health",    desc: "Reproductive health & OB",        color: "bg-rose-500"  },
-                        { name: "Emergency Med.",    desc: "Acute & undifferentiated",        color: "bg-red-500"   },
-                      ].map((r) => (
-                        <div key={r.name} className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-                          <div className={`h-1 ${r.color}`} />
-                          <div className="p-2">
-                            <p className="text-[10px] font-bold leading-tight text-gray-800">{r.name}</p>
-                            <p className="mt-0.5 line-clamp-1 text-[8px] leading-tight text-gray-400">{r.desc}</p>
-                            <div className="mt-1.5 flex items-center justify-between">
-                              <span className="text-[8px] text-gray-300">7 sections</span>
-                              <span className="text-[8px] font-semibold text-teal-600">Open →</span>
-                            </div>
+                    <div className="mb-3 flex items-center justify-between">
+                      <div>
+                        <p className="text-[11px] font-bold text-gray-800">Case Log</p>
+                        <p className="text-[9px] text-gray-400">Family Medicine · Week 3</p>
+                      </div>
+                      <span className="flex items-center gap-1 rounded-md bg-teal-600 px-2 py-1 text-[9px] font-semibold text-white">
+                        + Log Encounter
+                      </span>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      {caseLogRows.map((row) => (
+                        <div
+                          key={row.cc}
+                          className="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2"
+                        >
+                          <div>
+                            <p className="text-[10px] font-bold leading-tight text-gray-800">{row.cc}</p>
+                            <p className="text-[8px] text-gray-400">{row.dx} · Age {row.age}</p>
                           </div>
+                          <span className="rounded-full bg-teal-50 px-2 py-0.5 text-[8px] font-semibold text-teal-700">
+                            {row.type}
+                          </span>
                         </div>
                       ))}
+                    </div>
+
+                    <div className="mt-3 flex items-center gap-1.5 text-[9px] text-gray-400">
+                      <Timer className="h-3 w-3 text-teal-500" />
+                      Logged in 24 seconds
                     </div>
                   </div>
                 </div>
@@ -299,12 +350,142 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── Three pillars ── */}
+      <section className="border-t border-gray-100 bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="grid gap-8 md:grid-cols-3">
+            {pillars.map((pillar) => {
+              const Icon = pillar.icon;
+              return (
+                <div key={pillar.label} className="relative">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-600 text-white shadow-sm">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-teal-600">
+                      {pillar.label}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900">{pillar.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-500">
+                    {pillar.description}
+                  </p>
+                  <Link
+                    href={pillar.href}
+                    className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-teal-600 transition hover:text-teal-700"
+                  >
+                    {pillar.cta} <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Patient tracking spotlight ── */}
+      <section id="tracking" className="bg-slate-50 py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-widest text-teal-600">
+                Patient Tracking
+              </p>
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Logging patients shouldn&apos;t take longer than seeing them
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-gray-500">
+                Every PA student knows the end-of-day logging marathon: clunky
+                forms, endless dropdowns, encounters you can barely remember.
+                ClinPA-S makes tracking part of your workflow instead of
+                homework after it.
+              </p>
+
+              <ul className="mt-8 space-y-4">
+                {[
+                  {
+                    title: "Built for between patients",
+                    body: "A structured encounter form — age group, chief complaint, diagnosis category, encounter type, preceptor — done in under 30 seconds.",
+                  },
+                  {
+                    title: "Organized by rotation, automatically",
+                    body: "Every encounter files itself under the right rotation, so you always know your numbers when your program asks.",
+                  },
+                  {
+                    title: "Your log becomes a study tool",
+                    body: "See which presentations you've actually encountered — and which blueprint topics you still need to study before the EOR.",
+                  },
+                ].map((item) => (
+                  <li key={item.title} className="flex gap-3">
+                    <Check className="mt-1 h-5 w-5 shrink-0 text-teal-600" />
+                    <div>
+                      <p className="font-semibold text-gray-900">{item.title}</p>
+                      <p className="mt-0.5 text-sm leading-relaxed text-gray-500">{item.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <Button asChild variant="teal" size="lg" className="mt-8">
+                <Link href="/auth/signup">
+                  Start tracking free
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Encounter form mockup */}
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-teal-100/50 to-sky-100/30 blur-xl" />
+              <div className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-xl">
+                <div className="mb-5 flex items-center justify-between">
+                  <p className="font-bold text-gray-900">New Encounter</p>
+                  <span className="flex items-center gap-1.5 text-xs text-gray-400">
+                    <Timer className="h-3.5 w-3.5 text-teal-500" /> ~30 sec
+                  </span>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { label: "Rotation", value: "Family Medicine" },
+                    { label: "Chief Complaint", value: "Chest pain" },
+                    { label: "Diagnosis Category", value: "Cardiovascular" },
+                  ].map((field) => (
+                    <div key={field.label}>
+                      <p className="mb-1 text-xs font-medium text-gray-500">{field.label}</p>
+                      <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800">
+                        {field.value}
+                      </div>
+                    </div>
+                  ))}
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { label: "Age Group", value: "65+" },
+                      { label: "Encounter Type", value: "New Patient" },
+                    ].map((field) => (
+                      <div key={field.label}>
+                        <p className="mb-1 text-xs font-medium text-gray-500">{field.label}</p>
+                        <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800">
+                          {field.value}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="rounded-lg bg-teal-600 px-3 py-2.5 text-center text-sm font-semibold text-white">
+                    Log Encounter
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Features ── */}
-      <section id="features" className="bg-slate-50 py-20 sm:py-28">
+      <section id="features" className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mx-auto mb-14 max-w-2xl text-center">
             <p className="mb-3 text-xs font-bold uppercase tracking-widest text-teal-600">
-              Study Tools
+              Study & Reference Tools
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Everything You Need on the Wards
@@ -338,7 +519,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── Rotations ── */}
-      <section id="rotations" className="py-20 sm:py-28">
+      <section id="rotations" className="bg-slate-50 py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mx-auto mb-14 max-w-2xl text-center">
             <p className="mb-3 text-xs font-bold uppercase tracking-widest text-teal-600">
@@ -487,6 +668,43 @@ export default function LandingPage() {
                 </Button>
               </div>
             ))}
+          </div>
+
+          <p className="mt-8 text-center text-sm text-teal-200/70">
+            Add-on: <span className="font-semibold text-white">AI Scribe</span>{" "}
+            — dictate your encounter, get a professional HPI for your SOAP note.
+            $19.99 one-time with any plan, included free in the top tier.
+          </p>
+        </div>
+      </section>
+
+      {/* ── For PA Programs ── */}
+      <section className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="flex flex-col items-start gap-8 rounded-2xl border border-gray-200 bg-slate-50 p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <div className="mb-3 flex items-center gap-2">
+                <GraduationCap className="h-5 w-5 text-teal-600" />
+                <p className="text-xs font-bold uppercase tracking-widest text-teal-600">
+                  For PA Programs
+                </p>
+              </div>
+              <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                One platform for your whole cohort
+              </h2>
+              <p className="mt-3 leading-relaxed text-gray-500">
+                Give your students a single place to log patient encounters and
+                prepare for EORs. Program-level dashboards and Typhon-compatible
+                exports are on our roadmap — we&apos;d love to build them with
+                early partner programs.
+              </p>
+            </div>
+            <Button asChild variant="outline" size="lg" className="shrink-0">
+              <a href="mailto:mariamina1120@gmail.com?subject=ClinPA-S%20for%20our%20PA%20program">
+                Talk to us
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
           </div>
         </div>
       </section>

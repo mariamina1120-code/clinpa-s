@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createClient } from "@supabase/supabase-js";
-import type { RotationSlug } from "@/types";
-
-const VALID_SLUGS: RotationSlug[] = [
-  "family-medicine",
-  "internal-medicine",
-  "general-surgery",
-  "pediatrics",
-  "womens-health",
-  "emergency-medicine",
-  "behavioral-medicine",
-];
+import {
+  VALID_PURCHASABLE_SLUGS,
+  AI_SCRIBE_SLUG,
+  type PurchasableSlug,
+} from "@/lib/products";
 
 // Plain Supabase admin client — no cookies needed, uses service role key
 function getSupabaseAdmin() {
@@ -66,7 +60,7 @@ export async function POST(request: NextRequest) {
     const rotationSlugs = slugsStr
       .split(",")
       .map((s) => s.trim())
-      .filter((s) => VALID_SLUGS.includes(s as RotationSlug));
+      .filter((s) => VALID_PURCHASABLE_SLUGS.includes(s as PurchasableSlug));
 
     if (rotationSlugs.length === 0) {
       console.error("No valid rotation slugs in metadata:", slugsStr);
@@ -74,6 +68,11 @@ export async function POST(request: NextRequest) {
     }
 
     const hasPaperTools = hasPaperStr === "true";
+
+    // The top tier (Complete Bundle + Paper Tools) includes the AI Scribe add-on
+    if (hasPaperTools && !rotationSlugs.includes(AI_SCRIBE_SLUG)) {
+      rotationSlugs.push(AI_SCRIBE_SLUG);
+    }
     const paymentId =
       typeof session.payment_intent === "string"
         ? session.payment_intent

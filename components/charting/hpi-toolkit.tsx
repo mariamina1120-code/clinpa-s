@@ -116,6 +116,7 @@ export function HpiToolkit({ chiefComplaint, onInsert }: HpiToolkitProps) {
   const [transcript, setTranscript] = useState("");
   const [generating, setGenerating] = useState(false);
   const [scribeError, setScribeError] = useState("");
+  const [upgradeUrl, setUpgradeUrl] = useState<string | null>(null);
   const [speechSupported, setSpeechSupported] = useState(true);
   const recognitionRef = useRef<any>(null);
 
@@ -165,6 +166,7 @@ export function HpiToolkit({ chiefComplaint, onInsert }: HpiToolkitProps) {
 
   const generateHpi = async () => {
     setScribeError("");
+    setUpgradeUrl(null);
     setGenerating(true);
     try {
       const res = await fetch("/api/generate-hpi", {
@@ -175,6 +177,7 @@ export function HpiToolkit({ chiefComplaint, onInsert }: HpiToolkitProps) {
       const data = await res.json();
       if (!res.ok) {
         setScribeError(data.error || "Generation failed. Please try again.");
+        setUpgradeUrl(res.status === 403 ? data.upgradeUrl ?? null : null);
         return;
       }
       onInsert(data.hpi);
@@ -320,7 +323,20 @@ export function HpiToolkit({ chiefComplaint, onInsert }: HpiToolkitProps) {
           />
 
           {scribeError && (
-            <p className="text-xs text-destructive" role="alert">{scribeError}</p>
+            <p className="text-xs text-destructive" role="alert">
+              {scribeError}
+              {upgradeUrl && (
+                <>
+                  {" "}
+                  <a
+                    href={upgradeUrl}
+                    className="font-semibold underline underline-offset-2 hover:opacity-80"
+                  >
+                    Unlock AI Scribe →
+                  </a>
+                </>
+              )}
+            </p>
           )}
 
           <Button

@@ -4,38 +4,22 @@ import { useState } from "react";
 import { notFound } from "next/navigation";
 import type { RotationSlug, Condition } from "@/types";
 import { getConditionsByRotation, ROTATION_DISPLAY_NAMES } from "@/lib/seed";
+import {
+  EOR_BLUEPRINTS,
+  getBlueprintCategory,
+} from "@/lib/seed/shared/eor-blueprints";
 
-// ── PAEA system order ──────────────────────────────────────────────────────────
-const PAEA_SYSTEM_ORDER = [
-  "Cardiovascular","Pulmonary","Gastrointestinal / Hepatology",
-  "Renal / Genitourinary","Endocrine","Hematologic","Infectious Disease",
-  "Musculoskeletal / Rheumatology","Neurologic","Dermatologic",
-  "Psychiatric / Behavioral","EENT","Reproductive","Other",
-] as const;
+// ── Blueprint-driven grouping ──────────────────────────────────────────────────
+const UNMAPPED = "Additional Topics";
 
-function getPaeaSystem(category?: string): string {
-  if (!category) return "Other";
-  const c = category.toLowerCase();
-  if (c.includes("pulmon")||c.includes("respir")) return "Pulmonary";
-  if (c.includes("cardio")||c.includes("vascular")||c.includes("valvular")||c.includes("preventive")) return "Cardiovascular";
-  if (c.includes("gastro")||c.includes("hepat")) return "Gastrointestinal / Hepatology";
-  if (c.includes("nephro")||c.includes("renal")||c.includes("urolog")) return "Renal / Genitourinary";
-  if (c.includes("endocr")) return "Endocrine";
-  if (c.includes("hemat")) return "Hematologic";
-  if (c.includes("infect")||c.includes("critical care")) return "Infectious Disease";
-  if (c.includes("rheum")||c.includes("musculo")) return "Musculoskeletal / Rheumatology";
-  if (c.includes("neuro")) return "Neurologic";
-  if (c.includes("derm")) return "Dermatologic";
-  if (c.includes("psych")||c.includes("behavioral")) return "Psychiatric / Behavioral";
-  if (c.includes("eent")||c.includes("ophth")||c.includes("ent")) return "EENT";
-  if (c.includes("reproduct")||c.includes("gyn")||c.includes("obstet")) return "Reproductive";
-  return "Other";
-}
-
-function groupBySystem(conditions: Condition[]): Record<string, Condition[]> {
+function groupByBlueprint(
+  slug: RotationSlug,
+  conditions: Condition[]
+): Record<string, Condition[]> {
   return conditions.reduce<Record<string, Condition[]>>((acc, cond) => {
-    const sys = getPaeaSystem(cond.category);
-    (acc[sys] ??= []).push(cond);
+    const cat = getBlueprintCategory(slug, cond);
+    const key = cat?.name ?? UNMAPPED;
+    (acc[key] ??= []).push(cond);
     return acc;
   }, {});
 }
@@ -327,12 +311,19 @@ export default function ConditionsPage({ params }: { params: { slug: string } })
   const rotationName = ROTATION_DISPLAY_NAMES[slug as keyof typeof ROTATION_DISPLAY_NAMES];
   if (!rotationName) notFound();
 
-  const grouped = groupBySystem(conditions);
-  const orderedSystems = PAEA_SYSTEM_ORDER.filter((sys) => grouped[sys]?.length > 0);
+  const blueprint = EOR_BLUEPRINTS[slug];
+  const grouped = groupByBlueprint(slug, conditions);
+
+  // Blueprint order (weight desc), then unmapped extras last
+  const orderedSystems = [
+    ...blueprint.categories.map((c) => c.name).filter((name) => grouped[name]?.length > 0),
+    ...(grouped[UNMAPPED]?.length ? [UNMAPPED] : []),
+  ];
 
   const [activeSystem, setActiveSystem] = useState<string>(orderedSystems[0] ?? "");
 
   const activeConditions = grouped[activeSystem] ?? [];
+  const activeWeight = blueprint.categories.find((c) => c.name === activeSystem)?.weight;
 
   return (
     <div className="flex h-[calc(100vh-8rem)] overflow-hidden">
@@ -344,11 +335,21 @@ export default function ConditionsPage({ params }: { params: { slug: string } })
           <p className="text-xs text-muted-foreground mt-0.5">
             {rotationName} · {orderedSystems.length} systems · {conditions.length} diagnoses
           </p>
+          <a
+            href={blueprint.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center gap-1 rounded-md border border-teal-200 bg-teal-50 px-2 py-1 text-[11px] font-semibold text-teal-700 hover:bg-teal-100 transition-colors"
+            title={`Ordered by PAEA ${blueprint.examName} weights — ${blueprint.blueprintVersion}. Click for the official blueprint PDF.`}
+          >
+            PAEA EOR blueprint · {blueprint.blueprintVersion.split(" ")[0]}
+          </a>
         </div>
 
         <nav className="pb-4">
           {orderedSystems.map((system) => {
             const count = grouped[system]?.length ?? 0;
+            const weight = blueprint.categories.find((c) => c.name === system)?.weight;
             const isActive = system === activeSystem;
             return (
               <button
@@ -361,7 +362,21 @@ export default function ConditionsPage({ params }: { params: { slug: string } })
                 }`}
               >
                 <span className="leading-snug">{system}</span>
-                <span className="text-xs text-muted-foreground shrink-0">{count}</span>
+                <span className="flex items-center gap-1.5 shrink-0">
+                  {weight !== undefined && (
+                    <span
+                      className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                        isActive
+                          ? "bg-teal-100 text-teal-700"
+                          : "bg-muted text-muted-foreground"
+                      }`}
+                      title={`${weight}% of the ${blueprint.examName} exam`}
+                    >
+                      {weight}%
+                    </span>
+                  )}
+                  <span className="text-xs text-muted-foreground">{count}</span>
+                </span>
               </button>
             );
           })}
@@ -375,6 +390,14 @@ export default function ConditionsPage({ params }: { params: { slug: string } })
             <h2 className="text-base font-bold">{activeSystem}</h2>
             <p className="text-xs text-muted-foreground mt-0.5">
               {activeConditions.length} {activeConditions.length === 1 ? "condition" : "conditions"}
+              {activeWeight !== undefined && (
+                <>
+                  {" · "}
+                  <span className="font-semibold text-teal-600">
+                    ≈{activeWeight}% of the {blueprint.examName}
+                  </span>
+                </>
+              )}
             </p>
           </div>
 

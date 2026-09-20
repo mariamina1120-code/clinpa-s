@@ -1,6 +1,7 @@
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { redirect, notFound } from "next/navigation";
 import { ROTATION_DISPLAY_NAMES, SUPPORTED_ROTATIONS } from "@/lib/seed";
+import { isFounderEmail } from "@/lib/products";
 import type { RotationSlug } from "@/types";
 
 /**
@@ -28,17 +29,19 @@ export async function validatePaperToolAccess(slugParam: string): Promise<{
     } = await supabase.auth.getUser();
     if (!user) redirect("/auth/login");
 
-    const { data: modules } = await supabase
-      .from("user_modules")
-      .select("rotation_slug, has_paper_tools")
-      .eq("user_id", user.id)
-      .eq("rotation_slug", slug);
+    if (!isFounderEmail(user.email)) {
+      const { data: modules } = await supabase
+        .from("user_modules")
+        .select("rotation_slug, has_paper_tools")
+        .eq("user_id", user.id)
+        .eq("rotation_slug", slug);
 
-    type ModRow = { rotation_slug: string; has_paper_tools: boolean };
-    const hasPaper = (modules ?? ([] as ModRow[])).some(
-      (m: ModRow) => m.has_paper_tools
-    );
-    if (!hasPaper) redirect("/paper-tools");
+      type ModRow = { rotation_slug: string; has_paper_tools: boolean };
+      const hasPaper = (modules ?? ([] as ModRow[])).some(
+        (m: ModRow) => m.has_paper_tools
+      );
+      if (!hasPaper) redirect("/paper-tools");
+    }
   }
 
   const displayName =

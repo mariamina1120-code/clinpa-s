@@ -12,8 +12,10 @@ import {
   Package,
   FileText,
   Star,
+  Mic,
 } from "lucide-react";
 import type { RotationSlug } from "@/types";
+import { AI_SCRIBE_SLUG } from "@/lib/products";
 import { PurchaseButton } from "./purchase-button";
 
 export const metadata: Metadata = {
@@ -103,7 +105,7 @@ export default async function StorePage({
   const purchaseSuccess = searchParams.success === "1";
   const devMode = !isSupabaseConfigured;
 
-  let ownedSlugs = new Set<RotationSlug>();
+  let ownedSlugs = new Set<string>();
   let ownedHasPaper = false;
 
   if (!devMode) {
@@ -123,9 +125,7 @@ export default async function StorePage({
 
     type ModRow = { rotation_slug: string; has_paper_tools: boolean };
     ownedSlugs = new Set(
-      (modules ?? ([] as ModRow[])).map(
-        (m: ModRow) => m.rotation_slug as RotationSlug
-      )
+      (modules ?? ([] as ModRow[])).map((m: ModRow) => m.rotation_slug)
     );
     ownedHasPaper = (modules ?? ([] as ModRow[])).some(
       (m: ModRow) => m.has_paper_tools
@@ -251,6 +251,75 @@ export default async function StorePage({
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* ── AI Scribe add-on ─────────────────────────────────────────────────── */}
+        <section id="ai-scribe" className="mt-14 scroll-mt-24">
+          <div
+            className="relative overflow-hidden rounded-2xl p-8 text-white"
+            style={{ background: "linear-gradient(135deg, #1e3a5f 0%, #0f766e 100%)" }}
+          >
+            <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/10" />
+            <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-2xl">
+                <div className="mb-3 flex items-center gap-2">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/15">
+                    <Mic className="h-5 w-5" />
+                  </span>
+                  <Badge className="bg-amber-400 text-slate-900 hover:bg-amber-400">
+                    Premium Add-on
+                  </Badge>
+                </div>
+                <h2 className="text-2xl font-bold">AI Scribe</h2>
+                <p className="mt-2 text-sm leading-relaxed text-white/80">
+                  Dictate your patient encounter out loud — AI Scribe turns it
+                  into a professional, OLDCARTS-ordered HPI paragraph for your
+                  SOAP note, and tells you which history elements you forgot to
+                  ask. Practice charting like a real scribe is following you.
+                </p>
+                <ul className="mt-4 grid gap-1.5 text-xs text-white/80 sm:grid-cols-2">
+                  <li className="flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-teal-300" /> Voice dictation built in
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-teal-300" /> Professional HPI in seconds
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-teal-300" /> Flags missing OLDCARTS elements
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-teal-300" /> Works in every rotation&apos;s SOAP chart
+                  </li>
+                </ul>
+              </div>
+
+              <div className="w-full max-w-xs shrink-0 rounded-2xl bg-white p-6 text-slate-900 shadow-lg">
+                <p className="text-3xl font-extrabold">
+                  $19.99
+                  <span className="ml-1 text-sm font-medium text-slate-400">one-time</span>
+                </p>
+                <p className="mt-1 text-xs text-slate-500">
+                  Included free with Complete Bundle + Paper Tools
+                </p>
+                <div className="mt-4">
+                  {ownedSlugs.has(AI_SCRIBE_SLUG) || ownedHasPaper ? (
+                    <div className="flex items-center justify-center gap-2 rounded-xl bg-teal-50 py-3 text-sm font-semibold text-teal-700">
+                      <CheckCircle2 className="h-4 w-4" />
+                      Unlocked
+                    </div>
+                  ) : (
+                    <PurchaseButton
+                      rotationSlugs={[AI_SCRIBE_SLUG]}
+                      hasPaperTools={false}
+                      label="Add AI Scribe — $19.99"
+                      priceInCents={1999}
+                      variant="default"
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

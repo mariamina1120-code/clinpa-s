@@ -1,17 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
-import type { RotationSlug } from "@/types";
-
-const VALID_SLUGS: RotationSlug[] = [
-  "family-medicine",
-  "internal-medicine",
-  "general-surgery",
-  "pediatrics",
-  "womens-health",
-  "emergency-medicine",
-  "behavioral-medicine",
-];
+import { getCartPriceInCents } from "@/lib/products";
 
 export async function POST(request: NextRequest) {
   if (!isSupabaseConfigured) {
@@ -39,18 +29,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const { rotationSlugs, hasPaperTools, priceInCents, label } = body;
+  const { rotationSlugs, hasPaperTools, label } = body;
 
   if (!Array.isArray(rotationSlugs) || rotationSlugs.length === 0) {
     return NextResponse.json({ error: "rotationSlugs must be a non-empty array" }, { status: 400 });
   }
-  for (const slug of rotationSlugs) {
-    if (!VALID_SLUGS.includes(slug as RotationSlug)) {
-      return NextResponse.json({ error: `Invalid rotation slug: ${slug}` }, { status: 400 });
-    }
-  }
-  if (!priceInCents || priceInCents < 100) {
-    return NextResponse.json({ error: "Invalid price" }, { status: 400 });
+
+  // SECURITY: price is computed server-side from the catalog — the client's
+  // priceInCents is ignored so it can't be tampered with.
+  const serverPriceInCents = getCartPriceInCents(rotationSlugs, Boolean(hasPaperTools));
+  if (serverPriceInCents === null) {
+    return NextResponse.json({ error: "Invalid product selection" }, { status: 400 });
   }
 
   const origin = request.nextUrl.origin;
@@ -61,10 +50,10 @@ export async function POST(request: NextRequest) {
       {
         price_data: {
           currency: "usd",
-          unit_amount: priceInCents,
+          unit_amount: serverPriceInCents,
           product_data: {
-            name: label,
-            description: `ClinPA-S rotation module access`,
+            name: label || "ClinPA-S purchase",
+            description: `ClinPA-S module access`,
           },
         },
         quantity: 1,
