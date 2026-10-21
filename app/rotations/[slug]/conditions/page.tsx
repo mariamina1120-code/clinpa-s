@@ -59,7 +59,7 @@ function parseFeatures(text: string): string[] {
 
 function SectionLabel({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <h4 className={`text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-3 ${className}`}>
+    <h4 className={`text-xs font-bold uppercase tracking-widest text-slate-500 mb-3 ${className}`}>
       {children}
     </h4>
   );
@@ -75,7 +75,7 @@ function DiagnosticCriteriaBlock({ text }: { text: string }) {
             <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2.5">Major Criteria</p>
             <ul className="space-y-1.5">
               {parsed.major.map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
+                <li key={i} className="flex items-start gap-2">
                   <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-slate-400 shrink-0" />
                   {item}
                 </li>
@@ -86,7 +86,7 @@ function DiagnosticCriteriaBlock({ text }: { text: string }) {
             <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2.5">Minor Criteria</p>
             <ul className="space-y-1.5">
               {parsed.minor.map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
+                <li key={i} className="flex items-start gap-2">
                   <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-slate-600 shrink-0" />
                   {item}
                 </li>
@@ -95,13 +95,13 @@ function DiagnosticCriteriaBlock({ text }: { text: string }) {
           </div>
         </div>
         {parsed.extra && (
-          <p className="text-sm text-muted-foreground italic px-1">{parsed.extra}</p>
+          <p className="text-muted-foreground italic px-1">{parsed.extra}</p>
         )}
       </div>
     );
   }
   return (
-    <p className="text-sm leading-relaxed text-foreground/90 bg-muted/30 rounded-xl border border-border p-4">
+    <p className="leading-relaxed text-foreground/90 bg-muted/30 rounded-xl border border-border p-4">
       {text}
     </p>
   );
@@ -115,7 +115,7 @@ function DistinguishingFeaturesBlock({ text }: { text: string }) {
         {items.map((item, i) => (
           <span
             key={i}
-            className="inline-block text-sm px-3 py-1.5 rounded-lg border border-border bg-muted/30 leading-snug"
+            className="inline-block px-3 py-1.5 rounded-lg border border-border bg-muted/30 leading-snug"
           >
             {item}
           </span>
@@ -123,7 +123,7 @@ function DistinguishingFeaturesBlock({ text }: { text: string }) {
       </div>
     );
   }
-  return <p className="text-sm leading-relaxed text-foreground/90">{text}</p>;
+  return <p className="leading-relaxed text-foreground/90">{text}</p>;
 }
 
 function PresentationBlock({ presentation }: { presentation: NonNullable<Condition["presentation"]> }) {
@@ -140,7 +140,7 @@ function PresentationBlock({ presentation }: { presentation: NonNullable<Conditi
               <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2.5">Chief Complaint</p>
               <ul className="space-y-1.5">
                 {presentation.chiefComplaint?.map((c, i) => (
-                  <li key={i} className="text-sm italic text-muted-foreground pl-3 border-l-2 border-border">
+                  <li key={i} className="italic text-muted-foreground pl-3 border-l-2 border-border">
                     &ldquo;{c}&rdquo;
                   </li>
                 ))}
@@ -152,7 +152,7 @@ function PresentationBlock({ presentation }: { presentation: NonNullable<Conditi
               <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2.5">Associated Symptoms</p>
               <ul className="space-y-1.5">
                 {presentation.associatedSymptoms?.map((s, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm">
+                  <li key={i} className="flex items-start gap-2">
                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-slate-400 shrink-0" />
                     {s}
                   </li>
@@ -163,7 +163,7 @@ function PresentationBlock({ presentation }: { presentation: NonNullable<Conditi
         </div>
       )}
       {hasDemog && (
-        <p className="text-sm text-muted-foreground italic px-1">{presentation.demographics}</p>
+        <p className="text-muted-foreground italic px-1">{presentation.demographics}</p>
       )}
     </div>
   );
@@ -207,7 +207,7 @@ function ConditionCard({ condition }: { condition: Condition }) {
       <summary className="flex items-start justify-between gap-3 px-4 py-3.5 cursor-pointer list-none select-none hover:bg-muted/20 transition-colors">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-semibold text-[15px]">{condition.name}</span>
+            <span className="font-semibold text-lg sm:text-[15px] leading-snug">{condition.name}</span>
             {condition.icdCode && (
               <code className="text-xs px-1.5 py-0.5 rounded bg-muted text-muted-foreground border border-border font-mono">
                 {condition.icdCode}
@@ -226,79 +226,93 @@ function ConditionCard({ condition }: { condition: Condition }) {
         </svg>
       </summary>
 
-      <div className="px-4 pb-5 border-t border-border space-y-6 pt-5">
-        <div className="flex justify-end -mb-2">
-          <AskOpenEvidence conditionName={condition.name} />
-        </div>
-        {condition.definition && (
+      <div className="px-4 pb-5 border-t border-border space-y-6 pt-5 text-base sm:text-[15px]">
+        {condition.presentation && (
           <div>
-            <SectionLabel>Definition</SectionLabel>
-            <p className="text-[15px] leading-relaxed text-foreground/90">{condition.definition}</p>
+            <SectionLabel>Spot it</SectionLabel>
+            <PresentationBlock presentation={condition.presentation} />
           </div>
         )}
         {condition.diagnosticCriteria && (
           <div>
-            <SectionLabel>Diagnostic Criteria</SectionLabel>
+            <SectionLabel>Confirm it</SectionLabel>
             <DiagnosticCriteriaBlock text={condition.diagnosticCriteria} />
-          </div>
-        )}
-        {condition.presentation && (
-          <div>
-            <SectionLabel>Presentation</SectionLabel>
-            <PresentationBlock presentation={condition.presentation} />
-          </div>
-        )}
-        {condition.distinguishingFeatures && (
-          <div>
-            <SectionLabel>Distinguishing Features</SectionLabel>
-            <DistinguishingFeaturesBlock text={condition.distinguishingFeatures} />
           </div>
         )}
         {(condition.redFlags?.length ?? 0) > 0 && (
           <div className="rounded-xl border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30 p-4">
-            <p className="text-[11px] font-bold uppercase tracking-widest text-red-600 dark:text-red-400 mb-3">
-              🚩 Red Flags
+            <p className="text-xs font-bold uppercase tracking-widest text-red-700 dark:text-red-400 mb-3">
+              Don&apos;t miss
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
+            <ul className="space-y-2">
               {condition.redFlags?.map((f, i) => (
-                <div key={i} className="flex items-start gap-2 text-sm text-red-700 dark:text-red-300">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-red-400 shrink-0" />
+                <li key={i} className="flex items-start gap-2 text-red-800 dark:text-red-200">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-red-500 shrink-0" />
                   {f}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
-        {(condition.mnemonics?.length ?? 0) > 0 && (
-          <div className="space-y-2.5">
-            <SectionLabel>Mnemonics</SectionLabel>
-            {condition.mnemonics?.map((m, i) => (
-              <div key={i} className="rounded-xl border border-border bg-muted/30 p-4">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
-                  🧠 {m.name}
-                </p>
-                <p className="text-sm leading-relaxed whitespace-pre-line font-medium">
-                  {m.content}
-                </p>
+
+        <details className="group/more rounded-xl border border-border">
+          <summary className="flex items-center justify-between gap-3 cursor-pointer list-none select-none px-4 py-3 font-semibold">
+            More for studying
+            <svg
+              className="h-4 w-4 text-muted-foreground transition-transform group-open/more:rotate-180 shrink-0"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div className="space-y-6 border-t border-border px-4 pb-5 pt-5">
+            <div className="flex justify-end -mb-2">
+              <AskOpenEvidence conditionName={condition.name} />
+            </div>
+            {condition.definition && (
+              <div>
+                <SectionLabel>Definition</SectionLabel>
+                <p className="leading-relaxed text-foreground/90">{condition.definition}</p>
               </div>
-            ))}
-          </div>
-        )}
-        {(condition.pimpingQuestions?.length ?? 0) > 0 && (
-          <div>
-            <SectionLabel>Pimping Questions</SectionLabel>
-            <div className="space-y-2">
-              {condition.pimpingQuestions?.map((q, i) => (
-                <div key={i} className="flex items-start gap-3 text-sm">
-                  <span className="shrink-0 h-6 w-6 rounded-full bg-muted text-muted-foreground text-xs font-bold flex items-center justify-center mt-0.5">
-                    {i + 1}
-                  </span>
-                  <span className="pt-0.5 leading-relaxed">{q}</span>
+            )}
+            {condition.distinguishingFeatures && (
+              <div>
+                <SectionLabel>Distinguishing Features</SectionLabel>
+                <DistinguishingFeaturesBlock text={condition.distinguishingFeatures} />
+              </div>
+            )}
+            {(condition.mnemonics?.length ?? 0) > 0 && (
+              <div className="space-y-2.5">
+                <SectionLabel>Mnemonics</SectionLabel>
+                {condition.mnemonics?.map((m, i) => (
+                  <div key={i} className="rounded-xl border border-border bg-muted/30 p-4">
+                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
+                      {m.name}
+                    </p>
+                    <p className="leading-relaxed whitespace-pre-line font-medium">
+                      {m.content}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+            {(condition.pimpingQuestions?.length ?? 0) > 0 && (
+              <div>
+                <SectionLabel>Pimping Questions</SectionLabel>
+                <div className="space-y-2">
+                  {condition.pimpingQuestions?.map((q, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="shrink-0 h-6 w-6 rounded-full bg-muted text-muted-foreground text-xs font-bold flex items-center justify-center mt-0.5">
+                        {i + 1}
+                      </span>
+                      <span className="pt-0.5 leading-relaxed">{q}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
           </div>
-        )}
+        </details>
       </div>
     </details>
   );

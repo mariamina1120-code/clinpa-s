@@ -137,6 +137,22 @@ export default function RotationHubPage({ params }: { params: { slug: string } }
         </div>
       </div>
 
+      {/* ── On Shift entry point (ER) ── */}
+      {params.slug === "emergency-medicine" && (
+        <Link
+          href={`/rotations/${params.slug}/shift`}
+          className="flex items-center justify-between gap-4 rounded-2xl border border-red-200 bg-red-50 px-5 py-5 transition-colors hover:bg-red-100/70 dark:border-red-900 dark:bg-red-950/30"
+        >
+          <div>
+            <p className="text-xl font-extrabold text-red-900 dark:text-red-100">On shift? Start here</p>
+            <p className="mt-1 text-base text-red-900/80 dark:text-red-200/80">
+              12 chief complaints · one screen each · don&apos;t-miss, workup, decision rules
+            </p>
+          </div>
+          <ArrowRight className="h-6 w-6 shrink-0 text-red-700" />
+        </Link>
+      )}
+
       {/* ── PAEA EOR Blueprint ── */}
       {blueprint && (
         <div className="rounded-2xl border border-border bg-card overflow-hidden">

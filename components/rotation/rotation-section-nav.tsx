@@ -26,6 +26,7 @@ import {
   Zap,
   Brain,
   Star,
+  Siren,
   type LucideIcon,
 } from "lucide-react";
 
@@ -55,6 +56,9 @@ interface SectionItem {
 function getSections(slug: RotationSlug, hasPaperTools: boolean): SectionItem[] {
   const base = `/rotations/${slug}`;
   return [
+    ...(slug === "emergency-medicine"
+      ? [{ href: `${base}/shift`, icon: Siren, label: "On Shift", activeColor: "text-red-700 dark:text-red-300", activeBg: "bg-red-50 dark:bg-red-900/40" }]
+      : []),
     { href: base, icon: BookOpen, label: "Overview", activeColor: "text-teal-700 dark:text-teal-300", activeBg: "bg-teal-50 dark:bg-teal-900/40" },
     { href: `${base}/conditions`, icon: Stethoscope, label: "Conditions", activeColor: "text-teal-700 dark:text-teal-300", activeBg: "bg-teal-50 dark:bg-teal-900/40" },
     { href: `${base}/pharmacology`, icon: Pill, label: "Pharmacology", activeColor: "text-blue-700 dark:text-blue-300", activeBg: "bg-blue-50 dark:bg-blue-900/40" },
@@ -159,7 +163,7 @@ export function RotationSectionNav({
           aria-label="Section navigation"
         >
           {sections.map(({ href, icon: Icon, label, paperOnly, activeColor, activeBg }) => {
-            const active = pathname === href;
+            const active = pathname === href || (href.endsWith("/shift") && pathname.startsWith(href + "/"));
             return (
               <Link
                 key={href}
@@ -193,7 +197,7 @@ export function RotationSectionNav({
           aria-label="Section navigation"
         >
           {sections.map(({ href, icon: Icon, label, activeColor, activeBg }) => {
-            const active = pathname === href;
+            const active = pathname === href || (href.endsWith("/shift") && pathname.startsWith(href + "/"));
             return (
               <Link
                 key={href}
