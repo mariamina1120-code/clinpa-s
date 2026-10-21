@@ -46,7 +46,7 @@ export default function LoginPage({
         </div>
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          This application handles Protected Health Information (PHI).{" "}
+          De-identified data only — never enter patient names, DOBs, MRNs, or other identifiers.{" "}
           <Link href="/privacy" className="underline">Privacy Policy</Link>
         </p>
       </div>

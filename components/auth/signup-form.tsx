@@ -28,7 +28,7 @@ const signupSchema = z.object({
     .transform(Number),
   hipaaAcknowledgment: z.literal(true, {
     errorMap: () => ({
-      message: "You must acknowledge the HIPAA notice to continue",
+      message: "You must acknowledge the de-identified data notice to continue",
     }),
   }),
   termsAccepted: z.literal(true, {
@@ -138,18 +138,17 @@ export function SignupForm() {
         </div>
       </div>
 
-      {/* HIPAA Acknowledgment */}
+      {/* De-identified data acknowledgment */}
       <div className="rounded-lg border border-amber-200 bg-amber-50 dark:bg-amber-950/20 p-4 space-y-3">
         <div className="flex items-start gap-2">
           <ShieldAlert className="h-5 w-5 text-amber-600 mt-0.5 shrink-0" />
           <div>
-            <p className="text-sm font-semibold text-amber-800 dark:text-amber-300">HIPAA Notice</p>
+            <p className="text-sm font-semibold text-amber-800 dark:text-amber-300">De-identified data only</p>
             <p className="text-xs text-amber-700 dark:text-amber-400 mt-1">
-              This application is designed for educational use during supervised clinical practice experiences.
-              Patient charts you create may contain Protected Health Information (PHI). You are responsible for
-              ensuring all patient data is de-identified and that you comply with your program&apos;s HIPAA policies,
-              your clinical site&apos;s policies, and applicable federal and state law. Do not enter real patient names,
-              dates of birth, or other direct identifiers.
+              This app is a study and reference aid for supervised clinical practice experiences. Do not enter
+              protected health information (PHI): no patient names, dates of birth, MRNs, addresses, phone numbers,
+              photos, or other identifiers. You are responsible for following your program&apos;s and clinical
+              site&apos;s patient-privacy policies.
             </p>
           </div>
         </div>
@@ -161,7 +160,7 @@ export function SignupForm() {
             aria-required="true"
           />
           <Label htmlFor="hipaaAcknowledgment" className="text-xs font-normal cursor-pointer">
-            I understand and acknowledge the HIPAA notice above and my responsibility to protect patient data.
+            I will enter de-identified data only and follow my program&apos;s and site&apos;s patient-privacy policies.
           </Label>
         </div>
         {errors.hipaaAcknowledgment && (

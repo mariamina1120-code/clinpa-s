@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | ClinPAS",
   },
   description:
-    "HIPAA-compliant clinical rotation companion for PA students. Diagnostic criteria, pharmacology, SOAP charting, case logs, and study tools for all ARC-PA rotations.",
+    "Clinical rotation companion for PA students. Diagnostic criteria, pharmacology, SOAP charting, case logs, and study tools for the seven core rotations.",
   keywords: [
     "PA student",
     "clinical rotation",
