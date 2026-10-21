@@ -17,7 +17,10 @@ export default async function StoreLayout({
       data: { user },
     } = await supabase.auth.getUser();
 
-    if (user) {
+    if (!user) {
+      fullName = "Guest";
+      initials = "G";
+    } else {
       const { data: profile } = await supabase
         .from("profiles")
         .select("full_name")

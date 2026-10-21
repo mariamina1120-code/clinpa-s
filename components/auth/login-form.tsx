@@ -48,7 +48,9 @@ export function LoginForm({ redirectTo }: { redirectTo?: string }) {
       }
 
       // Full page reload so server components pick up the new auth cookies
-      window.location.href = redirectTo ?? "/dashboard";
+      const safeRedirect =
+        redirectTo && redirectTo.startsWith("/") && !redirectTo.startsWith("//") ? redirectTo : "/dashboard";
+      window.location.href = safeRedirect;
     } catch (err) {
       setServerError("Network error — please check your connection and try again.");
     }

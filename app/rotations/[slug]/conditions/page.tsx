@@ -321,76 +321,123 @@ export default function ConditionsPage({ params }: { params: { slug: string } })
   ];
 
   const [activeSystem, setActiveSystem] = useState<string>(orderedSystems[0] ?? "");
+  const [query, setQuery] = useState("");
 
-  const activeConditions = grouped[activeSystem] ?? [];
+  const q = query.trim().toLowerCase();
+  const searching = q.length > 0;
+  const searchResults = searching
+    ? conditions.filter((c) =>
+        [c.name, c.category, c.icdCode, c.definition]
+          .filter(Boolean)
+          .some((field) => String(field).toLowerCase().includes(q))
+      )
+    : [];
+
+  const activeConditions = searching ? searchResults : grouped[activeSystem] ?? [];
   const activeWeight = blueprint.categories.find((c) => c.name === activeSystem)?.weight;
 
-  return (
-    <div className="flex h-[calc(100vh-8rem)] overflow-hidden">
+  const systemButtons = (variant: "chip" | "row") =>
+    orderedSystems.map((system) => {
+      const count = grouped[system]?.length ?? 0;
+      const weight = blueprint.categories.find((c) => c.name === system)?.weight;
+      const isActive = !searching && system === activeSystem;
+      const select = () => {
+        setQuery("");
+        setActiveSystem(system);
+      };
+      if (variant === "chip") {
+        return (
+          <button
+            key={system}
+            onClick={select}
+            className={`shrink-0 rounded-full border px-3.5 py-2 text-sm font-medium transition-colors ${
+              isActive
+                ? "border-teal-600 bg-teal-600 text-white"
+                : "border-border bg-background text-foreground hover:bg-muted/50"
+            }`}
+          >
+            {system.split(" (")[0]} <span className={isActive ? "text-teal-100" : "text-muted-foreground"}>{count}</span>
+          </button>
+        );
+      }
+      return (
+        <button
+          key={system}
+          onClick={select}
+          className={`w-full text-left px-4 py-2.5 flex items-center justify-between gap-2 text-sm transition-colors border-l-2 ${
+            isActive
+              ? "border-foreground bg-muted/50 font-medium text-foreground"
+              : "border-transparent text-muted-foreground hover:bg-muted/30 hover:text-foreground font-normal"
+          }`}
+        >
+          <span className="leading-snug">{system}</span>
+          <span className="flex items-center gap-1.5 shrink-0">
+            {weight !== undefined && (
+              <span
+                className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                  isActive ? "bg-teal-100 text-teal-700" : "bg-muted text-muted-foreground"
+                }`}
+                title={`${weight}% of the ${blueprint.examName} exam`}
+              >
+                {weight}%
+              </span>
+            )}
+            <span className="text-xs text-muted-foreground">{count}</span>
+          </span>
+        </button>
+      );
+    });
 
-      {/* Sidebar — 1/3 */}
-      <aside className="w-64 shrink-0 border-r border-border overflow-y-auto">
+  return (
+    <div className="flex flex-col md:flex-row md:h-[calc(100vh-8rem)] md:overflow-hidden">
+
+      {/* Sidebar (desktop) / header + chips (phone) */}
+      <aside className="md:w-64 md:shrink-0 md:border-r border-border md:overflow-y-auto">
         <div className="px-4 pt-5 pb-3">
-          <h1 className="text-base font-bold tracking-tight">Conditions</h1>
-          <p className="text-xs text-muted-foreground mt-0.5">
-            {rotationName} · {orderedSystems.length} systems · {conditions.length} diagnoses
+          <h1 className="text-xl md:text-base font-bold tracking-tight">Conditions</h1>
+          <p className="text-sm md:text-xs text-muted-foreground mt-0.5">
+            {rotationName} · {conditions.length} diagnoses
           </p>
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search — e.g. PE, sepsis, DKA"
+            aria-label="Search conditions"
+            className="mt-3 w-full rounded-xl border border-border bg-background px-4 py-3 text-base md:py-2 md:text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
           <a
             href={blueprint.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex items-center gap-1 rounded-md border border-teal-200 bg-teal-50 px-2 py-1 text-[11px] font-semibold text-teal-700 hover:bg-teal-100 transition-colors"
-            title={`Ordered by PAEA ${blueprint.examName} weights — ${blueprint.blueprintVersion}. Click for the official blueprint PDF.`}
+            className="mt-2 hidden md:inline-flex items-center gap-1 rounded-md border border-teal-200 bg-teal-50 px-2 py-1 text-[11px] font-semibold text-teal-700 hover:bg-teal-100 transition-colors"
+            title={`Ordered by PAEA ${blueprint.examName} weights — ${blueprint.blueprintVersion}. Click for the PAEA blueprint PDF.`}
           >
             PAEA EOR blueprint · {blueprint.blueprintVersion.split(" ")[0]}
           </a>
         </div>
 
-        <nav className="pb-4">
-          {orderedSystems.map((system) => {
-            const count = grouped[system]?.length ?? 0;
-            const weight = blueprint.categories.find((c) => c.name === system)?.weight;
-            const isActive = system === activeSystem;
-            return (
-              <button
-                key={system}
-                onClick={() => setActiveSystem(system)}
-                className={`w-full text-left px-4 py-2.5 flex items-center justify-between gap-2 text-sm transition-colors border-l-2 ${
-                  isActive
-                    ? "border-foreground bg-muted/50 font-medium text-foreground"
-                    : "border-transparent text-muted-foreground hover:bg-muted/30 hover:text-foreground font-normal"
-                }`}
-              >
-                <span className="leading-snug">{system}</span>
-                <span className="flex items-center gap-1.5 shrink-0">
-                  {weight !== undefined && (
-                    <span
-                      className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                        isActive
-                          ? "bg-teal-100 text-teal-700"
-                          : "bg-muted text-muted-foreground"
-                      }`}
-                      title={`${weight}% of the ${blueprint.examName} exam`}
-                    >
-                      {weight}%
-                    </span>
-                  )}
-                  <span className="text-xs text-muted-foreground">{count}</span>
-                </span>
-              </button>
-            );
-          })}
+        {/* Phone: horizontal chips */}
+        <nav className="md:hidden flex gap-2 overflow-x-auto px-4 pb-3 [scrollbar-width:none]" aria-label="Body systems">
+          {systemButtons("chip")}
+        </nav>
+
+        {/* Desktop: sidebar rows */}
+        <nav className="hidden md:block pb-4" aria-label="Body systems">
+          {systemButtons("row")}
         </nav>
       </aside>
 
-      {/* Main panel — 2/3 */}
-      <main className="flex-1 overflow-y-auto px-6 py-5">
+      {/* Main panel */}
+      <main className="flex-1 md:overflow-y-auto px-4 md:px-6 py-4 md:py-5">
         <div className="max-w-2xl space-y-2">
           <div className="pb-3 mb-1 border-b border-border">
-            <h2 className="text-base font-bold">{activeSystem}</h2>
-            <p className="text-xs text-muted-foreground mt-0.5">
+            <h2 className="text-lg md:text-base font-bold">
+              {searching ? `Results for “${query.trim()}”` : activeSystem}
+            </h2>
+            <p className="text-sm md:text-xs text-muted-foreground mt-0.5">
               {activeConditions.length} {activeConditions.length === 1 ? "condition" : "conditions"}
-              {activeWeight !== undefined && (
+              {!searching && activeWeight !== undefined && (
                 <>
                   {" · "}
                   <span className="font-semibold text-teal-600">
@@ -402,7 +449,9 @@ export default function ConditionsPage({ params }: { params: { slug: string } })
           </div>
 
           {activeConditions.length === 0 ? (
-            <p className="text-muted-foreground text-sm">No conditions for this system.</p>
+            <p className="text-muted-foreground text-sm">
+              {searching ? "No matches in this rotation." : "No conditions for this system."}
+            </p>
           ) : (
             activeConditions.map((condition) => (
               <ConditionCard key={condition.id} condition={condition} />

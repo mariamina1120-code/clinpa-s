@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
@@ -36,11 +35,11 @@ interface RotationProduct {
 const INDIVIDUAL_ROTATIONS: RotationProduct[] = [
   { slug: "family-medicine", name: "Family Medicine", icon: "🏠", price: 29.99 },
   { slug: "internal-medicine", name: "Internal Medicine", icon: "🫀", price: 29.99 },
-  { slug: "general-surgery", name: "General Surgery", icon: "🔪", price: 29.99 },
+  { slug: "general-surgery", name: "Surgery", icon: "🔪", price: 29.99 },
   { slug: "pediatrics", name: "Pediatrics", icon: "👶", price: 29.99 },
   { slug: "womens-health", name: "Women's Health", icon: "🌸", price: 29.99 },
   { slug: "emergency-medicine", name: "Emergency Medicine", icon: "🚨", price: 29.99 },
-  { slug: "behavioral-medicine", name: "Behavioral Medicine", icon: "🧠", price: 29.99 },
+  { slug: "behavioral-medicine", name: "Behavioral & Mental Health", icon: "🧠", price: 29.99 },
 ];
 
 const ALL_SLUGS: RotationSlug[] = INDIVIDUAL_ROTATIONS.map((r) => r.slug);
@@ -114,14 +113,14 @@ export default async function StorePage({
       data: { user },
     } = await supabase.auth.getUser();
 
-    if (!user) {
-      redirect("/auth/login?redirectTo=/store");
-    }
-
-    const { data: modules } = await supabase
-      .from("user_modules")
-      .select("rotation_slug, has_paper_tools")
-      .eq("user_id", user.id);
+    // The store is public so students can see prices before signing up;
+    // checkout itself requires an account (see /api/checkout).
+    const { data: modules } = user
+      ? await supabase
+          .from("user_modules")
+          .select("rotation_slug, has_paper_tools")
+          .eq("user_id", user.id)
+      : { data: [] };
 
     type ModRow = { rotation_slug: string; has_paper_tools: boolean };
     ownedSlugs = new Set(
@@ -402,8 +401,7 @@ export default async function StorePage({
             Questions about purchasing?
           </h3>
           <p className="mx-auto mt-2 max-w-xl text-sm text-slate-500">
-            All purchases are one-time — no subscriptions. Your content is
-            accessible for the duration of your clinical year. Need help?{" "}
+            All purchases are one-time — no subscriptions. Need help?{" "}
             <Link
               href="/terms"
               className="font-medium text-teal-600 underline underline-offset-2 hover:text-teal-700"

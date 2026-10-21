@@ -20,7 +20,7 @@ const ACTIVITY_EVENTS: (keyof WindowEventMap)[] = [
   "click",
 ];
 
-const AUTH_ROUTES = ["/auth/login", "/auth/signup", "/auth/forgot-password", "/", "/store", "/privacy", "/terms"];
+const AUTH_ROUTES = ["/auth/login", "/auth/signup", "/auth/forgot-password", "/auth/update-password", "/", "/store", "/privacy", "/terms"];
 
 export function InactivityWatcher() {
   const router = useRouter();

@@ -34,6 +34,12 @@ export function PurchaseButton({
         body: JSON.stringify({ rotationSlugs, hasPaperTools, priceInCents, label }),
       });
 
+      if (res.status === 401) {
+        // Not signed in — create an account first, then come back to buy.
+        window.location.href = "/auth/signup";
+        return;
+      }
+
       const data = await res.json();
 
       if (!res.ok) {

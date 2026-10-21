@@ -124,10 +124,7 @@ export default function RotationHubPage({ params }: { params: { slug: string } }
         className="rounded-2xl overflow-hidden"
         style={{ background: "linear-gradient(135deg, #0284c7 0%, #075985 100%)" }}
       >
-        <div className="px-6 py-7 flex items-center gap-5">
-          <div className="h-16 w-16 shrink-0 rounded-2xl flex items-center justify-center text-4xl border border-white/20 bg-white/15 backdrop-blur-sm">
-            {rotation.icon}
-          </div>
+        <div className="px-5 py-5 sm:px-6 sm:py-7">
           <div>
             <p className="text-teal-200 text-xs font-bold uppercase tracking-widest mb-1">
               Clinical Rotation
@@ -135,7 +132,7 @@ export default function RotationHubPage({ params }: { params: { slug: string } }
             <h1 className="text-2xl font-extrabold text-white leading-tight">
               {rotation.name}
             </h1>
-            <p className="text-white/70 text-sm mt-1">{rotation.description}</p>
+            <p className="hidden sm:block text-white/70 text-sm mt-1">{rotation.description}</p>
           </div>
         </div>
       </div>

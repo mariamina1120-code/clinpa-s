@@ -21,7 +21,7 @@ export function ForgotPasswordForm() {
 
   const onSubmit = async (values: Values) => {
     await supabase.auth.resetPasswordForEmail(values.email, {
-      redirectTo: `${window.location.origin}/auth/login`,
+      redirectTo: `${window.location.origin}/auth/callback?redirectTo=/auth/update-password`,
     });
     // Always show success to prevent email enumeration
     setSent(true);

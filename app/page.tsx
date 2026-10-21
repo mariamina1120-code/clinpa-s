@@ -37,7 +37,7 @@ const pillars = [
     label: "Study",
     title: "Study exactly what's tested",
     description:
-      "Every rotation organized around the PAEA EOR blueprint — high-yield conditions, drug cards, and PANCE-style quizzes so no study session is wasted.",
+      "Every rotation aligned with the 2026 PAEA EOR blueprints — high-yield conditions, drug cards, and PANCE-style quizzes so no study session is wasted.",
     href: "#rotations",
     cta: "Browse rotations",
   },
@@ -81,7 +81,7 @@ const features = [
     icon: ShieldCheck,
     title: "Clinical Guidelines",
     description:
-      "Evidence-based treatment algorithms and decision trees aligned with current NCCPA blueprints.",
+      "Evidence-based guideline summaries and decision rules, each with its source.",
   },
   {
     icon: ClipboardList,
@@ -109,8 +109,8 @@ const rotations = [
     icon: Activity,
   },
   {
-    name: "General Surgery",
-    shortDesc: "Peri-op care & abdominal surgery",
+    name: "Surgery",
+    shortDesc: "Pre-, intra- & post-op care",
     strip: "bg-slate-600",
     iconBg: "bg-slate-100",
     iconColor: "text-slate-700",
@@ -125,8 +125,8 @@ const rotations = [
     icon: Baby,
   },
   {
-    name: "Women's Health / OB-GYN",
-    shortDesc: "Reproductive health & obstetric care",
+    name: "Women's Health",
+    shortDesc: "Prenatal, gynecologic & reproductive care",
     strip: "bg-rose-500",
     iconBg: "bg-rose-50",
     iconColor: "text-rose-500",
@@ -141,7 +141,7 @@ const rotations = [
     icon: Zap,
   },
   {
-    name: "Behavioral Medicine",
+    name: "Behavioral & Mental Health",
     shortDesc: "Psychiatry, mood disorders & SUD",
     strip: "bg-indigo-500",
     iconBg: "bg-indigo-50",
@@ -160,21 +160,21 @@ const pricingTiers = [
       "One rotation of your choice",
       "All conditions, pharm cards & quizzes",
       "Labs, guidelines & PE maneuvers",
-      "Lifetime digital access",
+      "One-time purchase — no subscription",
     ],
   },
   {
     name: "Complete Bundle",
     badge: "Digital",
     price: "$149.99",
-    description: "Everything you need for all seven PAEA EOR rotations.",
+    description: "Everything you need for all seven core rotations.",
     popular: true,
     features: [
       "All 7 clinical rotations",
       "Patient case log included",
-      "175+ conditions & drug cards",
+      "290+ conditions & 55+ drug cards",
       "Full quiz bank with explanations",
-      "Lifetime digital access",
+      "One-time purchase — no subscription",
       "Free future content updates",
     ],
   },
@@ -246,8 +246,8 @@ export default function LandingPage() {
               </h1>
 
               <p className="mt-6 max-w-lg text-xl leading-relaxed text-gray-500">
-                Log encounters in seconds, study content mapped to the PAEA EOR
-                blueprint, and pull up clinical references at the bedside — one
+                Log encounters in seconds, study content aligned with the 2026 PAEA
+                EOR blueprints, and pull up clinical references at the bedside — one
                 platform for everything clinical year throws at you.
               </p>
 
@@ -262,13 +262,16 @@ export default function LandingPage() {
                   <Link href="#pricing">See pricing</Link>
                 </Button>
               </div>
+              <p className="mt-3 text-sm text-gray-500">
+                Free account includes the case log. Rotation content is a one-time purchase.
+              </p>
 
               <div className="mt-12 flex gap-10 border-t border-gray-100 pt-6">
                 {[
                   { value: "<30s", label: "To log an encounter" },
-                  { value: "7", label: "PAEA EOR rotations" },
-                  { value: "175+", label: "Conditions covered" },
-                  { value: "500+", label: "Quiz questions" },
+                  { value: "7", label: "Core rotations" },
+                  { value: "290+", label: "Conditions covered" },
+                  { value: "140+", label: "Practice questions" },
                 ].map(({ value, label }) => (
                   <div key={label}>
                     <p className="text-2xl font-extrabold text-gray-900">{value}</p>
@@ -526,10 +529,10 @@ export default function LandingPage() {
               All 7 Rotations
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Every PAEA EOR Rotation Covered
+              All 7 Core Rotations Covered
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-              Content mapped directly to the EOR blueprint so every study session
+              Aligned with the 2026 PAEA EOR blueprints so every study session
               moves the needle.
             </p>
           </div>
@@ -721,9 +724,13 @@ export default function LandingPage() {
             <Link href="/terms" className="transition hover:text-teal-600">Terms</Link>
           </nav>
           <p className="text-xs text-gray-400">
-            &copy; {new Date().getFullYear()} ClinPAS. All rights reserved.
+            &copy; {new Date().getFullYear()} ClinPA-S. All rights reserved.
           </p>
         </div>
+        <p className="mx-auto max-w-6xl px-4 pb-8 text-center text-xs text-gray-400 sm:px-6">
+          ClinPA-S is a study and reference aid for PA students. It is not sponsored by, endorsed by, or affiliated with
+          PAEA, NCCPA, ARC-PA, or AAPA. Not for clinical decision-making — follow your preceptor and site protocols.
+        </p>
       </footer>
     </div>
   );

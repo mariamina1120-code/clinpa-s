@@ -281,9 +281,9 @@ export const SUPPORTED_ROTATIONS: RotationSlug[] = [
 export const ROTATION_DISPLAY_NAMES: Record<RotationSlug, string> = {
   "family-medicine": "Family Medicine",
   "internal-medicine": "Internal Medicine",
-  "general-surgery": "General Surgery",
+  "general-surgery": "Surgery",
   "pediatrics": "Pediatrics",
   "womens-health": "Women's Health",
   "emergency-medicine": "Emergency Medicine",
-  "behavioral-medicine": "Behavioral Medicine",
+  "behavioral-medicine": "Behavioral & Mental Health",
 };

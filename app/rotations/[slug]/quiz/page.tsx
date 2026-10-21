@@ -9,6 +9,39 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Trophy } from "lucide-react";
 
+// ── Normalise the several quiz seed formats into one shape ────────────────────
+// Seeds differ by rotation: question | stem | questionText; options as
+// "A. text" strings, plain strings, or {label,text}; correctAnswer as a letter
+// or a 0-based index.
+type NormalOption = { letter: string; text: string };
+type NormalQuestion = { text: string; options: NormalOption[]; correct: string };
+
+function normalizeQuestion(q: QuizQuestion | undefined): NormalQuestion {
+  if (!q) return { text: "", options: [], correct: "" };
+  const anyQ = q as unknown as Record<string, unknown>;
+  const text = String(q.question ?? q.stem ?? anyQ.questionText ?? "");
+  const raw = (q.optionsStructured ?? (anyQ.options as unknown[]) ?? []) as unknown[];
+  const options: NormalOption[] = raw.map((o, i) => {
+    const fallback = String.fromCharCode(65 + i);
+    if (typeof o === "string") {
+      const m = o.match(/^\s*([A-Ea-e])[.)]\s+([\s\S]*)$/);
+      return m ? { letter: m[1].toUpperCase(), text: m[2] } : { letter: fallback, text: o };
+    }
+    const obj = (o ?? {}) as { label?: unknown; text?: unknown };
+    return { letter: String(obj.label ?? fallback).toUpperCase(), text: String(obj.text ?? "") };
+  });
+  const ca = anyQ.correctAnswer as unknown;
+  let correct = "";
+  if (typeof ca === "number") correct = options[ca]?.letter ?? "";
+  else if (typeof ca === "string") {
+    const t = ca.trim();
+    if (/^[A-Ea-e]$/.test(t)) correct = t.toUpperCase();
+    else if (/^\d+$/.test(t)) correct = options[Number(t)]?.letter ?? "";
+    else correct = options.find((o) => o.text.trim() === t)?.letter ?? "";
+  }
+  return { text, options, correct };
+}
+
 export default function QuizPage() {
   const params = useParams();
   const slug = params.slug as RotationSlug;
@@ -24,23 +57,17 @@ export default function QuizPage() {
 
   const q: QuizQuestion | undefined = questions[current];
 
-  // Normalise question text — supports both `question` and `stem` fields
-  const questionText = q?.question ?? q?.stem ?? "";
-
-  // Normalise options — supports both string[] ("A. text") and {label,text}[]
-  const options: string[] = q?.options ??
-    (q?.optionsStructured?.map((o) => `${o.label}. ${o.text}`) ?? []);
+  const { text: questionText, options, correct } = normalizeQuestion(q);
 
   const handleSelect = useCallback(
-    (optionStr: string) => {
+    (letter: string) => {
       if (answered[current] !== undefined) return;
-      const letter = optionStr.charAt(0).toUpperCase();
       setSelected(letter);
       setShowExplanation(true);
-      if (letter === q?.correctAnswer) setScore((s) => s + 1);
+      if (letter === correct) setScore((s) => s + 1);
       setAnswered((prev) => ({ ...prev, [current]: letter }));
     },
-    [current, answered, q]
+    [current, answered, correct]
   );
 
   const handleNext = useCallback(() => {
@@ -94,7 +121,7 @@ export default function QuizPage() {
   if (!q) return null;
 
   const isAnswered = answered[current] !== undefined;
-  const isCorrect = selected === q.correctAnswer;
+  const isCorrect = selected === correct;
 
   return (
     <div className="max-w-2xl mx-auto space-y-5">
@@ -141,21 +168,20 @@ export default function QuizPage() {
           )}
         </div>
 
-        <p className="text-sm font-medium leading-relaxed">{questionText}</p>
+        <p className="text-base font-medium leading-relaxed">{questionText}</p>
 
         <div className="space-y-2">
-          {options.map((option) => {
-            const letter = option.charAt(0).toUpperCase();
+          {options.map(({ letter, text }) => {
             const isSelected = selected === letter;
-            const isRight = letter === q.correctAnswer;
+            const isRight = letter === correct;
 
             return (
               <button
                 key={letter}
-                onClick={() => handleSelect(option)}
+                onClick={() => handleSelect(letter)}
                 disabled={isAnswered}
                 className={cn(
-                  "w-full text-left text-sm rounded-lg border px-4 py-3 transition-all",
+                  "w-full text-left text-base sm:text-sm rounded-lg border px-4 py-3.5 transition-all",
                   !isAnswered && "hover:border-teal-400 hover:bg-teal-50 dark:hover:bg-teal-900/20 cursor-pointer bg-card",
                   isAnswered && isRight && "border-green-500 bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-200",
                   isAnswered && isSelected && !isRight && "border-red-500 bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200",
@@ -166,7 +192,7 @@ export default function QuizPage() {
                   {isAnswered && isRight && <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0" />}
                   {isAnswered && isSelected && !isRight && <XCircle className="h-4 w-4 text-red-500 shrink-0" />}
                   {(!isAnswered || (!isRight && !isSelected)) && <span className="h-4 w-4 shrink-0" />}
-                  {option}
+                  <span><span className="font-semibold">{letter}.</span> {text}</span>
                 </span>
               </button>
             );
@@ -184,7 +210,7 @@ export default function QuizPage() {
           {isCorrect
             ? <CheckCircle2 className="h-4 w-4 shrink-0 text-green-500" />
             : <XCircle className="h-4 w-4 shrink-0 text-red-500" />}
-          <span className="font-medium">{isCorrect ? "Correct!" : `Incorrect — Answer: ${q.correctAnswer}`}</span>
+          <span className="font-medium">{isCorrect ? "Correct!" : `Incorrect — Answer: ${correct}`}</span>
         </div>
       )}
 
@@ -192,7 +218,7 @@ export default function QuizPage() {
       {showExplanation && q.explanation && (
         <div className="border rounded-xl p-4 bg-blue-50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800">
           <h3 className="text-xs font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-300 mb-2">Explanation</h3>
-          <p className="text-sm text-blue-900 dark:text-blue-100 leading-relaxed">{q.explanation}</p>
+          <p className="text-[15px] sm:text-sm text-blue-900 dark:text-blue-100 leading-relaxed">{q.explanation}</p>
         </div>
       )}
 

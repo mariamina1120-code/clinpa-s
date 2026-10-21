@@ -19,7 +19,7 @@ export default function SignupPage() {
         <div className="bg-white dark:bg-slate-900 rounded-xl shadow-lg border p-8">
           <h1 className="text-2xl font-bold mb-1">Create account</h1>
           <p className="text-sm text-muted-foreground mb-6">
-            Join thousands of PA students on clinical rotations
+            Built by a PA student, for clinical year
           </p>
           <SignupForm />
           <div className="mt-6 text-center text-sm">

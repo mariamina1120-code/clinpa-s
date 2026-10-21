@@ -6,7 +6,10 @@ import type { NextRequest } from "next/server";
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
-  const redirectTo = requestUrl.searchParams.get("redirectTo") ?? "/dashboard";
+  // Only allow same-site relative paths (blocks open redirects like //evil.com)
+  const requested = requestUrl.searchParams.get("redirectTo");
+  const redirectTo =
+    requested && requested.startsWith("/") && !requested.startsWith("//") ? requested : "/dashboard";
 
   if (code) {
     const cookieStore = cookies();

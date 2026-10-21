@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { ForgotPasswordForm } from "@/components/auth/forgot-password-form";
 import Link from "next/link";
-import { ShieldCheck } from "lucide-react";
+import { ClinPASLockup } from "@/components/brand/logo";
 
 export const metadata: Metadata = { title: "Reset Password" };
 
@@ -10,9 +10,8 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-50 to-slate-100 p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-2">
-            <ShieldCheck className="h-8 w-8 text-teal-600" />
-            <span className="text-2xl font-bold text-teal-700">ClinicalYear</span>
+          <Link href="/" className="inline-flex justify-center mb-2">
+            <ClinPASLockup size={36} tone="light" />
           </Link>
         </div>
         <div className="bg-white rounded-xl shadow-lg border p-8">

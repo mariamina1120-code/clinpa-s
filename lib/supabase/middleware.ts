@@ -48,7 +48,6 @@ export async function updateSession(request: NextRequest) {
     "/case-log",
     "/paper-tools",
     "/account",
-    "/store",
   ];
   const authRoutes = ["/auth/login", "/auth/signup"];
 

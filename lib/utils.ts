@@ -25,11 +25,11 @@ export const ROTATIONS: Rotation[] = [
   },
   {
     slug: "general-surgery",
-    name: "General Surgery",
+    name: "Surgery",
     shortName: "Surgery",
     color: "slate",
     description:
-      "Surgical evaluation, peri-operative care, and management of abdominal, breast, and soft tissue conditions.",
+      "Surgical evaluation and pre-, intra-, and post-operative care of abdominal, breast, vascular, and soft tissue conditions.",
   },
   {
     slug: "pediatrics",
@@ -41,11 +41,11 @@ export const ROTATIONS: Rotation[] = [
   },
   {
     slug: "womens-health",
-    name: "Women's Health / OB-GYN",
+    name: "Women's Health",
     shortName: "Women's Health",
     color: "rose",
     description:
-      "Reproductive health, obstetric care, gynecologic conditions, and preventive screenings for female patients.",
+      "Prenatal, gynecologic, sexual, and reproductive health care, including preventive screening.",
   },
   {
     slug: "emergency-medicine",
@@ -57,8 +57,8 @@ export const ROTATIONS: Rotation[] = [
   },
   {
     slug: "behavioral-medicine",
-    name: "Behavioral Medicine / Psychiatry",
-    shortName: "Behavioral Med",
+    name: "Behavioral & Mental Health",
+    shortName: "Behavioral Health",
     color: "indigo",
     description:
       "Mental health evaluation, psychiatric disorders, substance use, and psychopharmacology.",
